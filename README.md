@@ -1,2 +1,2 @@
-# emrobot-reading-group.github.io
+# emrobot-reading-group
 Robot Embodiment &amp; Skills Learning Reading Group
