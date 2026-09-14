@@ -1,0 +1,123 @@
+---
+layout: default
+title: About
+eyebrow: About the group
+permalink: /about/
+lede: A weekly research reading group on how robots represent their own physical bodies and constraints, and how those representations carry into planning, control and skill learning.
+---
+<section class="section">
+  <div class="container">
+
+    <div class="two-col" id="overview">
+      <div class="two-col__label"><h2>Overview</h2></div>
+      <div class="prose">
+        <p>The Embodiment Reading Group studies how a robot's physical body and its constraints are represented in robot learning, and how those representations carry into downstream task planning and control.</p>
+        <p>We read both seminal and state-of-the-art methods. The emphasis is on how embodiment is represented, how current work adapts those representations, and how they contribute to downstream planning and control. We also study current methods for embodied skill learning and skill representation, particularly for mobile and dexterous manipulation. This includes methods that learn reusable, transferable or compositional skills while accounting for differences in embodiment, task structure and interaction constraints.</p>
+        <p>The scope covers representations of robot kinematics, morphology, dynamics, actuation, sensing, contact, force, tactile feedback, geometry, control interfaces and physical limitations. It also covers learned and structured representations that support adaptation across robots, tasks and operating conditions.</p>
+      </div>
+    </div>
+
+    <div class="two-col" id="motivation">
+      <div class="two-col__label"><h2>Motivation</h2></div>
+      <div class="prose">
+        <p>Many robot learning methods are developed around a fixed robot platform. In these systems, the robot's body, sensors, action space and physical constraints are often treated as part of the fixed experimental setup rather than as elements the model explicitly represents.</p>
+        <p>This limits transfer across platforms, adaptation to hardware changes and reasoning about physical feasibility. Current research addresses these limitations through a wide variety of kinematic graphs, morphology-aware policies, robot tokens, geometric representations, latent embeddings, dynamics-conditioned models, tactile and force representations, and embodiment-aware world models.</p>
+        <p>The group aims to build a clearer understanding of these representation choices, how they have evolved and where they remain insufficient. More broadly, we want to understand how a robot can represent its own physical capabilities, use that representation when interacting with the world, and develop skills that stay meaningful across tasks, environments and embodiments.</p>
+      </div>
+    </div>
+
+    <div class="two-col" id="focus">
+      <div class="two-col__label"><h2>Main focus</h2></div>
+      <div>
+        <div class="grid grid--2">
+          <div class="card pillar">
+            <span class="pillar__num">01</span>
+            <h3>Representation</h3>
+            <p>The primary focus: the form of embodiment representation each method uses, and how it is integrated into learning.</p>
+          </div>
+          <div class="card pillar">
+            <span class="pillar__num">02</span>
+            <h3>Adaptation in current work</h3>
+            <p>How newer methods build on or modify earlier representations.</p>
+          </div>
+          <div class="card pillar">
+            <span class="pillar__num">03</span>
+            <h3>Skill learning and representation</h3>
+            <p>How embodied skills are represented, learned, composed, transferred and reused, particularly in mobile and dexterous manipulation.</p>
+          </div>
+          <div class="card pillar">
+            <span class="pillar__num">04</span>
+            <h3>Limitations</h3>
+            <p>The limitations of each representation: what it cannot express and where it fails to transfer.</p>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <div class="two-col" id="scope">
+      <div class="two-col__label"><h2>Scope</h2></div>
+      <div class="prose">
+        <ul class="chips" style="margin-bottom: 20px;">
+          <li>Cross-embodiment learning</li>
+          <li>Geometric and task-space representations</li>
+          <li>Tactile and contact representation learning</li>
+          <li>Embodiment-aware world models</li>
+          <li>Embodiment-aware affordances</li>
+          <li>Traversability</li>
+          <li>Skill representation and skill learning</li>
+          <li>Hierarchical and compositional skills</li>
+          <li>Interaction risk</li>
+        </ul>
+        <p>We prioritize work where the representation of the robot is a central technical component rather than a minor implementation detail. The <a href="{{ '/reading-list/' | relative_url }}">reading list</a> pairs foundational work with recent state-of-the-art research so we can follow how embodiment representations have developed over time.</p>
+      </div>
+    </div>
+
+    <div class="two-col" id="format">
+      <div class="two-col__label"><h2>Format</h2></div>
+      <div class="prose">
+        <p><strong>Weekly paper sessions</strong> run about 90 minutes: a 60-minute presentation followed by 30 minutes of discussion and Q&amp;A, usually on one main paper or a small set of closely related papers.</p>
+        <p><strong>Monthly tooling sessions</strong> run 1–2 hours and cover practical tools, simulation workflows, hardware systems, datasets and implementation approaches. See <a href="{{ '/tooling/' | relative_url }}">tooling</a>.</p>
+        <p><strong>Invited author talks</strong> happen occasionally.</p>
+        <p>Sessions are hybrid. With the consent of presenters and participants, selected sessions are recorded and published on YouTube, and upcoming sessions are shared on LinkedIn and in relevant robotics communities. Details are on <a href="{{ '/participate/' | relative_url }}">participate</a>.</p>
+      </div>
+    </div>
+
+    <div class="two-col" id="outcomes">
+      <div class="two-col__label"><h2>Intended outcomes</h2></div>
+      <div class="prose">
+        <ul>
+          <li>Build a stronger understanding of embodiment representations in robot learning.</li>
+          <li>Trace how these representations have evolved.</li>
+          <li>Connect work across planning, control, sensing, locomotion, manipulation and hardware.</li>
+          <li>Clarify the strengths and limitations of current approaches.</li>
+          <li>Identify useful tools and implementation practices.</li>
+          <li>Surface promising research directions and potential collaborations.</li>
+          <li>Create a public archive of talks and technical demonstrations on embodiment in robot learning.</li>
+        </ul>
+      </div>
+    </div>
+
+    <div class="two-col" id="organizers">
+      <div class="two-col__label"><h2>Organizers</h2></div>
+      <div>
+        <ul class="people">
+          {%- for p in site.data.organizers.current %}
+          <li class="person">
+            <strong>{% if p.url != "" %}<a href="{{ p.url }}">{{ p.name }}</a>{% else %}{{ p.name }}{% endif %}</strong>
+            <span>{{ p.role }}{% if p.affiliation %} · {{ p.affiliation }}{% endif %}</span>
+          </li>
+          {%- endfor %}
+        </ul>
+        {%- if site.data.organizers.past.size > 0 %}
+        <h3 style="margin-top: 28px;">Past organizers</h3>
+        <ul class="people">
+          {%- for p in site.data.organizers.past %}
+          <li class="person"><strong>{{ p.name }}</strong><span>{{ p.years }}</span></li>
+          {%- endfor %}
+        </ul>
+        {%- endif %}
+      </div>
+    </div>
+
+  </div>
+</section>

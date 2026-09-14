@@ -1,0 +1,26 @@
+<dl class="facts">
+  <div>
+    <dt>When</dt>
+    <dd>{{ site.meeting.cadence }}, {{ site.meeting.day }}{% if site.meeting.start_time != "" %} at {{ site.meeting.start_time }} {{ site.meeting.tz_label }}{% endif %}</dd>
+  </div>
+  <div>
+    <dt>Where</dt>
+    <dd>{% if site.meeting.location_url != "" %}<a href="{{ site.meeting.location_url }}">{{ site.meeting.location }}</a>{% else %}{{ site.meeting.location }}{% endif %}</dd>
+  </div>
+  <div>
+    <dt>Online</dt>
+    <dd>
+      {%- if site.links.zoom_join != "" -%}
+        <a href="{{ site.links.zoom_join }}">Join on Zoom</a>
+      {%- elsif site.links.zoom_registration != "" -%}
+        <a href="{{ site.links.zoom_registration }}">Register for the Zoom link</a>
+      {%- else -%}
+        Link shared via the mailing list and calendar invite
+      {%- endif -%}
+    </dd>
+  </div>
+  <div>
+    <dt>Length</dt>
+    <dd>{{ site.meeting.duration }} min · tooling {{ site.meeting.tooling_duration | divided_by: 60 }} h</dd>
+  </div>
+</dl>

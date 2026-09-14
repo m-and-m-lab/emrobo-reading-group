@@ -1,0 +1,67 @@
+name: Suggest a paper
+description: Propose a paper, or a small set of related papers, for a reading group session.
+title: "[Paper] "
+labels: ["paper-suggestion"]
+body:
+  - type: markdown
+    attributes:
+      value: |
+        Thanks for suggesting a paper! We prioritize work where the robot's embodiment representation is a central technical component rather than a minor implementation detail.
+  - type: input
+    id: title
+    attributes:
+      label: Paper title
+    validations:
+      required: true
+  - type: input
+    id: link
+    attributes:
+      label: Link
+      description: arXiv, venue page, or project page.
+    validations:
+      required: true
+  - type: input
+    id: venue
+    attributes:
+      label: Venue and year
+      placeholder: e.g. CoRL 2024, or arXiv 2025
+  - type: dropdown
+    id: topic
+    attributes:
+      label: Closest topic
+      options:
+        - Morphology-aware and graph-based policies
+        - Hardware-conditioned and dynamics-aware adaptation
+        - Cross-embodiment pretraining and robot tokens
+        - Self-models, geometric and kinematic representations
+        - Tactile and contact representations
+        - World models across embodiments
+        - Affordances and traversability
+        - Skill learning and skill representation
+        - Other / not sure
+  - type: dropdown
+    id: kind
+    attributes:
+      label: Foundational or recent?
+      options:
+        - Foundational
+        - Recent state of the art
+        - Not sure
+  - type: textarea
+    id: why
+    attributes:
+      label: Why this paper?
+      description: What embodiment representation does it use, and what would the group get out of discussing it?
+    validations:
+      required: true
+  - type: textarea
+    id: related
+    attributes:
+      label: Related papers to pair with it
+      description: Optional. Earlier work it builds on, or follow-ups.
+  - type: checkboxes
+    id: present
+    attributes:
+      label: Presenting
+      options:
+        - label: I'd be willing to present this paper.

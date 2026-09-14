@@ -1,0 +1,58 @@
+# ---------------------------------------------------------------------------
+# Embodiment Reading Group — site settings
+# Most day-to-day edits happen in _data/sessions.yml, not here.
+# Changes to this file need a fresh `jekyll serve` locally (GitHub rebuilds on push).
+# ---------------------------------------------------------------------------
+
+title: Embodiment Reading Group
+description: >-
+  A weekly, hybrid research reading group at the University of Michigan on how
+  robots represent their own bodies (kinematics, morphology, dynamics, sensing,
+  contact, and limits) and how those representations carry into planning,
+  control, and transferable skills.
+
+# Project site under the m-and-m-lab organization.
+# If the repo is renamed, update `baseurl` to "/<new-repo-name>".
+url: "https://m-and-m-lab.github.io"
+baseurl: "/emrobo-reading-group"
+timezone: America/Detroit
+
+# Sessions whose `semester` matches this show on /schedule/; all others go to /archive/.
+current_semester: "Fall 2026"
+
+meeting:
+  cadence: "Weekly"
+  day: "Day TBD"            # e.g. "Thursdays"
+  start_time: ""            # 24h local time, e.g. "16:00". Leave empty while TBD.
+  duration: 90              # minutes, regular paper sessions
+  tooling_duration: 120     # minutes, monthly tooling sessions
+  tz_label: "ET"
+  location: "TBD"           # e.g. "FRB 2000, Ford Motor Company Robotics Building"
+  location_url: ""          # e.g. a Google Maps link
+
+links:
+  # Online meeting. Public Zoom links get scraped and "zoombombed", so the
+  # recommended setup is: leave `zoom_join` empty and share the link through the
+  # mailing list / calendar invite, or set `zoom_registration` to a signup form.
+  zoom_join: ""
+  zoom_registration: ""
+  mailing_list: ""          # e.g. a Google Group join page
+  slack: ""                 # UMich Slack channel link (shown as UMich-only)
+  slack_channel: "#embodiment-reading-group"
+  youtube: ""
+  linkedin: ""
+  presenter_signup: ""      # e.g. a Google Sheet
+  suggest_paper_form: ""    # optional; GitHub issue templates are used otherwise
+  contact_email: ""
+  github_repo: "https://github.com/m-and-m-lab/emrobo-reading-group"
+
+markdown: kramdown
+kramdown:
+  input: GFM
+
+exclude:
+  - README.md
+  - Gemfile
+  - Gemfile.lock
+  - vendor
+  - node_modules

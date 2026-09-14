@@ -1,0 +1,36 @@
+name: Nominate a speaker
+description: Suggest an author to invite for a talk about their own work.
+title: "[Speaker] "
+labels: ["speaker-nomination"]
+body:
+  - type: input
+    id: name
+    attributes:
+      label: Speaker name
+    validations:
+      required: true
+  - type: input
+    id: affiliation
+    attributes:
+      label: Affiliation
+  - type: input
+    id: homepage
+    attributes:
+      label: Homepage
+  - type: textarea
+    id: work
+    attributes:
+      label: Relevant work
+      description: Papers you'd like them to talk about, with links.
+    validations:
+      required: true
+  - type: textarea
+    id: fit
+    attributes:
+      label: Why they fit the group
+  - type: checkboxes
+    id: intro
+    attributes:
+      label: Introduction
+      options:
+        - label: I know this person and can make an introduction.

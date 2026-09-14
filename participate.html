@@ -1,0 +1,129 @@
+---
+layout: default
+title: Participate
+eyebrow: Present · suggest · attend
+permalink: /participate/
+lede: The group runs on its members. Here is how to present a paper, suggest what we read, run a tooling session or nominate a speaker, plus what to expect when you attend.
+---
+<section class="section">
+  <div class="container">
+
+    <div class="two-col" id="attend">
+      <div class="two-col__label"><h2>Attending</h2></div>
+      <div class="prose">
+        <p><strong>Reading ahead is optional.</strong> The presenter covers the paper, so come even if you haven't opened it. If you have 15 minutes, skim the abstract, the main figure and the limitations section.</p>
+        <p>Some questions worth bringing to any session:</p>
+        <ul>
+          <li>What does the model actually know about the robot's body, and where does that knowledge enter?</li>
+          <li>What would change if the robot were a Spot, a dexterous hand or your own platform?</li>
+          <li>Which assumptions hold only for the robots in the experiments?</li>
+          <li>What is missing from the ablations?</li>
+        </ul>
+        <p><strong>Discussion norms.</strong> Critique the work, not the people. Questions at every level are welcome, and people joining online get equal airtime, so the facilitator watches the chat and calls on online participants first.</p>
+      </div>
+    </div>
+
+    <div class="two-col" id="present">
+      <div class="two-col__label"><h2>Presenting a paper</h2></div>
+      <div class="prose">
+        <p>Each regular session is about 90 minutes: a <strong>60-minute presentation</strong> followed by <strong>30 minutes of discussion and Q&amp;A</strong>, on one main paper or a small set of closely related papers.</p>
+
+        <h3>What to cover</h3>
+        <ol class="checklist">
+          <li>The representation used in the work.</li>
+          <li>How it is integrated into the learning method.</li>
+          <li>How it differs from earlier approaches.</li>
+          <li>The downstream planning or control capability it supports.</li>
+          <li>The experimental evidence.</li>
+          <li>The main limitations.</li>
+        </ol>
+
+        <h3>Timeline</h3>
+        <ol class="steps">
+          <li><strong>2+ weeks before</strong><span>Claim a slot on the presenter sign-up sheet and confirm the paper with the organizers.</span></li>
+          <li><strong>1 week before</strong><span>Send the final paper link, plus any related readings, so it can go into the announcement.</span></li>
+          <li><strong>Day of</strong><span>Bring two or three open questions to start the discussion.</span></li>
+          <li><strong>Within 3 days after</strong><span>Share your slides as a PDF or link and note whether you're happy for the recording to be published.</span></li>
+        </ol>
+
+        <h3>Tips</h3>
+        <ul>
+          <li>Lead with the figures. A clear drawing of the representation, such as the graph, the tokens or the embedding, is worth more than equations.</li>
+          <li>Place the paper on a timeline: what it builds on and what came after.</li>
+          <li>Don't hold back on the limitations section. It is often the best part of the discussion.</li>
+        </ul>
+
+        <p style="margin-top: 24px;">
+          {%- if site.links.presenter_signup != "" -%}
+          <a class="btn btn--accent" href="{{ site.links.presenter_signup }}">Open the sign-up sheet</a>
+          {%- else -%}
+          <span class="btn is-soon" aria-disabled="true">Sign-up sheet <small>soon</small></span>
+          {%- endif -%}
+        </p>
+      </div>
+    </div>
+
+    <div class="two-col" id="discussion">
+      <div class="two-col__label"><h2>Discussion formats</h2></div>
+      <div>
+        <p class="muted" style="max-width: 46em;">To keep the 30 minutes of discussion lively, the presenter can pick one of these:</p>
+        <div class="grid grid--2">
+          <div class="card"><h3>Advocate vs. critic</h3><p>Two people argue for and against the paper's central claim. Everyone else votes, then explains why.</p></div>
+          <div class="card"><h3>Draw the representation</h3><p>Sketch, on a whiteboard or shared canvas, exactly what the model receives about the body and what it has to infer.</p></div>
+          <div class="card"><h3>Transfer test</h3><p>Pick a different robot or task and walk through what would break, what would transfer and what would need retraining.</p></div>
+          <div class="card"><h3>Mock review</h3><p>Small groups write a short conference-style review: strengths, weaknesses, missing experiments and a score.</p></div>
+        </div>
+      </div>
+    </div>
+
+    <div class="two-col" id="suggest">
+      <div class="two-col__label"><h2>Suggesting papers</h2></div>
+      <div class="prose">
+        <p>Anyone can suggest a paper. When choosing, we look for:</p>
+        <ul>
+          <li>Work where <strong>the robot's representation is a central technical component</strong>, not a minor implementation detail.</li>
+          <li>A balance of <strong>foundational</strong> papers and <strong>recent state-of-the-art</strong> work, often paired so we can see how ideas developed.</li>
+          <li>Clear connections to downstream planning, control or skills.</li>
+          <li>Open code or assets when possible, which also makes for good tooling sessions.</li>
+        </ul>
+        <div class="callout__actions" style="margin-top: 20px;">
+          <a class="btn" href="{{ site.links.github_repo }}/issues/new?template=paper-suggestion.yml">Suggest a paper on GitHub</a>
+          {%- if site.links.suggest_paper_form != "" %}
+          <a class="btn btn--quiet" href="{{ site.links.suggest_paper_form }}">Use the form instead</a>
+          {%- endif %}
+          <a class="btn btn--quiet" href="{{ '/reading-list/' | relative_url }}">Browse the reading list</a>
+        </div>
+      </div>
+    </div>
+
+    <div class="two-col" id="tooling">
+      <div class="two-col__label"><h2>Running a tooling session</h2></div>
+      <div class="prose">
+        <p>Tooling sessions are monthly, practical and informal, lasting 1–2 hours. Share tools you actively use, implementation lessons, work in progress or technical limitations. Several short demos can share one session. See the <a href="{{ '/tooling/' | relative_url }}">tooling page</a> for topic ideas.</p>
+        <p><a class="btn" href="{{ site.links.github_repo }}/issues/new?template=tooling-session.yml">Propose a tooling session</a></p>
+      </div>
+    </div>
+
+    <div class="two-col" id="invite">
+      <div class="two-col__label"><h2>Invited talks</h2></div>
+      <div class="prose">
+        <p>A few times a semester we invite authors to present their own work. If you know an author whose work fits the group, nominate them. A warm introduction helps a lot.</p>
+        <p><a class="btn" href="{{ site.links.github_repo }}/issues/new?template=speaker-nomination.yml">Nominate a speaker</a></p>
+      </div>
+    </div>
+
+    <div class="two-col" id="recording">
+      <div class="two-col__label"><h2>Recording policy</h2></div>
+      <div class="prose">
+        <ul>
+          <li>Sessions are recorded <strong>only with the presenter's consent</strong>, and published on the group's public YouTube channel.</li>
+          <li>Attendees are reminded at the start of every recorded session. If you prefer not to appear, keep your camera off and ask questions in the chat, and they'll be read aloud without your name.</li>
+          <li>The discussion portion may be trimmed before publishing. Presenters can review their recording first and ask for it to be removed at any time.</li>
+          <li>Unpublished or in-progress work is never recorded unless the presenter explicitly asks for it.</li>
+          <li>Upcoming sessions and recordings may be shared on LinkedIn and in relevant robotics communities.</li>
+        </ul>
+      </div>
+    </div>
+
+  </div>
+</section>

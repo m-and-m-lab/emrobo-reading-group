@@ -1,0 +1,81 @@
+---
+layout: default
+title: Tooling
+eyebrow: Monthly · hands-on
+permalink: /tooling/
+lede: Once a month we set papers aside and share practical tools, simulation workflows, hardware setups and implementation lessons for embodiment research.
+---
+{%- assign tooling = site.data.sessions | where: "type", "tooling" | sort: "date" | reverse -%}
+
+<section class="section">
+  <div class="container">
+    <div class="two-col">
+      <div class="two-col__label"><h2>What these are</h2></div>
+      <div class="prose">
+        <p>Tooling sessions run 1–2 hours and are meant to be practical and informal. Share tools you actively use, lessons from implementation, work in progress, or the limitations you've hit. Polished slides are optional; a terminal and a simulator window are welcome.</p>
+        <p>The first planned session walks through the Spot USD asset and an Isaac Sim training pipeline, including how the robot's structure, physical properties and control interfaces are represented.</p>
+      </div>
+    </div>
+
+    <div class="two-col">
+      <div class="two-col__label"><h2>Possible topics</h2></div>
+      <div>
+        <ul class="chips">
+          <li>URDF and USD robot models</li>
+          <li>Isaac Sim and Isaac Lab workflows</li>
+          <li>Extracting kinematic and dynamic information</li>
+          <li>Building graphs and tokens from robot models</li>
+          <li>Robot asset modification</li>
+          <li>Morphology and dynamics randomization</li>
+          <li>Force, torque, contact and tactile sensing</li>
+          <li>Hardware data collection</li>
+          <li>Policy training across embodiments</li>
+          <li>Sim-to-real workflows</li>
+          <li>Visualization and debugging tools</li>
+          <li>Useful repositories and packages</li>
+        </ul>
+      </div>
+    </div>
+
+    <div class="two-col">
+      <div class="two-col__label"><h2>Sessions</h2></div>
+      <div class="session-list">
+        {%- for s in tooling %}
+        {% include session-card.html session=s %}
+        {%- endfor %}
+        {%- if tooling.size == 0 %}
+        <p class="empty">No tooling sessions scheduled yet.</p>
+        {%- endif %}
+      </div>
+    </div>
+
+    <div class="two-col" id="resources">
+      <div class="two-col__label"><h2>Resources</h2></div>
+      <div>
+        {%- for g in site.data.resources %}
+        <div class="resource-group">
+          <h3>{{ g.group }}</h3>
+          <div class="grid grid--2">
+            {%- for r in g.items %}
+            <a class="card card--link resource" href="{{ r.url }}">
+              <strong>{{ r.name }}</strong>
+              <span>{{ r.note }}</span>
+            </a>
+            {%- endfor %}
+          </div>
+        </div>
+        {%- endfor %}
+      </div>
+    </div>
+
+    <div class="callout" style="margin-top: 56px;">
+      <div>
+        <h3>Have a tool worth showing?</h3>
+        <p>Propose a tooling session. A 20-minute demo is plenty, and several short demos can share a session.</p>
+      </div>
+      <div class="callout__actions">
+        <a class="btn" href="{{ site.links.github_repo }}/issues/new?template=tooling-session.yml">Propose a session</a>
+      </div>
+    </div>
+  </div>
+</section>

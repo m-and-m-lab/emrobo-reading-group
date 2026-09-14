@@ -1,0 +1,77 @@
+# ---------------------------------------------------------------------------
+# All sessions, past and future. Order does not matter; pages sort by date.
+#
+# Required:  date (YYYY-MM-DD), semester, type, title
+# type:      paper | invited | tooling | special
+# Optional:  time ("16:00", quoted, overrides _config.yml), duration (minutes),
+#            location, authors, venue, paper_url, code_url, presenter,
+#            presenter_url, affiliation, theme, description,
+#            slides, video (YouTube URL), notes (shared notes URL),
+#            extra_readings (list of {title, url}), tentative (true/false)
+#
+# After a session: add `slides`, `video`, and `notes`. The session is marked
+# past automatically, and moves to /archive/ once `current_semester` in
+# _config.yml changes.
+#
+# The entries below are a tentative starting point; edit or replace freely.
+# ---------------------------------------------------------------------------
+
+- date: 2026-09-24
+  semester: Fall 2026
+  type: special
+  tentative: true
+  title: "Kickoff: how should a robot represent its own body?"
+  presenter: Organizers
+  description: >-
+    Scope and format, a quick map of embodiment representations from morphology
+    graphs to robot tokens, and presenter sign-ups for the semester.
+
+- date: 2026-10-01
+  semester: Fall 2026
+  type: paper
+  tentative: true
+  theme: Morphology-aware policies
+  title: "One Policy to Control Them All: Shared Modular Policies for Agent-Agnostic Control"
+  authors: Huang et al.
+  venue: ICML 2020
+  paper_url: https://arxiv.org/abs/2007.04976
+  presenter: TBD
+  extra_readings:
+    - title: "My Body is a Cage: the Role of Morphology in Graph-Based Incompatible Control"
+      url: https://arxiv.org/abs/2010.01856
+
+- date: 2026-10-08
+  semester: Fall 2026
+  type: paper
+  tentative: true
+  theme: Morphology-aware policies
+  title: "MetaMorph: Learning Universal Controllers with Transformers"
+  authors: Gupta et al.
+  venue: ICLR 2022
+  paper_url: https://arxiv.org/abs/2203.11931
+  presenter: TBD
+  extra_readings:
+    - title: "Body Transformer: Leveraging Robot Embodiment for Policy Learning"
+      url: https://arxiv.org/abs/2408.06316
+
+- date: 2026-10-15
+  semester: Fall 2026
+  type: tooling
+  tentative: true
+  title: "From Spot USD asset to trained policy in Isaac Sim"
+  presenter: TBD
+  description: >-
+    A walkthrough of the Spot USD asset and an Isaac Sim / Isaac Lab training
+    pipeline: how robot structure, physical properties, and control interfaces
+    are represented, and where to extract them.
+
+- date: 2026-10-22
+  semester: Fall 2026
+  type: paper
+  tentative: true
+  theme: Cross-embodiment pretraining
+  title: "Scaling Proprioceptive-Visual Learning with Heterogeneous Pre-trained Transformers"
+  authors: Wang et al.
+  venue: NeurIPS 2024
+  paper_url: https://arxiv.org/abs/2409.20537
+  presenter: TBD

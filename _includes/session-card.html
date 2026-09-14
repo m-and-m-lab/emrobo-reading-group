@@ -1,0 +1,62 @@
+{%- assign s = include.session -%}
+{%- include session-times.html session=s -%}
+<article class="session session--{{ st_type }}" id="{{ st_id }}" data-kind="{{ st_type }}" data-start="{{ st_iso }}" data-duration="{{ st_duration }}">
+  <div class="session__date" aria-hidden="true">
+    <span class="session__month">{{ s.date | date: "%b" }}</span>
+    <span class="session__day">{{ s.date | date: "%-d" }}</span>
+    <span class="session__weekday">{{ s.date | date: "%a" }}</span>
+  </div>
+  <div class="session__body">
+    <div class="session__meta">
+      {% include type-badge.html type=st_type %}
+      {%- if s.theme %}<span class="session__theme">{{ s.theme }}</span>{% endif %}
+      {%- if s.tentative %}<span class="tag tag--tentative">tentative</span>{% endif %}
+      <span class="tag tag--next" hidden>up next</span>
+    </div>
+    <h3 class="session__title">
+      {%- if s.paper_url -%}<a href="{{ s.paper_url }}">{{ s.title }}</a>{%- else -%}{{ s.title }}{%- endif -%}
+    </h3>
+    {%- if s.authors or s.venue %}
+    <p class="session__authors">{{ s.authors }}{% if s.authors and s.venue %} · {% endif %}{% if s.venue %}<span class="session__venue">{{ s.venue }}</span>{% endif %}</p>
+    {%- endif %}
+    {%- if s.description %}
+    <p class="session__desc">{{ s.description }}</p>
+    {%- endif %}
+    <dl class="session__facts">
+      <div>
+        <dt>{% if st_type == "invited" %}Speaker{% else %}Presenter{% endif %}</dt>
+        <dd>{% if s.presenter_url %}<a href="{{ s.presenter_url }}">{{ s.presenter | default: "TBD" }}</a>{% else %}{{ s.presenter | default: "TBD" }}{% endif %}{% if s.affiliation %}<span class="muted">, {{ s.affiliation }}</span>{% endif %}</dd>
+      </div>
+      <div>
+        <dt>When</dt>
+        <dd>{{ s.date | date: "%a, %b %-d" }} · {{ st_label }} <span class="js-local-time muted" hidden></span></dd>
+      </div>
+      <div>
+        <dt>Where</dt>
+        <dd>{{ st_location }} + online</dd>
+      </div>
+    </dl>
+    {%- if s.extra_readings %}
+    <details class="session__extra">
+      <summary>Related reading ({{ s.extra_readings | size }})</summary>
+      <ul>
+        {%- for r in s.extra_readings %}
+        <li><a href="{{ r.url }}">{{ r.title }}</a></li>
+        {%- endfor %}
+      </ul>
+    </details>
+    {%- endif %}
+  </div>
+  <ul class="session__links">
+    {%- if s.paper_url %}<li><a class="chip" href="{{ s.paper_url }}">Paper</a></li>{% endif %}
+    {%- if s.code_url %}<li><a class="chip" href="{{ s.code_url }}">Code</a></li>{% endif %}
+    {%- if s.slides %}<li><a class="chip" href="{{ s.slides }}">Slides</a></li>{% endif %}
+    {%- if s.video %}<li><a class="chip chip--video" href="{{ s.video }}">Recording</a></li>{% endif %}
+    {%- if s.notes %}<li><a class="chip" href="{{ s.notes }}">Notes</a></li>{% endif %}
+    {%- unless st_tbd %}
+    {%- capture gcal_text %}{{ site.title }}: {{ s.title }}{% endcapture %}
+    {%- capture gcal_details %}{% if s.presenter %}{% if st_type == "invited" %}Speaker{% else %}Presenter{% endif %}: {{ s.presenter }}. {% endif %}{% if s.paper_url %}Paper: {{ s.paper_url }} {% endif %}Details: {{ '/schedule/' | absolute_url }}#{{ st_id }}{% endcapture %}
+    <li class="js-upcoming-only"><a class="chip chip--quiet" href="https://calendar.google.com/calendar/render?action=TEMPLATE&amp;text={{ gcal_text | url_encode }}&amp;dates={{ st_date }}T{{ st_start }}00/{{ st_date }}T{{ st_end }}00&amp;ctz={{ site.timezone | url_encode }}&amp;location={{ st_location | append: ' + online' | url_encode }}&amp;details={{ gcal_details | strip | url_encode }}">+ Calendar</a></li>
+    {%- endunless %}
+  </ul>
+</article>

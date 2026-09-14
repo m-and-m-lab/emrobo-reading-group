@@ -1,0 +1,46 @@
+---
+layout: default
+title: Schedule
+eyebrow: Current semester
+permalink: /schedule/
+lede: One main paper per week, a hands-on tooling session each month and occasional author talks. Slides, recordings and notes are added here after each session.
+---
+{%- assign current = site.data.sessions | where_exp: "s", "s.semester == site.current_semester" | sort: "date" -%}
+
+<section class="section section--tight">
+  <div class="container">
+    {% include meeting-facts.html %}
+  </div>
+</section>
+
+<section class="section">
+  <div class="container">
+    <div class="toolbar">
+      <div>
+        <p class="eyebrow">{{ site.current_semester }}</p>
+        <h2 style="margin:0;">{{ current.size }} session{% if current.size != 1 %}s{% endif %}</h2>
+      </div>
+      <div class="filters" role="group" aria-label="Filter sessions by type" data-filter-group="#schedule-list">
+        <button type="button" data-filter="all" aria-pressed="true">All</button>
+        <button type="button" data-filter="paper" aria-pressed="false">Papers</button>
+        <button type="button" data-filter="tooling" aria-pressed="false">Tooling</button>
+        <button type="button" data-filter="invited" aria-pressed="false">Invited talks</button>
+      </div>
+    </div>
+
+    <div class="session-list" id="schedule-list">
+      {%- for s in current %}
+      {% include session-card.html session=s %}
+      {%- endfor %}
+      <p class="empty js-no-results"{% if current.size > 0 %} hidden{% endif %}>No sessions {% if current.size > 0 %}of this type {% endif %}scheduled yet.</p>
+    </div>
+
+    <div class="callout" id="calendar" style="margin-top: 40px;">
+      <div>
+        <h3>Never miss a session</h3>
+        <p>Subscribe once; new and updated sessions appear in your calendar automatically. Sessions marked <em>tentative</em> may still move.</p>
+      </div>
+      {% include calendar-buttons.html %}
+    </div>
+  </div>
+</section>

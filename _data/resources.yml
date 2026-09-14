@@ -1,0 +1,60 @@
+# Tools and repositories referenced in tooling sessions. Add freely.
+- group: Robot descriptions & assets
+  items:
+    - name: URDF tutorial
+      url: https://github.com/ros/urdf_tutorial
+      note: Reference URDF examples from ROS.
+    - name: OpenUSD
+      url: https://openusd.org
+      note: Universal Scene Description, the asset format used by Isaac Sim.
+    - name: MuJoCo Menagerie
+      url: https://github.com/google-deepmind/mujoco_menagerie
+      note: Curated MJCF models of real robots.
+    - name: robot_descriptions.py
+      url: https://github.com/robot-descriptions/robot_descriptions.py
+      note: Load URDF and MJCF descriptions of many robots from Python.
+    - name: yourdfpy
+      url: https://github.com/clemense/yourdfpy
+      note: Lightweight URDF parsing and visualization.
+
+- group: Simulation & training
+  items:
+    - name: Isaac Sim
+      url: https://github.com/isaac-sim/IsaacSim
+      note: NVIDIA's robotics simulator.
+    - name: Isaac Lab
+      url: https://github.com/isaac-sim/IsaacLab
+      note: Robot learning framework built on Isaac Sim.
+    - name: MuJoCo
+      url: https://github.com/google-deepmind/mujoco
+      note: Physics engine widely used in robot learning.
+    - name: mjlab
+      url: https://github.com/mujocolab/mjlab
+      note: Isaac Lab–style API on MuJoCo.
+    - name: Newton
+      url: https://github.com/newton-physics/newton
+      note: Open-source GPU-accelerated physics engine built on NVIDIA Warp.
+
+- group: Kinematics & dynamics
+  items:
+    - name: Pinocchio
+      url: https://github.com/stack-of-tasks/pinocchio
+      note: Rigid-body kinematics, dynamics, and their derivatives.
+
+- group: Cross-embodiment data & policies
+  items:
+    - name: Open X-Embodiment
+      url: https://github.com/google-deepmind/open_x_embodiment
+      note: Multi-robot dataset and RT-X models.
+    - name: LeRobot
+      url: https://github.com/huggingface/lerobot
+      note: Datasets, policies, and hardware tooling for real-world robot learning.
+
+- group: Visualization & debugging
+  items:
+    - name: Viser
+      url: https://github.com/viser-project/viser
+      note: Web-based 3D visualization in Python.
+    - name: Rerun
+      url: https://github.com/rerun-io/rerun
+      note: Logging and visualization for multimodal robotics data.

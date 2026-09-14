@@ -1,0 +1,11 @@
+# Current organizers. When someone steps down, move them to `past` with their
+# years so the group's history survives handoffs.
+current:
+  - name: Zhen Hao Gan
+    role: Organizer
+    affiliation: University of Michigan
+    url: ""
+
+past: []
+#  - name: Jane Doe
+#    years: "2026–2027"

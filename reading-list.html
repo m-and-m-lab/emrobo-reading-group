@@ -1,0 +1,71 @@
+---
+layout: default
+title: Reading list
+eyebrow: Papers
+permalink: /reading-list/
+lede: Candidate and covered papers, grouped by topic and ordered by year so you can follow how embodiment representations have developed.
+---
+{%- assign paper_count = 0 -%}
+{%- for t in site.data.reading_list -%}{%- assign paper_count = paper_count | plus: t.papers.size -%}{%- endfor -%}
+
+<section class="section">
+  <div class="container">
+    <div class="toolbar" data-filter-group="#reading">
+      <input class="search" type="search" placeholder="Search {{ paper_count }} papers by title, author or venue" aria-label="Search the reading list">
+      <div class="filters" role="group" aria-label="Filter papers">
+        <button type="button" data-filter="all" aria-pressed="true">All</button>
+        <button type="button" data-filter="foundational" aria-pressed="false">Foundational</button>
+        <button type="button" data-filter="recent" aria-pressed="false">Recent</button>
+      </div>
+    </div>
+
+    <nav class="topic-index" aria-label="Topics">
+      {%- for t in site.data.reading_list %}
+      <a href="#{{ t.id }}">{{ t.topic }}</a>
+      {%- endfor %}
+    </nav>
+
+    <div id="reading">
+      {%- for t in site.data.reading_list %}
+      <section class="topic" id="{{ t.id }}" data-filter-section>
+        <header class="topic__head">
+          <h2>{{ t.topic }}</h2>
+          <p>{{ t.description }}</p>
+        </header>
+        <ol class="papers">
+          {%- assign papers = t.papers | sort: "year" %}
+          {%- for p in papers %}
+          <li class="paper" data-kind="{{ p.kind }}">
+            <span class="paper__year">{{ p.year }}</span>
+            <div>
+              <a class="paper__title" href="{{ p.url }}">{{ p.title }}</a>
+              <p class="paper__meta">{{ p.authors }} · {{ p.venue }}</p>
+            </div>
+            <div class="paper__tags">
+              <span class="tag tag--{{ p.kind }}">{{ p.kind }}</span>
+              {%- if p.session %}
+              <a class="tag tag--discussed" href="{{ '/schedule/' | relative_url }}#{{ p.session }}">on schedule</a>
+              {%- endif %}
+            </div>
+          </li>
+          {%- endfor %}
+        </ol>
+      </section>
+      {%- endfor %}
+      <p class="empty js-no-results" hidden>No papers match that search.</p>
+    </div>
+
+    <div class="callout" style="margin-top: 56px;">
+      <div>
+        <h3>Missing something?</h3>
+        <p>Suggest a paper, especially one where the robot's representation is central to the method.</p>
+      </div>
+      <div class="callout__actions">
+        <a class="btn" href="{{ site.links.github_repo }}/issues/new?template=paper-suggestion.yml">Suggest on GitHub</a>
+        {%- if site.links.suggest_paper_form != "" %}
+        <a class="btn btn--quiet" href="{{ site.links.suggest_paper_form }}">Use the form</a>
+        {%- endif %}
+      </div>
+    </div>
+  </div>
+</section>

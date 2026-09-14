@@ -1,0 +1,279 @@
+# ---------------------------------------------------------------------------
+# Candidate and covered papers, grouped by topic.
+# kind:    foundational | recent
+# session: optional, the session id this paper is covered in (YYYY-MM-DD-type)
+# Every arXiv link below was checked against its abstract page.
+# ---------------------------------------------------------------------------
+
+- id: morphology
+  topic: Morphology-aware and graph-based policies
+  description: >-
+    Policies that take the robot's body structure as input: modular agents,
+    kinematic graphs, and transformers over limbs and joints.
+  papers:
+    - title: "Learning to Control Self-Assembling Morphologies: A Study of Generalization via Modularity"
+      authors: Pathak et al.
+      venue: NeurIPS 2019
+      year: 2019
+      url: https://arxiv.org/abs/1902.05546
+      kind: foundational
+    - title: "One Policy to Control Them All: Shared Modular Policies for Agent-Agnostic Control"
+      authors: Huang et al.
+      venue: ICML 2020
+      year: 2020
+      url: https://arxiv.org/abs/2007.04976
+      kind: foundational
+      session: 2026-10-01-paper
+    - title: "My Body is a Cage: the Role of Morphology in Graph-Based Incompatible Control"
+      authors: Kurin et al.
+      venue: ICLR 2021
+      year: 2021
+      url: https://arxiv.org/abs/2010.01856
+      kind: foundational
+    - title: "MetaMorph: Learning Universal Controllers with Transformers"
+      authors: Gupta et al.
+      venue: ICLR 2022
+      year: 2022
+      url: https://arxiv.org/abs/2203.11931
+      kind: foundational
+      session: 2026-10-08-paper
+    - title: "Body Transformer: Leveraging Robot Embodiment for Policy Learning"
+      authors: Sferrazza et al.
+      venue: arXiv 2024
+      year: 2024
+      url: https://arxiv.org/abs/2408.06316
+      kind: recent
+    - title: "GET-Zero: Graph Embodiment Transformer for Zero-shot Embodiment Generalization"
+      authors: Patel and Song
+      venue: arXiv 2024
+      year: 2024
+      url: https://arxiv.org/abs/2407.15002
+      kind: recent
+
+- id: adaptation
+  topic: Hardware-conditioned and dynamics-aware adaptation
+  description: >-
+    Conditioning on explicit or inferred hardware and dynamics parameters so a
+    policy can adapt across robots and operating conditions.
+  papers:
+    - title: "Hardware Conditioned Policies for Multi-Robot Transfer Learning"
+      authors: Chen et al.
+      venue: NeurIPS 2018
+      year: 2018
+      url: https://arxiv.org/abs/1811.09864
+      kind: foundational
+    - title: "RMA: Rapid Motor Adaptation for Legged Robots"
+      authors: Kumar et al.
+      venue: RSS 2021
+      year: 2021
+      url: https://arxiv.org/abs/2107.04034
+      kind: foundational
+    - title: "One Policy to Run Them All: an End-to-end Learning Approach to Multi-Embodiment Locomotion"
+      authors: Bohlinger et al.
+      venue: arXiv 2024
+      year: 2024
+      url: https://arxiv.org/abs/2409.06366
+      kind: recent
+    - title: "Towards Embodiment Scaling Laws in Robot Locomotion"
+      authors: Ai et al.
+      venue: CoRL 2025
+      year: 2025
+      url: https://arxiv.org/abs/2505.05753
+      kind: recent
+
+- id: cross-embodiment
+  topic: Cross-embodiment pretraining and robot tokens
+  description: >-
+    Large multi-robot datasets and policies that tokenize heterogeneous
+    observation and action spaces.
+  papers:
+    - title: "Polybot: Training One Policy Across Robots While Embracing Variability"
+      authors: Yang et al.
+      venue: arXiv 2023
+      year: 2023
+      url: https://arxiv.org/abs/2307.03719
+      kind: recent
+    - title: "Open X-Embodiment: Robotic Learning Datasets and RT-X Models"
+      authors: Open X-Embodiment Collaboration
+      venue: arXiv 2023
+      year: 2023
+      url: https://arxiv.org/abs/2310.08864
+      kind: recent
+    - title: "Mirage: Cross-Embodiment Zero-Shot Policy Transfer with Cross-Painting"
+      authors: Chen et al.
+      venue: RSS 2024
+      year: 2024
+      url: https://arxiv.org/abs/2402.19249
+      kind: recent
+    - title: "Pushing the Limits of Cross-Embodiment Learning for Manipulation and Navigation"
+      authors: Yang et al.
+      venue: arXiv 2024
+      year: 2024
+      url: https://arxiv.org/abs/2402.19432
+      kind: recent
+    - title: "Octo: An Open-Source Generalist Robot Policy"
+      authors: Octo Model Team
+      venue: arXiv 2024
+      year: 2024
+      url: https://arxiv.org/abs/2405.12213
+      kind: recent
+    - title: "Scaling Cross-Embodied Learning: One Policy for Manipulation, Navigation, Locomotion and Aviation"
+      authors: Doshi et al.
+      venue: arXiv 2024
+      year: 2024
+      url: https://arxiv.org/abs/2408.11812
+      kind: recent
+    - title: "Scaling Proprioceptive-Visual Learning with Heterogeneous Pre-trained Transformers"
+      authors: Wang et al.
+      venue: NeurIPS 2024
+      year: 2024
+      url: https://arxiv.org/abs/2409.20537
+      kind: recent
+      session: 2026-10-22-paper
+    - title: "π0: A Vision-Language-Action Flow Model for General Robot Control"
+      authors: Black et al.
+      venue: arXiv 2024
+      year: 2024
+      url: https://arxiv.org/abs/2410.24164
+      kind: recent
+
+- id: self-models
+  topic: Self-models, geometric and kinematic representations
+  description: >-
+    Representations of the body learned from vision or expressed geometrically,
+    from full-body self-models to Jacobian fields and robot–object interaction maps.
+  papers:
+    - title: "Full-Body Visual Self-Modeling of Robot Morphologies"
+      authors: Chen et al.
+      venue: arXiv 2021
+      year: 2021
+      url: https://arxiv.org/abs/2111.06389
+      kind: foundational
+    - title: "Controlling diverse robots by inferring Jacobian fields with deep networks"
+      authors: Li et al.
+      venue: arXiv 2024
+      year: 2024
+      url: https://arxiv.org/abs/2407.08722
+      kind: recent
+    - title: "D(R,O) Grasp: A Unified Representation of Robot and Object Interaction for Cross-Embodiment Dexterous Grasping"
+      authors: Wei et al.
+      venue: ICRA 2025
+      year: 2024
+      url: https://arxiv.org/abs/2410.01702
+      kind: recent
+
+- id: tactile
+  topic: Tactile and contact representations
+  description: >-
+    Learned touch representations that transfer across sensors, tasks, and robots.
+  papers:
+    - title: "Binding Touch to Everything: Learning Unified Multimodal Tactile Representations"
+      authors: Yang et al.
+      venue: arXiv 2024
+      year: 2024
+      url: https://arxiv.org/abs/2401.18084
+      kind: recent
+    - title: "Transferable Tactile Transformers for Representation Learning Across Diverse Sensors and Tasks"
+      authors: Zhao et al.
+      venue: CoRL 2024
+      year: 2024
+      url: https://arxiv.org/abs/2406.13640
+      kind: recent
+    - title: "Sparsh: Self-supervised touch representations for vision-based tactile sensing"
+      authors: Higuera et al.
+      venue: CoRL 2024
+      year: 2024
+      url: https://arxiv.org/abs/2410.24090
+      kind: recent
+
+- id: world-models
+  topic: World models across embodiments
+  description: >-
+    Learned dynamics models trained over many tasks and embodiments.
+  papers:
+    - title: "TD-MPC2: Scalable, Robust World Models for Continuous Control"
+      authors: Hansen et al.
+      venue: ICLR 2024
+      year: 2023
+      url: https://arxiv.org/abs/2310.16828
+      kind: recent
+
+- id: affordances
+  topic: Affordances and traversability
+  description: >-
+    What a body can do in a scene: actionable object parts and navigation
+    models that generalize across robots.
+  papers:
+    - title: "Where2Act: From Pixels to Actions for Articulated 3D Objects"
+      authors: Mo et al.
+      venue: ICCV 2021
+      year: 2021
+      url: https://arxiv.org/abs/2101.02692
+      kind: foundational
+    - title: "GNM: A General Navigation Model to Drive Any Robot"
+      authors: Shah et al.
+      venue: ICRA 2023
+      year: 2022
+      url: https://arxiv.org/abs/2210.03370
+      kind: recent
+    - title: "ViNT: A Foundation Model for Visual Navigation"
+      authors: Shah et al.
+      venue: CoRL 2023
+      year: 2023
+      url: https://arxiv.org/abs/2306.14846
+      kind: recent
+
+- id: skills
+  topic: Skill learning and skill representation
+  description: >-
+    Latent, discovered, and transferable skills, with an emphasis on mobile and
+    dexterous manipulation.
+  papers:
+    - title: "Learning Latent Plans from Play"
+      authors: Lynch et al.
+      venue: CoRL 2019
+      year: 2019
+      url: https://arxiv.org/abs/1903.01973
+      kind: foundational
+    - title: "Dynamics-Aware Unsupervised Discovery of Skills"
+      authors: Sharma et al.
+      venue: arXiv 2019
+      year: 2019
+      url: https://arxiv.org/abs/1907.01657
+      kind: foundational
+    - title: "Accelerating Reinforcement Learning with Learned Skill Priors"
+      authors: Pertsch et al.
+      venue: CoRL 2020
+      year: 2020
+      url: https://arxiv.org/abs/2010.11944
+      kind: foundational
+    - title: "XSkill: Cross Embodiment Skill Discovery"
+      authors: Xu et al.
+      venue: arXiv 2023
+      year: 2023
+      url: https://arxiv.org/abs/2307.09955
+      kind: recent
+    - title: "Skill Transformer: A Monolithic Policy for Mobile Manipulation"
+      authors: Huang et al.
+      venue: arXiv 2023
+      year: 2023
+      url: https://arxiv.org/abs/2308.09873
+      kind: recent
+    - title: "Universal Manipulation Interface: In-The-Wild Robot Teaching Without In-The-Wild Robots"
+      authors: Chi et al.
+      venue: arXiv 2024
+      year: 2024
+      url: https://arxiv.org/abs/2402.10329
+      kind: recent
+    - title: "Cross-Embodiment Dexterous Grasping with Reinforcement Learning"
+      authors: Yuan et al.
+      venue: arXiv 2024
+      year: 2024
+      url: https://arxiv.org/abs/2410.02479
+      kind: recent
+    - title: "DexMimicGen: Automated Data Generation for Bimanual Dexterous Manipulation via Imitation Learning"
+      authors: Jiang et al.
+      venue: ICRA 2025
+      year: 2024
+      url: https://arxiv.org/abs/2410.24185
+      kind: recent

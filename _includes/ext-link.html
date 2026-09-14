@@ -1,0 +1,8 @@
+{%- comment -%}
+  Renders a link when `url` is set, or a muted "soon" label while it is still empty in _config.yml.
+{%- endcomment -%}
+{%- if include.url and include.url != "" -%}
+<a href="{{ include.url }}"{% if include.class %} class="{{ include.class }}"{% endif %}>{{ include.label }}</a>
+{%- else -%}
+<span class="is-soon{% if include.class %} {{ include.class }}{% endif %}" title="Link coming soon">{{ include.label }} <small>soon</small></span>
+{%- endif -%}

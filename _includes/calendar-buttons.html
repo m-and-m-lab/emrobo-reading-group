@@ -1,0 +1,7 @@
+{%- assign cal_https = '/calendar.ics' | absolute_url -%}
+{%- assign cal_webcal = cal_https | replace_first: "https://", "webcal://" | replace_first: "http://", "webcal://" -%}
+<div class="cal-buttons">
+  <a class="btn btn--small" href="https://calendar.google.com/calendar/render?cid={{ cal_webcal | url_encode }}">Google Calendar</a>
+  <a class="btn btn--small" href="{{ cal_webcal }}">Apple / Outlook</a>
+  <a class="btn btn--small btn--quiet" href="{{ '/calendar.ics' | relative_url }}">Download .ics</a>
+</div>

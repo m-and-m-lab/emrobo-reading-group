@@ -1,0 +1,33 @@
+<footer class="site-footer">
+  <div class="container site-footer__inner">
+    <div class="site-footer__about">
+      <a class="wordmark" href="{{ '/' | relative_url }}">
+        {% include logo-mark.html %}
+        <span class="wordmark__text">embodiment<br>reading group</span>
+      </a>
+      <p>A research reading group on embodiment representations and embodied skill learning. Based at the University of Michigan, open to everyone online.</p>
+    </div>
+    <div>
+      <h2 class="site-footer__heading">Follow</h2>
+      <ul class="site-footer__links">
+        <li>{% include ext-link.html url=site.links.youtube label="YouTube" %}</li>
+        <li>{% include ext-link.html url=site.links.linkedin label="LinkedIn" %}</li>
+        <li>{% include ext-link.html url=site.links.mailing_list label="Mailing list" %}</li>
+        <li><a href="{{ '/join/' | relative_url }}#calendar">Calendar</a></li>
+      </ul>
+    </div>
+    <div>
+      <h2 class="site-footer__heading">Contribute</h2>
+      <ul class="site-footer__links">
+        <li><a href="{{ '/participate/' | relative_url }}#suggest">Suggest a paper</a></li>
+        <li><a href="{{ '/participate/' | relative_url }}#present">Present a session</a></li>
+        <li><a href="{{ '/participate/' | relative_url }}#tooling">Propose a tooling session</a></li>
+        <li><a href="{{ site.links.github_repo }}">Site source</a></li>
+      </ul>
+    </div>
+  </div>
+  <div class="container site-footer__base">
+    <span>© {{ site.time | date: "%Y" }} {{ site.title }}</span>
+    <span>University of Michigan · Ann Arbor</span>
+  </div>
+</footer>

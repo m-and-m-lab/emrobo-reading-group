@@ -1,0 +1,8 @@
+{%- assign tb_type = include.type | default: "paper" -%}
+{%- case tb_type -%}
+  {%- when "tooling" -%}{%- assign tb_label = "Tooling" -%}
+  {%- when "invited" -%}{%- assign tb_label = "Invited talk" -%}
+  {%- when "special" -%}{%- assign tb_label = "Special" -%}
+  {%- else -%}{%- assign tb_label = "Paper" -%}
+{%- endcase -%}
+<span class="badge badge--{{ tb_type }}">{{ tb_label }}</span>

@@ -1,0 +1,47 @@
+name: Propose a tooling session
+description: Share a tool, workflow, hardware setup, or implementation lesson in a monthly tooling session.
+title: "[Tooling] "
+labels: ["tooling-session"]
+body:
+  - type: markdown
+    attributes:
+      value: |
+        Tooling sessions are practical and informal. A short demo of something you actually use is perfect, and several demos can share one session.
+  - type: input
+    id: topic
+    attributes:
+      label: Topic
+      placeholder: e.g. Extracting kinematic graphs from URDF with yourdfpy
+    validations:
+      required: true
+  - type: textarea
+    id: what
+    attributes:
+      label: What will you show?
+      description: Tools, repositories, datasets, or hardware involved, and what attendees will take away.
+    validations:
+      required: true
+  - type: dropdown
+    id: length
+    attributes:
+      label: Rough length
+      options:
+        - About 20 minutes
+        - About 45 minutes
+        - A full session (1–2 hours)
+  - type: input
+    id: presenter
+    attributes:
+      label: Presenter(s)
+    validations:
+      required: true
+  - type: input
+    id: timing
+    attributes:
+      label: Preferred month or dates
+  - type: checkboxes
+    id: recording
+    attributes:
+      label: Recording
+      options:
+        - label: I'm happy for this session to be recorded and published.

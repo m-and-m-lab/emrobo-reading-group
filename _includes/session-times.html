@@ -1,0 +1,45 @@
+{%- comment -%}
+  Derives time fields for include.session and assigns st_* variables into the
+  caller's scope: st_type, st_id, st_day (YYYY-MM-DD), st_date (YYYYMMDD),
+  st_start / st_end (HHMM), st_iso, st_duration, st_location, st_label, st_tbd.
+{%- endcomment -%}
+{%- assign st_s = include.session -%}
+{%- assign st_type = st_s.type | default: "paper" -%}
+{%- assign st_day = st_s.date | date: "%Y-%m-%d" -%}
+{%- assign st_date = st_s.date | date: "%Y%m%d" -%}
+{%- assign st_id = st_day | append: "-" | append: st_type -%}
+{%- assign st_location = st_s.location | default: site.meeting.location | default: "TBD" -%}
+{%- if st_type == "tooling" -%}
+  {%- assign st_duration = st_s.duration | default: site.meeting.tooling_duration | default: 120 -%}
+{%- else -%}
+  {%- assign st_duration = st_s.duration | default: site.meeting.duration | default: 90 -%}
+{%- endif -%}
+{%- assign st_time = st_s.time | default: site.meeting.start_time | append: "" -%}
+{%- if st_time contains ":" -%}
+  {%- assign st_tbd = false -%}
+  {%- assign st_h = st_time | split: ":" | first | plus: 0 -%}
+  {%- assign st_m = st_time | split: ":" | last | plus: 0 -%}
+  {%- assign st_end_total = st_h | times: 60 | plus: st_m | plus: st_duration -%}
+  {%- assign st_eh = st_end_total | divided_by: 60 -%}
+  {%- assign st_em = st_end_total | modulo: 60 -%}
+  {%- assign st_hh = st_h | prepend: "0" | slice: -2, 2 -%}
+  {%- assign st_mm = st_m | prepend: "0" | slice: -2, 2 -%}
+  {%- assign st_ehh = st_eh | prepend: "0" | slice: -2, 2 -%}
+  {%- assign st_emm = st_em | prepend: "0" | slice: -2, 2 -%}
+  {%- assign st_start = st_hh | append: st_mm -%}
+  {%- assign st_end = st_ehh | append: st_emm -%}
+  {%- assign st_iso = st_day | append: "T" | append: st_hh | append: ":" | append: st_mm -%}
+  {%- assign st_h12 = st_h | modulo: 12 -%}{%- if st_h12 == 0 -%}{%- assign st_h12 = 12 -%}{%- endif -%}
+  {%- assign st_eh12 = st_eh | modulo: 12 -%}{%- if st_eh12 == 0 -%}{%- assign st_eh12 = 12 -%}{%- endif -%}
+  {%- if st_h < 12 -%}{%- assign st_ap = "AM" -%}{%- else -%}{%- assign st_ap = "PM" -%}{%- endif -%}
+  {%- if st_eh < 12 -%}{%- assign st_eap = "AM" -%}{%- else -%}{%- assign st_eap = "PM" -%}{%- endif -%}
+  {%- assign st_label = st_h12 | append: ":" | append: st_mm -%}
+  {%- if st_ap != st_eap -%}{%- assign st_label = st_label | append: " " | append: st_ap -%}{%- endif -%}
+  {%- assign st_label = st_label | append: "–" | append: st_eh12 | append: ":" | append: st_emm | append: " " | append: st_eap | append: " " | append: site.meeting.tz_label -%}
+{%- else -%}
+  {%- assign st_tbd = true -%}
+  {%- assign st_start = "" -%}
+  {%- assign st_end = "" -%}
+  {%- assign st_iso = st_day | append: "T12:00" -%}
+  {%- assign st_label = "Time TBD" -%}
+{%- endif -%}

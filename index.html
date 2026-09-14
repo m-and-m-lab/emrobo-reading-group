@@ -1,0 +1,186 @@
+---
+layout: default
+hero: true
+---
+{%- assign today = site.time | date: "%Y-%m-%d" -%}
+{%- assign sorted = site.data.sessions | sort: "date" -%}
+{%- assign upcoming = "" | split: "" -%}
+{%- for s in sorted -%}
+  {%- assign d = s.date | date: "%Y-%m-%d" -%}
+  {%- if d >= today -%}{%- assign upcoming = upcoming | push: s -%}{%- endif -%}
+{%- endfor -%}
+{%- assign recorded = "" | split: "" -%}
+{%- assign sorted_desc = sorted | reverse -%}
+{%- for s in sorted_desc -%}
+  {%- if s.video -%}{%- assign recorded = recorded | push: s -%}{%- endif -%}
+{%- endfor -%}
+
+<section class="hero">
+  <div class="container hero__inner">
+    <div class="hero__text">
+      <p class="eyebrow eyebrow--light">University of Michigan · weekly · hybrid</p>
+      <h1 class="hero__title">embodiment<br>reading group</h1>
+      <p class="hero__lede">How should a robot represent its own body, including its kinematics, morphology, dynamics, sensing, contact and physical limits? And how do those representations carry into planning, control and skills that transfer across robots?</p>
+      <div class="hero__actions">
+        <a class="btn btn--accent" href="{{ '/schedule/' | relative_url }}">See the schedule</a>
+        <a class="btn btn--ghost" href="{{ '/join/' | relative_url }}">Join in person or online</a>
+      </div>
+      <ul class="hero__facts">
+        <li><strong>Weekly</strong> paper sessions, 90 min</li>
+        <li><strong>Monthly</strong> hands-on tooling sessions</li>
+        <li><strong>Public</strong> recordings on YouTube</li>
+      </ul>
+    </div>
+    <div class="hero__art">{% include hero-art.html %}</div>
+  </div>
+</section>
+
+<section class="section">
+  <div class="container">
+    <div class="section-head">
+      <div>
+        <p class="eyebrow">Coming up · {{ site.current_semester }}</p>
+        <h2>Next sessions</h2>
+      </div>
+      <a class="section-head__more" href="{{ '/schedule/' | relative_url }}">Full schedule →</a>
+    </div>
+    <div class="session-list" data-upcoming-only data-limit="3">
+      {%- for s in upcoming limit: 6 %}
+      {% include session-card.html session=s %}
+      {%- endfor %}
+      <p class="empty js-empty"{% if upcoming.size > 0 %} hidden{% endif %}>The next sessions are being scheduled. Subscribe to the calendar or the mailing list to hear first.</p>
+    </div>
+    <div class="section-head" style="margin: 28px 0 0;">
+      <p class="muted" style="margin:0;">Every session, in your calendar, updated automatically.</p>
+      {% include calendar-buttons.html %}
+    </div>
+  </div>
+</section>
+
+<section class="section section--tint">
+  <div class="container">
+    <div class="section-head">
+      <div>
+        <p class="eyebrow">What we study</p>
+        <h2>Representing the body, and what it enables</h2>
+      </div>
+      <a class="section-head__more" href="{{ '/about/' | relative_url }}">About the group →</a>
+    </div>
+    <p class="prose" style="margin-bottom: 32px;">Many robot learning methods treat the robot's body, sensors, action space and physical constraints as a fixed part of the experimental setup. We read the work that represents them explicitly, from kinematic graphs and morphology-aware policies to robot tokens, tactile embeddings and embodiment-aware world models. We also ask where those representations still fall short.</p>
+    <div class="grid grid--4">
+      <div class="card pillar">
+        <span class="pillar__num">01</span>
+        <h3>Representation</h3>
+        <p>What form does the embodiment representation take, and what does the model actually know about the body?</p>
+      </div>
+      <div class="card pillar">
+        <span class="pillar__num">02</span>
+        <h3>Adaptation</h3>
+        <p>How newer methods build on, modify or replace earlier representations, and why.</p>
+      </div>
+      <div class="card pillar">
+        <span class="pillar__num">03</span>
+        <h3>Skills</h3>
+        <p>How embodied skills are represented, learned, composed and transferred, especially for mobile and dexterous manipulation.</p>
+      </div>
+      <div class="card pillar">
+        <span class="pillar__num">04</span>
+        <h3>Limitations</h3>
+        <p>What each representation cannot capture, and where it breaks when hardware, tasks or conditions change.</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section class="section">
+  <div class="container">
+    <div class="section-head">
+      <div>
+        <p class="eyebrow">Formats</p>
+        <h2>Three kinds of sessions</h2>
+      </div>
+      <a class="section-head__more" href="{{ '/participate/' | relative_url }}">How to take part →</a>
+    </div>
+    <div class="grid grid--3">
+      <div class="card format-card">
+        <div class="card__kicker">Weekly</div>
+        <h3>Paper session</h3>
+        <p class="format-card__time">60 + 30 <small>min</small></p>
+        <p>One main paper or a small set of closely related papers. A 60-minute presentation, then 30 minutes of discussion and Q&amp;A.</p>
+      </div>
+      <div class="card format-card format-card--tooling">
+        <div class="card__kicker">Monthly</div>
+        <h3>Tooling session</h3>
+        <p class="format-card__time">1–2 <small>hours</small></p>
+        <p>Practical and informal. Robot assets (URDF/USD), Isaac Sim and Isaac Lab workflows, sensing hardware, datasets and lessons learned from implementation.</p>
+      </div>
+      <div class="card format-card format-card--invited">
+        <div class="card__kicker">Occasionally</div>
+        <h3>Invited author talk</h3>
+        <p class="format-card__time">60 <small>min</small></p>
+        <p>Authors present their own work and take questions from the group, in person or remotely.</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+{%- if recorded.size > 0 %}
+<section class="section section--tint">
+  <div class="container">
+    <div class="section-head">
+      <div>
+        <p class="eyebrow">Watch</p>
+        <h2>Recent recordings</h2>
+      </div>
+      {%- if site.links.youtube != "" %}<a class="section-head__more" href="{{ site.links.youtube }}">YouTube channel →</a>{% endif %}
+    </div>
+    <div class="grid grid--3">
+      {%- for s in recorded limit: 3 %}
+      {%- assign vid = s.video | split: "v=" | last | split: "&" | first | split: "youtu.be/" | last | split: "?" | first %}
+      <a class="recording" href="{{ s.video }}">
+        <div class="recording__thumb">
+          <img src="https://i.ytimg.com/vi/{{ vid }}/hqdefault.jpg" alt="" loading="lazy">
+          <span class="recording__play">▶ Watch</span>
+        </div>
+        <h3>{{ s.title }}</h3>
+        <p>{{ s.presenter }} · {{ s.date | date: "%b %-d, %Y" }}</p>
+      </a>
+      {%- endfor %}
+    </div>
+  </div>
+</section>
+{%- endif %}
+
+<section class="section section--dark">
+  <div class="container">
+    <div class="section-head">
+      <div>
+        <p class="eyebrow eyebrow--light">Get involved</p>
+        <h2>Come to a session</h2>
+      </div>
+      <a class="section-head__more" href="{{ '/join/' | relative_url }}">Time, place &amp; online access →</a>
+    </div>
+    <div class="grid grid--4">
+      <a class="card card--dark card--link" href="{{ '/join/' | relative_url }}#calendar">
+        <div class="card__kicker">Calendar</div>
+        <h3>Subscribe</h3>
+        <p>Sessions appear in Google, Apple or Outlook calendars and stay up to date.</p>
+      </a>
+      <a class="card card--dark card--link" href="{{ '/join/' | relative_url }}#stay-in-touch">
+        <div class="card__kicker">Mailing list</div>
+        <h3>Announcements</h3>
+        <p>Weekly reminders with the paper and the online meeting link.</p>
+      </a>
+      <a class="card card--dark card--link" href="{{ '/join/' | relative_url }}#stay-in-touch">
+        <div class="card__kicker">UMich only</div>
+        <h3>Slack</h3>
+        <p>Discussion between sessions in <code>{{ site.links.slack_channel }}</code>.</p>
+      </a>
+      <a class="card card--dark card--link" href="{{ '/participate/' | relative_url }}#present">
+        <div class="card__kicker">Contribute</div>
+        <h3>Present</h3>
+        <p>Sign up to lead a paper session or share a tool you use.</p>
+      </a>
+    </div>
+  </div>
+</section>

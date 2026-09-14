@@ -1,0 +1,87 @@
+---
+layout: default
+title: Join
+eyebrow: Hybrid · open to all
+permalink: /join/
+lede: Join in person at the University of Michigan or online from anywhere. Everyone interested in embodiment and robot learning is welcome.
+---
+<section class="section section--tight">
+  <div class="container">
+    {% include meeting-facts.html %}
+  </div>
+</section>
+
+<section class="section">
+  <div class="container">
+
+    <div class="two-col" id="online">
+      <div class="two-col__label"><h2>Joining online</h2></div>
+      <div class="prose">
+        {%- if site.links.zoom_join != "" %}
+        <p>Join sessions on Zoom: <a href="{{ site.links.zoom_join }}">{{ site.links.zoom_join }}</a>.</p>
+        {%- elsif site.links.zoom_registration != "" %}
+        <p><a href="{{ site.links.zoom_registration }}">Register once</a> to receive the Zoom link for all sessions.</p>
+        {%- else %}
+        <p>To keep sessions free of disruption, the Zoom link isn't posted publicly. It's included in every <a href="#calendar">calendar event</a> and in the weekly <a href="#stay-in-touch">mailing list</a> announcement.</p>
+        {%- endif %}
+        <p>Times are listed in Eastern Time (Ann Arbor). Each session card also shows the time in your own time zone.</p>
+      </div>
+    </div>
+
+    <div class="two-col" id="calendar">
+      <div class="two-col__label"><h2>Calendar</h2></div>
+      <div class="prose">
+        <p>Subscribe once, and every session, including changes and additions, shows up in your calendar automatically.</p>
+        {% include calendar-buttons.html %}
+        <p class="muted" style="margin-top: 16px; font-size: 0.95rem;">Google Calendar may take several hours to pick up changes to a subscribed calendar. You can also add individual sessions from the <a href="{{ '/schedule/' | relative_url }}">schedule</a>.</p>
+      </div>
+    </div>
+
+    <div class="two-col" id="stay-in-touch">
+      <div class="two-col__label"><h2>Stay in touch</h2></div>
+      <div class="grid grid--2">
+        <div class="card">
+          <div class="card__kicker">Everyone</div>
+          <h3>Mailing list</h3>
+          <p>A weekly announcement with the paper, the presenter and the online meeting link.</p>
+          <p>{% include ext-link.html url=site.links.mailing_list label="Subscribe" class="btn btn--small" %}</p>
+        </div>
+        <div class="card">
+          <div class="card__kicker">UMich students &amp; staff</div>
+          <h3>Slack</h3>
+          <p>Discussion between sessions, paper threads and scheduling in <code>{{ site.links.slack_channel }}</code>. Requires a UMich account.</p>
+          <p>{% include ext-link.html url=site.links.slack label="Open the channel" class="btn btn--small" %}</p>
+        </div>
+        <div class="card">
+          <div class="card__kicker">Everyone</div>
+          <h3>YouTube</h3>
+          <p>Recordings of paper sessions, tooling demos and invited talks.</p>
+          <p>{% include ext-link.html url=site.links.youtube label="Watch" class="btn btn--small" %}</p>
+        </div>
+        <div class="card">
+          <div class="card__kicker">Everyone</div>
+          <h3>LinkedIn</h3>
+          <p>Announcements of upcoming sessions and newly published recordings.</p>
+          <p>{% include ext-link.html url=site.links.linkedin label="Follow" class="btn btn--small" %}</p>
+        </div>
+      </div>
+    </div>
+
+    <div class="two-col" id="contact">
+      <div class="two-col__label"><h2>Contact</h2></div>
+      <div class="prose">
+        <p>Questions, speaker ideas or want to help organize?
+          {%- if site.links.contact_email != "" %} Email <a href="mailto:{{ site.links.contact_email }}">{{ site.links.contact_email }}</a>{% else %} Reach out to any of the organizers{% endif %}, or open an issue on <a href="{{ site.links.github_repo }}/issues">GitHub</a>.</p>
+        <ul class="people" style="margin-top: 16px;">
+          {%- for p in site.data.organizers.current %}
+          <li class="person">
+            <strong>{% if p.url != "" %}<a href="{{ p.url }}">{{ p.name }}</a>{% else %}{{ p.name }}{% endif %}</strong>
+            <span>{{ p.role }}{% if p.affiliation %} · {{ p.affiliation }}{% endif %}</span>
+          </li>
+          {%- endfor %}
+        </ul>
+      </div>
+    </div>
+
+  </div>
+</section>

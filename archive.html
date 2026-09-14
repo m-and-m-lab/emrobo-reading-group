@@ -1,0 +1,33 @@
+---
+layout: default
+title: Archive
+eyebrow: Past semesters
+permalink: /archive/
+lede: Every past session with its slides, recording and notes, organized by semester.
+---
+{%- assign past = site.data.sessions | where_exp: "s", "s.semester != site.current_semester" | sort: "date" | reverse -%}
+{%- assign groups = past | group_by: "semester" -%}
+
+<section class="section">
+  <div class="container">
+    {%- if groups.size > 0 %}
+    <nav class="topic-index" aria-label="Semesters">
+      {%- for g in groups %}
+      <a href="#{{ g.name | slugify }}">{{ g.name }}</a>
+      {%- endfor %}
+    </nav>
+    {%- for g in groups %}
+    <section class="topic" id="{{ g.name | slugify }}">
+      <header class="topic__head"><h2>{{ g.name }}</h2><p>{{ g.items.size }} session{% if g.items.size != 1 %}s{% endif %}</p></header>
+      <div class="session-list">
+        {%- for s in g.items %}
+        {% include session-card.html session=s %}
+        {%- endfor %}
+      </div>
+    </section>
+    {%- endfor %}
+    {%- else %}
+    <p class="empty">This is the group's first semester. Past sessions will be collected here, and this semester's are on the <a href="{{ '/schedule/' | relative_url }}">schedule</a>.</p>
+    {%- endif %}
+  </div>
+</section>
