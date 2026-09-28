@@ -1,12 +1,14 @@
 # ---------------------------------------------------------------------------
 # Further reading, grouped by topic. The starting list for discussion lives in
 # _data/papers.yml; papers there are not repeated here.
+# short:   label on the topic filter button
 # kind:    foundational | recent
 # session: optional, the session id this paper is covered in (YYYY-MM-DD-type)
 # Every arXiv link below was checked against its abstract page.
 # ---------------------------------------------------------------------------
 
 - id: morphology
+  short: Morphology
   topic: Morphology-aware and graph-based policies
   description: >-
     Policies that take the robot's body structure as input: modular agents,
@@ -38,6 +40,7 @@
       kind: foundational
 
 - id: adaptation
+  short: Adaptation
   topic: Hardware-conditioned and dynamics-aware adaptation
   description: >-
     Conditioning on explicit or inferred hardware and dynamics parameters so a
@@ -69,6 +72,7 @@
       kind: recent
 
 - id: cross-embodiment
+  short: Cross-embodiment
   topic: Cross-embodiment pretraining and robot tokens
   description: >-
     Large multi-robot datasets and policies that tokenize heterogeneous
@@ -124,6 +128,7 @@
       kind: recent
 
 - id: self-models
+  short: Self-models
   topic: Self-models, geometric and kinematic representations
   description: >-
     Representations of the body learned from vision or expressed geometrically,
@@ -149,6 +154,7 @@
       kind: recent
 
 - id: tactile
+  short: Touch and contact
   topic: Tactile and contact representations
   description: >-
     Learned touch representations that transfer across sensors, tasks, and robots.
@@ -173,6 +179,7 @@
       kind: recent
 
 - id: world-models
+  short: World models
   topic: World models across embodiments
   description: >-
     Learned dynamics models trained over many tasks and embodiments.
@@ -185,6 +192,7 @@
       kind: recent
 
 - id: affordances
+  short: Affordances
   topic: Affordances and traversability
   description: >-
     What a body can do in a scene: actionable object parts and navigation
@@ -210,6 +218,7 @@
       kind: recent
 
 - id: skills
+  short: Skills
   topic: Skill learning and skill representation
   description: >-
     Latent, discovered, and transferable skills, with an emphasis on mobile and

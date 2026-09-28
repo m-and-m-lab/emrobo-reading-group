@@ -5,11 +5,11 @@
   <meta name="viewport" content="width=device-width, initial-scale=1">
   {%- capture full_title -%}{% if page.title %}{{ page.title }} · {% endif %}{{ site.title }}{%- endcapture -%}
   {%- assign desc = page.description | default: page.lede | default: site.description | strip_newlines | strip %}
-  <title>{{ full_title }}</title>
+  <title>{{ full_title | escape }}</title>
   <meta name="description" content="{{ desc | escape }}">
   <meta name="theme-color" content="#F6F7F9" media="(prefers-color-scheme: light)">
   <meta name="theme-color" content="#0A131F" media="(prefers-color-scheme: dark)">
-  <meta property="og:site_name" content="{{ site.title }}">
+  <meta property="og:site_name" content="{{ site.title | escape }}">
   <meta property="og:title" content="{{ full_title | escape }}">
   <meta property="og:description" content="{{ desc | escape }}">
   <meta property="og:type" content="website">
@@ -22,7 +22,7 @@
   <link rel="icon" href="{{ '/assets/img/favicon.svg' | relative_url }}" type="image/svg+xml">
   <link rel="icon" href="{{ '/assets/img/favicon-32.png' | relative_url }}" type="image/png" sizes="32x32">
   <link rel="apple-touch-icon" href="{{ '/assets/img/apple-touch-icon.png' | relative_url }}">
-  <link rel="alternate" type="text/calendar" title="{{ site.title }} calendar" href="{{ '/calendar.ics' | relative_url }}">
+  <link rel="alternate" type="text/calendar" title="{{ site.title | escape }} calendar" href="{{ '/calendar.ics' | relative_url }}">
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Archivo:wdth,wght@100..110,400..720&family=IBM+Plex+Mono:wght@400;500&display=swap">

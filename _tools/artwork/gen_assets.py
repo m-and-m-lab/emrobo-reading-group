@@ -49,12 +49,12 @@ def og_image():
     o.append('<g transform="translate(64 64) scale(1.6)">'
              + MARK.format(links="#0C1B2E", bg="#F2F4F7", joint="#1A5FD6").replace('fill="#FFCB05"', 'fill="#FFCB05" stroke="#0C1B2E" stroke-width="1.4"')
              + "</g>")
-    o.append('<text x="64" y="200" font-family="Noto Sans Mono" font-size="17" fill="#5B6A7D">READING GROUP · UNIVERSITY OF MICHIGAN</text>')
-    o.append('<text x="60" y="288" font-family="Lato" font-weight="900" font-size="70" fill="#0C1B2E">Embodiment</text>')
-    o.append('<text x="60" y="362" font-family="Lato" font-weight="900" font-size="70" fill="#0C1B2E">Reading Group</text>')
-    o.append('<text x="64" y="428" font-family="Lato" font-weight="400" font-style="normal" font-size="25" fill="#33445A">How robots represent their own bodies,</text>')
-    o.append('<text x="64" y="462" font-family="Lato" font-weight="400" font-style="normal" font-size="25" fill="#33445A">and what that unlocks for planning,</text>')
-    o.append('<text x="64" y="496" font-family="Lato" font-weight="400" font-style="normal" font-size="25" fill="#33445A">control and skills.</text>')
+    o.append('<text x="64" y="180" font-family="Noto Sans Mono" font-size="17" fill="#5B6A7D">READING GROUP · UNIVERSITY OF MICHIGAN</text>')
+    for i, line in enumerate(("Embodiment &amp;", "Skills Learning", "Reading Group")):
+        o.append(f'<text x="60" y="{250 + i * 60}" font-family="Lato" font-weight="900" font-size="58" fill="#0C1B2E">{line}</text>')
+    o.append('<text x="64" y="440" font-family="Lato" font-weight="400" font-style="normal" font-size="25" fill="#33445A">How robots represent their own bodies,</text>')
+    o.append('<text x="64" y="472" font-family="Lato" font-weight="400" font-style="normal" font-size="25" fill="#33445A">and what that unlocks for planning,</text>')
+    o.append('<text x="64" y="504" font-family="Lato" font-weight="400" font-style="normal" font-size="25" fill="#33445A">control and skills.</text>')
     o.append('<circle cx="72" cy="566" r="7" fill="#FFCB05" stroke="#0C1B2E" stroke-width="1.5"/>')
     o.append('<text x="90" y="572" font-family="Noto Sans Mono" font-size="18" fill="#0C1B2E">Fridays · FRB + Zoom · papers and a monthly Tooling Hour</text>')
     o.append(f'<rect x="0" y="{H - 8}" width="{W}" height="8" fill="#0C1B2E"/>')

@@ -2,55 +2,67 @@
 layout: page
 title: Papers
 permalink: /papers/
-lede: The papers we plan to discuss first, grouped into four threads, followed by a longer list of related work. Suggest what's missing and vote on what we read next.
+lede: The reading queue is what the group plans to discuss. The reference library is a longer list of related work for your own research. Suggest what's missing and vote on what we read next.
 toc:
-  - id: architecture
-    label: Body structure in the model
-  - id: whole-body
-    label: Whole-body manipulation
-  - id: planning
-    label: Robot and scene kinematics
-  - id: skills
-    label: Skills across bodies
-  - id: further
-    label: Further reading
+  - id: queue
+    label: Reading queue
+  - id: library
+    label: Reference library
   - id: suggest
     label: Suggest and vote
 ---
 {%- assign paper_count = 0 -%}
 {%- for t in site.data.reading_list -%}{%- assign paper_count = paper_count | plus: t.papers.size -%}{%- endfor -%}
 
-{%- for g in site.data.paper_groups %}
-{%- assign group_papers = site.data.papers | where: "group", g.id %}
-<section class="section" id="{{ g.id }}" aria-labelledby="{{ g.id }}-h">
-  <h2 id="{{ g.id }}-h">{{ g.title }}</h2>
-  <p class="section-intro">{{ g.blurb }}</p>
-  <div class="paper-list">
-    {%- for p in group_papers %}
-    {% include paper.html paper=p %}
+<section class="section" id="queue" aria-labelledby="queue-h">
+  <h2 id="queue-h">Reading queue</h2>
+  <p class="section-intro">{{ site.data.papers.size }} papers in four threads. Each session takes one, sometimes paired with a close relative.</p>
+  <nav class="jump jump--inline" aria-label="Threads">
+    {%- for g in site.data.paper_groups %}
+    <a href="#{{ g.id }}">{{ g.title }}</a>
     {%- endfor %}
-  </div>
-  {%- if g.related %}
-  <div class="subsection">
-    <h3>{{ g.related_title }}</h3>
-    <ul class="reading">
-      {%- for r in g.related %}
-      <li><span class="year">{{ r.year }}</span><div><a href="{{ r.url }}">{{ r.title }}</a><span class="by">{{ r.authors }}, {{ r.venue }}. {{ r.note }}</span></div></li>
-      {%- endfor %}
-    </ul>
-  </div>
-  {%- endif %}
-</section>
-{%- endfor %}
+  </nav>
 
-<section class="section" id="further" aria-labelledby="further-h">
-  <h2 id="further-h">Further reading</h2>
-  <p class="section-intro">{{ paper_count }} related papers by topic, oldest first. Good sources for future sessions.</p>
-  <label class="visually-hidden" for="reading-search">Search further reading</label>
-  <input class="search" id="reading-search" type="search" placeholder="Search titles, authors or venues" autocomplete="off" data-search="#reading-topics">
-  <div id="reading-topics">
+  {%- for g in site.data.paper_groups %}
+  {%- assign group_papers = site.data.papers | where: "group", g.id %}
+  <div class="thread" id="{{ g.id }}">
+    <h3>{{ g.title }}</h3>
+    <p class="thread__blurb">{{ g.blurb }}</p>
+    <div class="paper-list">
+      {%- for p in group_papers %}
+      {% include paper.html paper=p %}
+      {%- endfor %}
+    </div>
+    {%- if g.related %}
+    <details class="related">
+      <summary>{{ g.related_title }} ({{ g.related.size }})</summary>
+      <ul class="reading">
+        {%- for r in g.related %}
+        <li><span class="year">{{ r.year }}</span><div><a href="{{ r.url }}">{{ r.title }}</a><span class="by">{{ r.authors }}, {{ r.venue }}. {{ r.note }}</span></div></li>
+        {%- endfor %}
+      </ul>
+    </details>
+    {%- endif %}
+  </div>
+  {%- endfor %}
+</section>
+
+<section class="section" id="library" aria-labelledby="library-h">
+  <h2 id="library-h">Reference library</h2>
+  <p class="section-intro">{{ paper_count }} related papers by topic, oldest first. Not a syllabus, just a map of the area.</p>
+  <div class="library-tools" data-library="#library-topics">
+    <label class="visually-hidden" for="library-search">Search the reference library</label>
+    <input class="search" id="library-search" type="search" placeholder="Search titles, authors or venues" autocomplete="off">
+    <div class="filter" role="group" aria-label="Show one topic">
+      <button type="button" data-topic-filter="all" aria-pressed="true">All topics</button>
+      {%- for t in site.data.reading_list %}
+      <button type="button" data-topic-filter="{{ t.id }}" aria-pressed="false">{{ t.short | default: t.topic }}</button>
+      {%- endfor %}
+    </div>
+  </div>
+  <div id="library-topics">
     {%- for t in site.data.reading_list %}
-    <div class="topic" data-topic>
+    <div class="topic" data-topic="{{ t.id }}">
       <h3>{{ t.topic }}</h3>
       <p>{{ t.description }}</p>
       <ul class="reading">
@@ -61,18 +73,16 @@ toc:
       </ul>
     </div>
     {%- endfor %}
-    <p class="muted" data-no-results hidden>No papers match that search.</p>
+    <p class="muted" data-no-results hidden>No papers match. Try another word or show all topics.</p>
   </div>
 </section>
 
 <section class="section" id="suggest" aria-labelledby="suggest-h">
   <h2 id="suggest-h">Suggest and vote</h2>
-  <div class="measure">
-    <p>Suggestions are GitHub issues, and votes are 👍 reactions on them. We prefer work where the robot's representation is central to the method, not an implementation detail.</p>
-  </div>
+  <p class="section-intro">Suggestions are GitHub issues, and votes are 👍 reactions on them. We prefer work where the robot's representation is central to the method, not an implementation detail.</p>
   <div class="btn-row">
     <a class="btn btn--primary" href="{{ site.links.github_repo }}/issues/new?template=paper-suggestion.yml">Suggest a paper</a>
     <a class="btn" href="{{ site.links.github_repo }}/issues?q=is%3Aissue%20state%3Aopen%20label%3Apaper-suggestion%20sort%3Areactions-%2B1-desc">Vote on suggestions</a>
   </div>
-  <p class="section-foot small muted">No GitHub account? Email an organizer: {% for p in site.data.organizers.current %}<a href="mailto:{{ p.email }}">{{ p.email }}</a>{% unless forloop.last %} or {% endunless %}{% endfor %}.</p>
+  <p class="section-foot small muted">No GitHub account? Email {% for p in site.data.organizers.current %}<a href="mailto:{{ p.email }}">{{ p.email }}</a>{% unless forloop.last %} or {% endunless %}{% endfor %}.</p>
 </section>

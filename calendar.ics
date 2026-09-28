@@ -4,7 +4,7 @@ permalink: /calendar.ics
 ---
 BEGIN:VCALENDAR
 VERSION:2.0
-PRODID:-//Embodiment Reading Group//Schedule//EN
+PRODID:-//Embodiment & Skills Learning Reading Group//Schedule//EN
 CALSCALE:GREGORIAN
 METHOD:PUBLISH
 X-WR-CALNAME:{{ site.title }}

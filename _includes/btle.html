@@ -1,0 +1,12 @@
+{%- comment -%} The B·T·L·E lens as a compact strip. {%- endcomment -%}
+<ol class="btle">
+  {%- for l in site.data.lens %}
+  <li>
+    <span class="key" aria-hidden="true">{{ l.key }}</span>
+    <div>
+      <strong>{{ l.name }}</strong>
+      <span>{{ l.question }}</span>
+    </div>
+  </li>
+  {%- endfor %}
+</ol>

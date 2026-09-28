@@ -39,7 +39,7 @@ toc:
     <p>A walkthrough of the Spot USD asset and an Isaac Sim / Isaac Lab training pipeline for mobile manipulation: where the robot's structure, physical properties and control interface live, and how they reach the policy.</p>
     <p class="muted">USD asset → articulation (joints, limits, actuators) → task (observations, actions, rewards) → RL in parallel environments → policy on hardware.</p>
     {%- if next_tooling != "" %}
-    <p><strong>{{ next_tooling.date | date: "%A, %B %-d" }}</strong>{% if next_tooling.tentative %} (tentative){% endif %}. Presenter: {{ next_tooling.presenter | default: "TBD" }}.</p>
+    <p><strong>{{ next_tooling.date | date: "%A, %B %-d" }}</strong>. Presenter: {{ next_tooling.presenter | default: "TBD" }}.</p>
     {%- endif %}
   </div>
 </section>

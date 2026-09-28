@@ -1,5 +1,6 @@
 {%- comment -%}
-  Upcoming sessions as a table. Params: sessions (sorted), limit, details (show descriptions).
+  Upcoming sessions as a table. Params: sessions (sorted), limit, details (show descriptions),
+  skip_first (hide the first remaining row because it is featured above).
   site.js hides rows whose time has passed and marks the first remaining row "Next".
 {%- endcomment -%}
 <div class="table-wrap">
@@ -7,14 +8,14 @@
     <thead>
       <tr><th scope="col">Date</th><th scope="col">Session</th><th scope="col">Presenter</th></tr>
     </thead>
-    <tbody data-upcoming>
+    <tbody data-upcoming{% if include.skip_first %} data-skip-first{% endif %}>
       {%- for s in include.sessions limit: include.limit %}
       {%- include session-times.html session=s %}
       <tr id="{{ st_id }}" data-start="{{ st_iso }}" data-duration="{{ st_duration }}" data-tbd="{{ st_tbd }}">
-        <td class="date"><time datetime="{{ st_day }}">{{ s.date | date: "%a, %b %-d" }}</time>{% unless st_tbd %}<small>{{ st_label }}</small>{% endunless %} <span class="next-label" hidden>Next</span></td>
+        <td class="date"><time datetime="{{ st_day }}">{{ s.date | date: "%a, %b %-d" }}</time>{% unless st_tbd %}<small>{{ st_label }}</small>{% endunless %}{% unless include.skip_first %} <span class="next-label" hidden>Next</span>{% endunless %}</td>
         <td class="session">
           {% if s.paper_url %}<a class="title" href="{{ s.paper_url }}">{{ s.title }}</a>{% else %}<span class="title">{{ s.title }}</span>{% endif %}
-          <span class="sub">{% include session-kind.html type=s.type %}{% if s.authors %} · {{ s.authors }}{% endif %}{% if s.venue %}, {{ s.venue }}{% endif %}{% if s.tentative %} · tentative{% endif %}</span>
+          <span class="sub">{% include session-kind.html type=s.type %}{% if s.authors %} · {{ s.authors }}{% endif %}{% if s.venue %}, {{ s.venue }}{% endif %}</span>
           {%- if s.extra_readings %}
           <span class="sub">Paired with {% for r in s.extra_readings %}<a href="{{ r.url }}">{{ r.title }}</a>{% unless forloop.last %}; {% endunless %}{% endfor %}</span>
           {%- endif %}

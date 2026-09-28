@@ -38,44 +38,77 @@
   }
 
   var now = Date.now();
+  function hasEnded(el) {
+    var start = null;
+    try { start = wallTimeToDate(el.getAttribute("data-start"), SITE_TZ); } catch (e) { start = null; }
+    if (!start) return false;
+    // Sessions without a time are stamped at noon; they count as past once the day is over.
+    var minutes = el.getAttribute("data-tbd") === "true" ? 12 * 60 : (parseInt(el.getAttribute("data-duration"), 10) || 90);
+    return start.getTime() + minutes * 60000 < now;
+  }
+
+  // Featured "next session" card on the home page.
+  each(document.querySelectorAll("[data-next]"), function (box) {
+    var cards = Array.prototype.slice.call(box.querySelectorAll(".next__card[data-start]"));
+    var next = cards.filter(function (c) { return !hasEnded(c); })[0];
+    cards.forEach(function (c) { c.hidden = c !== next; });
+    var empty = box.querySelector("[data-next-empty]");
+    if (empty) empty.hidden = !!next;
+  });
+
+  // Upcoming tables: hide sessions that have ended, mark the next one.
   each(document.querySelectorAll("tbody[data-upcoming]"), function (tbody) {
     var rows = Array.prototype.slice.call(tbody.querySelectorAll("tr[data-start]"));
     var remaining = rows.filter(function (row) {
-      var start = null;
-      try { start = wallTimeToDate(row.getAttribute("data-start"), SITE_TZ); } catch (e) { start = null; }
-      if (!start) return true;
-      // Sessions without a time are stamped at noon; they count as past once the day is over.
-      var minutes = row.getAttribute("data-tbd") === "true" ? 12 * 60 : (parseInt(row.getAttribute("data-duration"), 10) || 90);
-      var past = start.getTime() + minutes * 60000 < now;
+      var past = hasEnded(row);
       row.classList.toggle("is-past", past);
       return !past;
     });
+    if (tbody.hasAttribute("data-skip-first") && remaining[0]) {
+      remaining[0].classList.add("is-past");   // already featured above
+      remaining = remaining.slice(1);
+    }
     if (remaining[0]) {
       var label = remaining[0].querySelector(".next-label");
       if (label) label.hidden = false;
     }
     var empty = tbody.querySelector("[data-empty]");
-    if (empty) empty.hidden = remaining.length > 0;
+    if (empty) empty.hidden = remaining.length > 0 || tbody.hasAttribute("data-skip-first");
+    var section = tbody.closest && tbody.closest(".section--tight");
+    if (section && remaining.length === 0) section.hidden = true;
   });
 
-  // ---- Search in "Further reading" --------------------------------------------
-  each(document.querySelectorAll("input[data-search]"), function (input) {
-    var scope = document.querySelector(input.getAttribute("data-search"));
+  // ---- Reference library: search plus a single-topic filter -------------------
+  each(document.querySelectorAll("[data-library]"), function (tools) {
+    var scope = document.querySelector(tools.getAttribute("data-library"));
     if (!scope) return;
+    var input = tools.querySelector("input[type=search]");
+    var buttons = tools.querySelectorAll("button[data-topic-filter]");
     var none = scope.querySelector("[data-no-results]");
-    input.addEventListener("input", function () {
-      var q = input.value.trim().toLowerCase();
+    var state = { topic: "all", q: "" };
+    function apply() {
       var any = false;
-      each(scope.querySelectorAll("[data-item]"), function (item) {
-        var show = !q || item.textContent.toLowerCase().indexOf(q) !== -1;
-        item.classList.toggle("is-filtered", !show);
-        if (show) any = true;
-      });
       each(scope.querySelectorAll("[data-topic]"), function (topic) {
-        topic.classList.toggle("is-filtered", !topic.querySelector("[data-item]:not(.is-filtered)"));
+        var topicOk = state.topic === "all" || topic.getAttribute("data-topic") === state.topic;
+        var shown = 0;
+        each(topic.querySelectorAll("[data-item]"), function (item) {
+          var show = topicOk && (!state.q || item.textContent.toLowerCase().indexOf(state.q) !== -1);
+          item.classList.toggle("is-filtered", !show);
+          if (show) shown++;
+        });
+        topic.classList.toggle("is-filtered", shown === 0);
+        if (shown) any = true;
       });
       if (none) none.hidden = any;
+    }
+    each(buttons, function (b) {
+      b.addEventListener("click", function () {
+        state.topic = b.getAttribute("data-topic-filter");
+        each(buttons, function (x) { x.setAttribute("aria-pressed", x === b ? "true" : "false"); });
+        apply();
+      });
     });
+    if (input) input.addEventListener("input", function () { state.q = input.value.trim().toLowerCase(); apply(); });
   });
 
   // ---- Copy the presenter outline ---------------------------------------------

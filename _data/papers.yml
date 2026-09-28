@@ -3,7 +3,8 @@
 # Shown on the home page and, grouped by `group` (see paper_groups.yml), on
 # /papers/. Links, venues and authors were checked on 2026-09-28.
 #
-# glyph:  file name in _includes/glyphs/ (a small schematic of the idea)
+# image:  the paper's own teaser figure, saved in assets/img/papers/ (max 720px wide),
+#         with image_credit / image_source pointing to where it came from
 # why:    one line on why it's on the list, in the proposal's terms
 # lens:   starter B·T·L·E notes from the abstract and paper; presenters refine them
 # ---------------------------------------------------------------------------
@@ -17,7 +18,10 @@
   affiliation: UC Berkeley
   venue: CoRL 2024
   year: 2024
-  glyph: body-transformer
+  image: /assets/img/papers/body-transformer.jpg
+  image_size: [720, 270]
+  image_credit: project page
+  image_source: https://sferrazza.cc/bot_site/
   why: The robot's graph of sensors and actuators becomes the attention mask, so embodiment enters the architecture as an inductive bias.
   links:
     - label: arXiv
@@ -41,7 +45,10 @@
   affiliation: Stanford University
   venue: ICRA 2025
   year: 2025
-  glyph: get-zero
+  image: /assets/img/papers/get-zero.jpg
+  image_size: [720, 257]
+  image_credit: project page
+  image_source: https://get-zero-paper.github.io/
   why: Graph connectivity becomes a learned attention bias, so one policy can control dexterous-hand variants it has never seen.
   links:
     - label: arXiv
@@ -64,7 +71,10 @@
   first_author: Wang et al.
   venue: ICML 2026
   year: 2026
-  glyph: westworld
+  image: /assets/img/papers/westworld.jpg
+  image_size: [720, 405]
+  image_credit: paper (arXiv)
+  image_source: https://arxiv.org/html/2603.14392v2
   why: A world model that encodes each robot's physical structure, so trajectory prediction carries over zero-shot to bodies it hasn't seen.
   links:
     - label: arXiv
@@ -86,7 +96,10 @@
   affiliation: RAI Institute
   venue: CoRL 2025
   year: 2025
-  glyph: relic
+  image: /assets/img/papers/relic.jpg
+  image_size: [720, 397]
+  image_credit: RAI Institute page
+  image_source: https://rai-inst.com/resources/papers/relic-versatile-loco-manipulation-through-flexible-interlimb-coordination/
   why: Each limb of a legged manipulator is assigned to walking or manipulating on the fly, so the body plan itself becomes part of the decision.
   links:
     - label: arXiv
@@ -110,7 +123,10 @@
   affiliation: UT Austin and RAI Institute
   venue: RA-L 2025
   year: 2025
-  glyph: legato
+  image: /assets/img/papers/legato.jpg
+  image_size: [720, 540]
+  image_credit: project page
+  image_source: https://ut-hcrl.github.io/LEGATO/
   why: A handheld gripper gives every robot the same observation and action space; whole-body inverse kinematics absorbs the differences between bodies.
   links:
     - label: arXiv
@@ -134,7 +150,10 @@
   affiliation: UCLA
   venue: IROS 2021
   year: 2021
-  glyph: vkc
+  image: /assets/img/papers/vkc.jpg
+  image_size: [720, 478]
+  image_credit: project page
+  image_source: https://zeyuzhang.com/papers/iros-vkc-task/
   why: The mobile base, arm and object are treated as one kinematic chain, which gives more abstract planning actions and removes intermediate base poses.
   links:
     - label: arXiv
@@ -158,7 +177,10 @@
   affiliation: BIGAI and Peking University
   venue: T-RO 2025
   year: 2025
-  glyph: smmp
+  image: /assets/img/papers/smmp.jpg
+  image_size: [720, 444]
+  image_credit: project page
+  image_source: https://aug-kin-rep.github.io/
   why: Scene structures such as drawers and doors become kinematic models, fused with the robot's into one augmented configuration space for long-horizon plans.
   links:
     - label: arXiv
@@ -182,7 +204,10 @@
   affiliation: Carnegie Mellon University
   venue: RSS 2025
   year: 2025
-  glyph: articubot
+  image: /assets/img/papers/articubot.jpg
+  image_size: [720, 472]
+  image_credit: paper (arXiv)
+  image_source: https://arxiv.org/html/2503.03045v2
   why: A learned counterpart to the planners above. One policy opens unseen articulated objects and transfers zero-shot from a tabletop arm to a mobile manipulator.
   links:
     - label: arXiv
@@ -206,7 +231,10 @@
   affiliation: RAI Institute and Boston Dynamics
   venue: Science Robotics 2026
   year: 2026
-  glyph: zest
+  image: /assets/img/papers/zest.jpg
+  image_size: [480, 360]
+  image_credit: paper (arXiv)
+  image_source: https://arxiv.org/html/2602.00401v1
   why: One recipe turns motion capture, monocular video or animation into athletic skills on very different bodies, deployed to hardware zero-shot.
   links:
     - label: arXiv
@@ -228,7 +256,10 @@
   affiliation: Yonsei University
   venue: CoRL 2025
   year: 2025
-  glyph: uniskill
+  image: /assets/img/papers/uniskill.jpg
+  image_size: [720, 266]
+  image_credit: project page
+  image_source: https://kimhanjung.github.io/UniSkill/
   why: Skills learned from unlabeled human and robot video with no body model at all, a useful contrast to the explicit representations above.
   links:
     - label: arXiv

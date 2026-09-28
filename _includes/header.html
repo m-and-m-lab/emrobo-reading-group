@@ -2,7 +2,7 @@
   <div class="wrap site-header__inner">
     <a class="brand" href="{{ '/' | relative_url }}">
       {% include logo-mark.html %}
-      <span>{{ site.title }}</span>
+      <span>{{ site.title | escape }}</span>
     </a>
     <button class="nav-toggle" type="button" aria-expanded="false" aria-controls="site-nav">
       <span class="nav-toggle__bar"></span>

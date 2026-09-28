@@ -1,10 +1,10 @@
 # ---------------------------------------------------------------------------
-# Embodiment Reading Group — site settings
+# Embodiment & Skills Learning Reading Group — site settings
 # Most day-to-day edits happen in _data/sessions.yml, not here.
 # Changes to this file need a fresh `jekyll serve` locally (GitHub rebuilds on push).
 # ---------------------------------------------------------------------------
 
-title: Embodiment Reading Group
+title: "Embodiment & Skills Learning Reading Group"
 description: >-
   A research reading group at the University of Michigan on how representations
   of a robot's body and physical constraints (morphology, kinematics, dynamics,
@@ -20,10 +20,11 @@ timezone: America/Detroit
 # Shown as the label for the current schedule. Upcoming sessions (any semester)
 # are listed on /sessions/; past ones move to the session log automatically.
 current_semester: "Fall 2026"
+# One status line shown at the top of the home and schedule pages. Set to "" once settled.
+status: "Fall 2026 pilot · schedule being finalized"
 
 meeting:
   day: "Fridays"
-  day_note: "Tentative"      # shown next to the day; set to "" once confirmed
   start_time: ""            # 24h local time, e.g. "16:00". Leave empty while TBD.
   length: "60–90 min"
   cadence: "Weekly or biweekly"

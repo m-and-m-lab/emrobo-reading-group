@@ -1,6 +1,6 @@
 <footer class="site-footer">
   <div class="wrap">
-    <p>{{ site.title }} · University of Michigan</p>
+    <p>{{ site.title | escape }} · University of Michigan</p>
     <p>
       {%- for p in site.data.organizers.current %}<a href="mailto:{{ p.email }}">{{ p.email }}</a>{% unless forloop.last %} · {% endunless %}{% endfor %}
       · Slack {{ site.links.slack_channel }}

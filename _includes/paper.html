@@ -1,9 +1,12 @@
 {%- assign p = include.paper -%}
 {%- assign primary = p.links | first -%}
 <article class="paper" id="{{ p.id }}">
-  <div class="paper__glyph" aria-hidden="true">{% include glyphs/{{ p.glyph }}.html %}</div>
-  <div>
-    <h3><a href="{{ primary.url }}">{{ p.title }}</a></h3>
+  <figure class="paper__figure">
+    <a href="{{ primary.url }}" tabindex="-1"><img src="{{ p.image | relative_url }}" width="{{ p.image_size[0] }}" height="{{ p.image_size[1] }}" alt="Teaser figure from {{ p.short }}" loading="lazy" decoding="async"></a>
+    <figcaption>Figure: <a href="{{ p.image_source }}">{{ p.image_credit }}</a></figcaption>
+  </figure>
+  <div class="paper__body">
+    <h4><a href="{{ primary.url }}">{{ p.title }}</a></h4>
     <p class="paper__meta">{{ p.first_author }}{% if p.affiliation %} · {{ p.affiliation }}{% endif %} · {{ p.venue }}</p>
     <p class="paper__why">{{ p.why }}</p>
     <ul class="inline-list paper__links">
@@ -11,13 +14,13 @@
     </ul>
     {%- if p.lens %}
     <details class="notes">
-      <summary>Notes through the B·T·L·E lens</summary>
+      <summary>B·T·L·E notes</summary>
       <dl>
         {%- for l in site.data.lens %}
-        <dt title="{{ l.name }}">{{ l.key }}</dt><dd>{{ p.lens[l.key] }}</dd>
+        <dt title="{{ l.name }}"><span class="key">{{ l.key }}</span></dt><dd>{{ p.lens[l.key] }}</dd>
         {%- endfor %}
       </dl>
-      <p>Starter notes from the abstract and paper; the presenter refines them. <a href="{{ '/about/' | relative_url }}#lens">What B, T, L and E mean</a>.</p>
+      <p>Starter notes from the abstract and paper; the presenter refines them.</p>
     </details>
     {%- endif %}
   </div>

@@ -9,46 +9,57 @@ layout: default
   {%- if d >= today -%}{%- assign upcoming = upcoming | push: s -%}{%- endif -%}
 {%- endfor -%}
 {%- assign m = site.meeting -%}
+{%- assign emails = site.data.organizers.current | map: "email" | join: "," -%}
+{%- capture invite -%}mailto:{{ emails }}?subject=Slack%20invite%3A%20{{ site.links.slack_channel | replace: "#", "%23" }}&amp;body=Hi%2C%20I%27d%20like%20to%20join%20the%20Embodiment%20%26%20Skills%20Learning%20Reading%20Group.%0A%0AName%3A%20%0ALab%20or%20program%3A%20{%- endcapture -%}
 
 <div class="wrap page-end">
 
-  <section class="intro">
-    <h1>{{ site.title }}</h1>
-    <p class="lede">How should a robot represent its own body, and what does that unlock for planning, control and skills? We read robot learning and planning work where morphology, kinematics, dynamics, contact and sensing are modeled explicitly, with a focus on mobile and dexterous manipulation.</p>
-    <ul class="facts-line">
-      <li>{{ m.day }}{% if m.day_note != "" %} ({{ m.day_note | downcase }}){% endif %}</li>
-      <li>{{ m.location }} + Zoom</li>
-      <li>{{ m.length }}, {{ m.cadence | downcase }}</li>
-      {%- if upcoming.size > 0 %}
-      <li>Starts {{ upcoming.first.date | date: "%b %-d" }}</li>
+  <section class="hero">
+    <div class="hero__text">
+      <p class="context">University of Michigan · Robot learning, planning and manipulation</p>
+      <h1>{{ site.title | escape }}</h1>
+      <p class="lede">How should a robot represent its own body, and what does that unlock for planning, control and skills? We meet to read and argue about the papers that take this question seriously.</p>
+      <div class="btn-row">
+        <a class="btn btn--primary" href="{{ invite }}">Request a Slack invite</a>
+        <a class="btn" href="{{ '/sessions/' | relative_url }}">Full schedule</a>
+      </div>
+      <p class="invite-note">Opens an email to the organizers. Or write to {% for p in site.data.organizers.current %}<a href="mailto:{{ p.email }}">{{ p.email }}</a>{% unless forloop.last %} or {% endunless %}{% endfor %}.</p>
+    </div>
+    <div class="hero__next">
+      {%- if site.status != "" %}
+      <p class="status">{{ site.status }}</p>
       {%- endif %}
-    </ul>
-    <div class="btn-row">
-      <a class="btn btn--primary" href="#join">Join the group</a>
-      <a class="btn" href="{{ '/sessions/' | relative_url }}">See the schedule</a>
+      {% include next-session.html sessions=upcoming %}
     </div>
   </section>
 
-  <section class="section" id="upcoming" aria-labelledby="upcoming-h">
-    <h2 id="upcoming-h">Coming up</h2>
-    {% include upcoming-table.html sessions=upcoming limit=4 %}
-    <p class="section-foot"><a href="{{ '/sessions/' | relative_url }}">Full schedule and past sessions</a></p>
+  {%- if upcoming.size > 1 %}
+  <section class="section section--tight" id="upcoming" aria-labelledby="upcoming-h">
+    <h2 id="upcoming-h" class="h3">After that</h2>
+    {% include upcoming-table.html sessions=upcoming limit=5 skip_first=true %}
+  </section>
+  {%- endif %}
+
+  <section class="section" id="how" aria-labelledby="how-h">
+    <h2 id="how-h">How the group works</h2>
+    <ul class="steps">
+      <li><strong>One paper</strong><span>Each session covers one main paper, sometimes with a close relative.</span></li>
+      <li><strong>One presenter</strong><span>A focused talk that follows a shared template.</span></li>
+      <li><strong>Discussion</strong><span>15–20 minutes of open discussion, in the room and on Zoom.</span></li>
+      <li><strong>Tooling Hour</strong><span>Once a month, a hands-on demo of a tool replaces the paper.</span></li>
+    </ul>
+    <p class="section-foot measure">{{ m.day }}, {{ m.length }}, {{ m.cadence | downcase }}, in the {% if m.location_url != "" %}<a href="{{ m.location_url }}">{{ m.location }}</a>{% else %}{{ m.location }}{% endif %}{% if m.location_note != "" %} ({{ m.location_note }}){% endif %} and on Zoom. Anyone at Michigan interested in the topic is welcome to attend. For the fall pilot, presenters come from the three or four participating labs.</p>
   </section>
 
-  <section class="section" id="embodiment" aria-labelledby="embodiment-h">
-    <h2 id="embodiment-h">One robot, many representations</h2>
-    <p class="section-intro">By embodiment we mean the physical properties and constraints that shape how a robot can act: morphology, kinematics, dynamics, contacts, sensing, actuation limits, controller interfaces, latency and stability. We want to know which of these a method actually represents, how it uses them, and what that buys.</p>
-    <figure class="figure">
-      <div class="figure__frame">
-        {% include figure-body.html %}
-      </div>
-      <figcaption>A legged robot with an arm opens a drawer. Everything in blue is something a model could be told about its body: the kinematic graph, mass and torque limits, foot contacts and the support polygon, what the camera sees and what the gripper hides from it, the arm's reach, and a virtual kinematic chain that joins base, arm and drawer.</figcaption>
-    </figure>
+  <section class="section" id="lens" aria-labelledby="lens-h">
+    <h2 id="lens-h">How we read a paper</h2>
+    <p class="section-intro">Every presenter answers the same four questions, so papers from learning, planning and control can be compared on the same terms.</p>
+    {% include btle.html %}
   </section>
 
   <section class="section" id="reading" aria-labelledby="reading-h">
-    <h2 id="reading-h">What we read first</h2>
-    <p class="section-intro">{{ site.data.papers.size }} papers in four threads. The list grows as people join, and we vote when there are many suggestions.</p>
+    <h2 id="reading-h">What we're reading</h2>
+    <p class="section-intro">{{ site.data.papers.size }} papers in four threads. The queue grows as people join, and we vote when there are many suggestions.</p>
     <dl class="rows">
       {%- for g in site.data.paper_groups %}
       {%- assign group_papers = site.data.papers | where: "group", g.id %}
@@ -58,32 +69,39 @@ layout: default
       </div>
       {%- endfor %}
     </dl>
-    <p class="section-foot"><a href="{{ '/papers/' | relative_url }}">All papers, with links and notes</a></p>
+    <p class="section-foot"><a href="{{ '/papers/' | relative_url }}">The reading queue, with figures and notes</a></p>
+  </section>
+
+  <section class="section" id="embodiment" aria-labelledby="embodiment-h">
+    <h2 id="embodiment-h">What we mean by embodiment</h2>
+    <p class="section-intro">The physical properties and constraints that shape how a robot can act: morphology, kinematics, dynamics, contacts, sensing, actuation limits, controller interfaces, latency and stability. We ask which of these a method actually represents, how it uses them, and what that buys.</p>
+    <figure class="figure">
+      <div class="figure__frame">
+        {% include figure-body.html %}
+      </div>
+      <figcaption>A legged robot with an arm opens a drawer. Everything in blue is something a model could be told about its body: the kinematic graph, mass and torque limits, foot contacts and the support polygon, what the camera sees and what the gripper hides from it, the arm's reach, and a virtual kinematic chain that joins base, arm and drawer.</figcaption>
+    </figure>
+    <p class="section-foot"><a href="{{ '/about/' | relative_url }}">Why we think this matters</a></p>
   </section>
 
   <section class="section" id="join" aria-labelledby="join-h">
     <h2 id="join-h">Join</h2>
-    <p class="section-intro">Open to Robotics PhD and MS students and research staff interested in mobile manipulation, learning, planning, whole-body control, embodied perception, dexterous manipulation, sensing and benchmarking. We're starting with a small test run of three or four labs.</p>
     <dl class="rows">
       <div>
         <dt>Slack</dt>
-        <dd><code>{{ site.links.slack_channel }}</code> on the University of Michigan Slack. It's a private channel, so email an organizer to be added.</dd>
+        <dd><code>{{ site.links.slack_channel }}</code> on the University of Michigan Slack is where sessions, papers and the Zoom link are posted. It's private: <a href="{{ invite }}">request an invite</a>.</dd>
       </div>
       <div>
-        <dt>Email</dt>
+        <dt>Organizers</dt>
         <dd><ul class="inline-list">{% for p in site.data.organizers.current %}<li>{{ p.name }}, <a href="mailto:{{ p.email }}">{{ p.email }}</a></li>{% endfor %}</ul></dd>
-      </div>
-      <div>
-        <dt>Where and when</dt>
-        <dd>{{ m.day }}{% if m.day_note != "" %} ({{ m.day_note | downcase }}){% endif %}, {% if m.location_url != "" %}<a href="{{ m.location_url }}">{{ m.location }}</a>{% else %}{{ m.location }}{% endif %} {% if m.location_note != "" %}({{ m.location_note }}){% endif %} and Zoom. The Zoom link is shared in Slack and in the calendar invite.</dd>
       </div>
       <div>
         <dt>Calendar</dt>
         <dd>{% include calendar-buttons.html %}</dd>
       </div>
       <div>
-        <dt>Present or suggest</dt>
-        <dd><ul class="inline-list"><li><a href="{{ '/sessions/' | relative_url }}#presenting">Presenter template</a></li><li><a href="{{ '/papers/' | relative_url }}#suggest">Suggest a paper</a></li><li><a href="{{ '/tooling/' | relative_url }}#propose">Propose a Tooling Hour</a></li></ul></dd>
+        <dt>Take part</dt>
+        <dd><ul class="inline-list"><li><a href="{{ '/sessions/' | relative_url }}#presenting">Present a paper</a></li><li><a href="{{ '/papers/' | relative_url }}#suggest">Suggest a paper</a></li><li><a href="{{ '/tooling/' | relative_url }}#propose">Run a Tooling Hour</a></li></ul></dd>
       </div>
     </dl>
   </section>
