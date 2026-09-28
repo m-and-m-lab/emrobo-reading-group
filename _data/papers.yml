@@ -1,0 +1,244 @@
+# ---------------------------------------------------------------------------
+# The starting list of papers to discuss, from the group's proposal.
+# Shown on the home page and, grouped by `group` (see paper_groups.yml), on
+# /papers/. Links, venues and authors were checked on 2026-09-28.
+#
+# glyph:  file name in _includes/glyphs/ (a small schematic of the idea)
+# why:    one line on why it's on the list, in the proposal's terms
+# lens:   starter B·T·L·E notes from the abstract and paper; presenters refine them
+# ---------------------------------------------------------------------------
+
+- id: body-transformer
+  group: architecture
+  short: Body Transformer
+  title: "Body Transformer: Leveraging Robot Embodiment for Policy Learning"
+  authors: Carmelo Sferrazza, Dun-Ming Huang, Fangchen Liu, Jongmin Lee, Pieter Abbeel
+  first_author: Sferrazza et al.
+  affiliation: UC Berkeley
+  venue: CoRL 2024
+  year: 2024
+  glyph: body-transformer
+  why: The robot's graph of sensors and actuators becomes the attention mask, so embodiment enters the architecture as an inductive bias.
+  links:
+    - label: arXiv
+      url: https://arxiv.org/abs/2408.06316
+    - label: Project
+      url: https://sferrazza.cc/bot_site
+    - label: Code
+      url: https://github.com/carlosferrazza/BodyTransformer
+  lens:
+    B: The body as a graph of sensor and actuator nodes; attention is masked by graph adjacency.
+    T: Local observations are tokenized per node; each actuator's action is read out from its node.
+    L: A masked-attention transformer (BoT-Hard and BoT-Mix variants) used as an imitation or RL policy.
+    E: MoCapAct humanoid, Adroit hand, Isaac Gym humanoid and A1 tasks, plus a real Unitree A1.
+
+- id: get-zero
+  group: architecture
+  short: GET-Zero
+  title: "GET-Zero: Graph Embodiment Transformer for Zero-shot Embodiment Generalization"
+  authors: Austin Patel, Shuran Song
+  first_author: Patel and Song
+  affiliation: Stanford University
+  venue: ICRA 2025
+  year: 2025
+  glyph: get-zero
+  why: Graph connectivity becomes a learned attention bias, so one policy can control dexterous-hand variants it has never seen.
+  links:
+    - label: arXiv
+      url: https://arxiv.org/abs/2407.15002
+    - label: Project
+      url: https://get-zero-paper.github.io
+    - label: Code
+      url: https://github.com/real-stanford/get_zero
+  lens:
+    B: An embodiment graph from the URDF (joints as nodes, links as edges), with per-joint tokens carrying hardware properties.
+    T: Per-joint proprioception in; joint-position targets out, for in-hand object rotation.
+    L: Behavior-cloning distillation of per-embodiment RL experts, a graph attention bias and a self-modeling loss.
+    E: LEAP Hand variants with removed joints or longer links, zero-shot, in simulation and on hardware.
+
+- id: westworld
+  group: architecture
+  short: WestWorld
+  title: "WestWorld: A Knowledge-Encoded Scalable Trajectory World Model for Diverse Robotic Systems"
+  authors: Yuchen Wang, Jiangtao Kong, Sizhe Wei, Xiaochang Li, Haohong Lin, Hongjue Zhao, Tianyi Zhou, Lu Gan, Huajie Shao
+  first_author: Wang et al.
+  venue: ICML 2026
+  year: 2026
+  glyph: westworld
+  why: A world model that encodes each robot's physical structure, so trajectory prediction carries over zero-shot to bodies it hasn't seen.
+  links:
+    - label: arXiv
+      url: https://arxiv.org/abs/2603.14392
+    - label: Code
+      url: https://github.com/511205787/WestWorld
+  lens:
+    B: A structural embedding of the robot's physical structure, aligned with its trajectory representation.
+    T: State and action trajectories; the model predicts how a robot's trajectory evolves.
+    L: A system-aware mixture of experts that routes inputs through a learnable per-system embedding.
+    E: Pretrained on 89 environments across morphologies, sim and real; zero- and few-shot tests; a real Unitree Go1.
+
+- id: relic
+  group: whole-body
+  short: ReLIC
+  title: Versatile Loco-Manipulation through Flexible Interlimb Coordination
+  authors: Xinghao Zhu, Yuxin Chen, Lingfeng Sun, Farzad Niroui, Simon Le Cleac'h, Jiuguang Wang, Kuan Fang
+  first_author: Zhu et al.
+  affiliation: RAI Institute
+  venue: CoRL 2025
+  year: 2025
+  glyph: relic
+  why: Each limb of a legged manipulator is assigned to walking or manipulating on the fly, so the body plan itself becomes part of the decision.
+  links:
+    - label: arXiv
+      url: https://arxiv.org/abs/2506.07876
+    - label: RAI page
+      url: https://rai-inst.com/resources/papers/relic-versatile-loco-manipulation-through-flexible-interlimb-coordination/
+    - label: Code
+      url: https://github.com/rai-opensource/relic
+  lens:
+    B: A per-limb role mask assigns Spot's legs and arm to manipulation or locomotion.
+    T: Tasks arrive as target trajectories, clicked contact points or language instructions.
+    L: Model-based control for the manipulating limbs, blended with an RL gait policy trained in simulation.
+    E: A real Spot with arm across 12 tasks, averaging 78.9% success.
+
+- id: legato
+  group: whole-body
+  short: LEGATO
+  title: "LEGATO: Cross-Embodiment Imitation Using a Grasping Tool"
+  authors: Mingyo Seo, H. Andy Park, Shenli Yuan, Yuke Zhu, Luis Sentis
+  first_author: Seo et al.
+  affiliation: UT Austin and RAI Institute
+  venue: RA-L 2025
+  year: 2025
+  glyph: legato
+  why: A handheld gripper gives every robot the same observation and action space; whole-body inverse kinematics absorbs the differences between bodies.
+  links:
+    - label: arXiv
+      url: https://arxiv.org/abs/2411.03682
+    - label: Project
+      url: https://ut-hcrl.github.io/LEGATO
+    - label: Code
+      url: https://github.com/UT-HCRL/LEGATO
+  lens:
+    B: A shared tool frame on a handheld gripper; each robot reaches it through whole-body IK retargeting.
+    T: Egocentric stereo images from the gripper in; gripper pose changes and a grasp command out.
+    L: Visuomotor imitation with a motion-invariant loss, plus QP-based IK that respects joint limits.
+    E: Panda, Spot, GR-1 and a wheeled mobile manipulator in simulation; a real Panda on a tabletop.
+
+- id: vkc
+  group: planning
+  short: Virtual Kinematic Chain
+  title: "Efficient Task Planning for Mobile Manipulation: a Virtual Kinematic Chain Perspective"
+  authors: Ziyuan Jiao, Zeyu Zhang, Weiqi Wang, David Han, Song-Chun Zhu, Yixin Zhu, Hangxin Liu
+  first_author: Jiao et al.
+  affiliation: UCLA
+  venue: IROS 2021
+  year: 2021
+  glyph: vkc
+  why: The mobile base, arm and object are treated as one kinematic chain, which gives more abstract planning actions and removes intermediate base poses.
+  links:
+    - label: arXiv
+      url: https://arxiv.org/abs/2108.01259
+    - label: Project
+      url: https://zeyuzhang.com/papers/iros-vkc-task/
+    - label: Code
+      url: https://github.com/TooSchoolForCool/IROS21-VKC-Task-PDDL
+  lens:
+    B: The base, the arm and the grasped object merged into one virtual kinematic chain.
+    T: Abstract PDDL actions on the chain, with no predicates for intermediate base poses.
+    L: PDDL task planning combined with optimization-based motion planning.
+    E: Simulated object rearrangement and tool-use fetching tasks.
+
+- id: smmp
+  group: planning
+  short: SMMP
+  title: Integration of Robot and Scene Kinematics for Sequential Mobile Manipulation Planning
+  authors: Ziyuan Jiao, Yida Niu, Zeyu Zhang, Yangyang Wu, Yao Su, Yixin Zhu, Hangxin Liu, Song-Chun Zhu
+  first_author: Jiao et al.
+  affiliation: BIGAI and Peking University
+  venue: T-RO 2025
+  year: 2025
+  glyph: smmp
+  why: Scene structures such as drawers and doors become kinematic models, fused with the robot's into one augmented configuration space for long-horizon plans.
+  links:
+    - label: arXiv
+      url: https://arxiv.org/abs/2508.18627
+    - label: Project
+      url: https://aug-kin-rep.github.io/
+    - label: Code
+      url: https://github.com/zyjiao4728/AKR-Planning
+  lens:
+    B: Environment structures modeled kinematically and fused with the robot's kinematics into an augmented space (A-Space).
+    T: Symbolic actions that change A-Space; goals are joint robot-and-scene configurations.
+    L: A three-level planner for task, motion and plan refinement.
+    E: A Husky with UR5e in simulation; a real Ridgeback with two UR5e arms on tasks of up to 14 steps.
+
+- id: articubot
+  group: planning
+  short: ArticuBot
+  title: "ArticuBot: Learning Universal Articulated Object Manipulation Policy via Large Scale Simulation"
+  authors: Yufei Wang, Ziyu Wang, Mino Nakura, Pratik Bhowal, Chia-Liang Kuo, Yi-Ting Chen, Zackory Erickson, David Held
+  first_author: Wang et al.
+  affiliation: Carnegie Mellon University
+  venue: RSS 2025
+  year: 2025
+  glyph: articubot
+  why: A learned counterpart to the planners above. One policy opens unseen articulated objects and transfers zero-shot from a tabletop arm to a mobile manipulator.
+  links:
+    - label: arXiv
+      url: https://arxiv.org/abs/2503.03045
+    - label: Project
+      url: https://articubot.github.io/
+    - label: Code
+      url: https://github.com/yufeiwang63/ArticuBot
+  lens:
+    B: The end effector, as goal gripper points in the scene's point cloud; actions live in end-effector space.
+    T: Point clouds in; end-effector sub-goals and delta transforms out.
+    L: A weighted displacement model predicts sub-goals; a goal-conditioned 3D diffusion policy reaches them.
+    E: 42.3k simulated demos on 322 objects; zero-shot on a tabletop Franka in two labs and an X-Arm on a mobile base.
+
+- id: zest
+  group: skills
+  short: ZEST
+  title: "ZEST: Zero-shot Embodied Skill Transfer for Athletic Robot Control"
+  authors: Jean Pierre Sleiman, He Li, Alphonsus Adu-Bredu, Robin Deits, et al.
+  first_author: Sleiman et al.
+  affiliation: RAI Institute and Boston Dynamics
+  venue: Science Robotics 2026
+  year: 2026
+  glyph: zest
+  why: One recipe turns motion capture, monocular video or animation into athletic skills on very different bodies, deployed to hardware zero-shot.
+  links:
+    - label: arXiv
+      url: https://arxiv.org/abs/2602.00401
+    - label: Journal
+      url: https://doi.org/10.1126/scirobotics.aec7695
+  lens:
+    B: Per-robot kinematic retargeting of the reference motion, with refined actuator and armature models.
+    T: Track the retargeted motion; the policy outputs residual joint targets for PD control.
+    L: RL motion imitation with adaptive sampling and an assistive-wrench curriculum, trained only in simulation.
+    E: Zero-shot on Atlas, Unitree G1 and Spot hardware, including a continuous backflip.
+
+- id: uniskill
+  group: skills
+  short: UniSkill
+  title: "UniSkill: Imitating Human Videos via Cross-Embodiment Skill Representations"
+  authors: Hanjung Kim, Jaehyun Kang, Hyolim Kang, Meedeum Cho, Seon Joo Kim, Youngwoon Lee
+  first_author: Kim et al.
+  affiliation: Yonsei University
+  venue: CoRL 2025
+  year: 2025
+  glyph: uniskill
+  why: Skills learned from unlabeled human and robot video with no body model at all, a useful contrast to the explicit representations above.
+  links:
+    - label: arXiv
+      url: https://arxiv.org/abs/2505.08787
+    - label: Project
+      url: https://kimhanjung.github.io/UniSkill/
+    - label: Code
+      url: https://github.com/KimHanjung/UniSkill
+  lens:
+    B: No explicit body model; embodiment-agnostic skills are inferred from how video frames change.
+    T: A skill embedding from a human video prompt conditions the robot policy.
+    L: Inverse and forward skill-dynamics models learn the skills; a skill-conditioned diffusion policy acts.
+    E: LIBERO in simulation; a real Franka and a bimanual mobile robot.

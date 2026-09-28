@@ -1,0 +1,20 @@
+<ul class="people">
+  {%- for p in site.data.organizers.current %}
+  {%- assign parts = p.name | split: " " %}
+  <li class="person">
+    <span class="person__initials" aria-hidden="true">{{ parts.first | slice: 0 }}{{ parts.last | slice: 0 }}</span>
+    <div>
+      <strong>{% if p.url != "" %}<a href="{{ p.url }}">{{ p.name }}</a>{% else %}{{ p.name }}{% endif %}</strong>
+      <span>{{ p.role }}{% if p.affiliation %} · {{ p.affiliation }}{% endif %}</span>
+    </div>
+  </li>
+  {%- endfor %}
+</ul>
+{%- if site.data.organizers.past.size > 0 %}
+<h3 style="margin: 28px 0 12px;">Past organizers</h3>
+<ul class="people">
+  {%- for p in site.data.organizers.past %}
+  <li class="person"><div><strong>{{ p.name }}</strong><span>{{ p.years }}</span></div></li>
+  {%- endfor %}
+</ul>
+{%- endif %}

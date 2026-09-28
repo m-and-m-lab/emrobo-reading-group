@@ -1,0 +1,39 @@
+<div class="table-wrap">
+  <table class="log">
+    <thead>
+      <tr><th scope="col">Date</th><th scope="col">Title</th><th scope="col">Abstract</th><th scope="col">Presenter</th><th scope="col">Notes</th><th scope="col">Recording / resources</th></tr>
+    </thead>
+    <tbody>
+      {%- for s in include.sessions %}
+      {%- case s.type -%}
+        {%- when "tooling" -%}{%- assign kind_label = "Tooling Hour" -%}
+        {%- when "invited" -%}{%- assign kind_label = "Invited talk" -%}
+        {%- when "special" -%}{%- assign kind_label = "Special session" -%}
+        {%- else -%}{%- assign kind_label = "Paper" -%}
+      {%- endcase %}
+      <tr id="{{ s.date | date: '%Y-%m-%d' }}-{{ s.type | default: 'paper' }}">
+        <td class="log__date" data-label="Date">{{ s.date | date: "%b %-d, %Y" }}</td>
+        <td data-label="Title">
+          <span class="log__title">{% if s.paper_url %}<a href="{{ s.paper_url }}">{{ s.title }}</a>{% else %}{{ s.title }}{% endif %}</span>
+          <span class="log__sub">{{ kind_label }}{% if s.authors %} · {{ s.authors }}{% endif %}{% if s.venue %} · {{ s.venue }}{% endif %}</span>
+        </td>
+        <td class="log__abstract" data-label="Abstract">{{ s.abstract | default: s.description | default: "—" }}</td>
+        <td data-label="Presenter">{{ s.presenter | default: "—" }}</td>
+        <td data-label="Notes">{% if s.notes %}<a href="{{ s.notes }}">Notes</a>{% else %}<span class="muted">—</span>{% endif %}</td>
+        <td data-label="Recording / resources">
+          <div class="log__res">
+            {%- if s.video %}<a class="chip-link chip-link--video" href="{{ s.video }}">Recording</a>{% endif %}
+            {%- if s.slides %}<a class="chip-link" href="{{ s.slides }}">Slides</a>{% endif %}
+            {%- if s.code_url %}<a class="chip-link chip-link--ext" href="{{ s.code_url }}">Code</a>{% endif %}
+            {%- if s.paper_url %}<a class="chip-link chip-link--ext" href="{{ s.paper_url }}">Paper</a>{% endif %}
+            {%- unless s.video or s.slides or s.code_url or s.paper_url %}<span class="muted">—</span>{% endunless %}
+          </div>
+        </td>
+      </tr>
+      {%- endfor %}
+      {%- if include.sessions.size == 0 %}
+      <tr class="log__empty"><td colspan="6">The log fills in after each session: the papers and tools we covered, with abstracts, notes, slides and recordings.</td></tr>
+      {%- endif %}
+    </tbody>
+  </table>
+</div>

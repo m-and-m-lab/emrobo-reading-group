@@ -1,81 +1,128 @@
 ---
-layout: default
-title: Tooling
-eyebrow: Monthly · hands-on
+layout: page
+title: Tooling Hour
+eyebrow: Monthly · 1–2 hours · hands-on
 permalink: /tooling/
-lede: Once a month we set papers aside and share practical tools, simulation workflows, hardware setups and implementation lessons for embodiment research.
+lede: Once a month we set papers aside. A presenter shares an open-source tool, codebase, simulator, hardware setup or workflow that others can actually use, along with the tricks, limitations and setup issues they ran into.
+toc:
+  - id: format
+    label: How it works
+  - id: first
+    label: First session
+  - id: tools
+    label: Tools on the list
+  - id: topics
+    label: Topic ideas
+  - id: toolbox
+    label: Toolbox
+  - id: propose
+    label: Propose a session
 ---
-{%- assign tooling = site.data.sessions | where: "type", "tooling" | sort: "date" | reverse -%}
+{%- assign today = site.time | date: "%Y-%m-%d" -%}
+{%- assign tooling = site.data.sessions | where: "type", "tooling" | sort: "date" -%}
+{%- assign next_tooling = "" -%}
+{%- for s in tooling -%}
+  {%- assign d = s.date | date: "%Y-%m-%d" -%}
+  {%- if d >= today and next_tooling == "" -%}{%- assign next_tooling = s -%}{%- endif -%}
+{%- endfor -%}
 
-<section class="section">
-  <div class="container">
-    <div class="two-col">
-      <div class="two-col__label"><h2>What these are</h2></div>
-      <div class="prose">
-        <p>Tooling sessions run 1–2 hours and are meant to be practical and informal. Share tools you actively use, lessons from implementation, work in progress, or the limitations you've hit. Polished slides are optional; a terminal and a simulator window are welcome.</p>
-        <p>The first planned session walks through the Spot USD asset and an Isaac Sim training pipeline, including how the robot's structure, physical properties and control interfaces are represented.</p>
-      </div>
-    </div>
+<section class="block" id="format" aria-labelledby="format-h">
+  <div class="block__head"><h2 id="format-h">How it works</h2></div>
+  <ul class="joint-list">
+    <li><strong>Something people can use.</strong> An open-source tool, codebase, simulator, hardware setup or workflow, shown working.</li>
+    <li><strong>The practical lessons.</strong> Tricks, limitations and setup issues: the parts that rarely make it into a paper or a README.</li>
+    <li><strong>Practical and informal.</strong> It shouldn't become another presentation session. A terminal and a simulator window are welcome, and several short demos can share one hour.</li>
+    <li><strong>Once a month, 1–2 hours.</strong> Same room and Zoom link as the reading group; recorded only with the presenter's consent.</li>
+  </ul>
+</section>
 
-    <div class="two-col">
-      <div class="two-col__label"><h2>Possible topics</h2></div>
+<section class="block" id="first" aria-labelledby="first-h">
+  <div class="block__head">
+    <h2 id="first-h">First session: Spot, from USD asset to policy</h2>
+    <p>A walkthrough of the Spot USD asset and an Isaac Sim / Isaac Lab training pipeline for mobile manipulation: where the robot's structure, physical properties and control interface live, and how they reach the policy.</p>
+  </div>
+  {% include pipeline.html %}
+  {%- if next_tooling != "" %}
+  <div class="session-list" style="margin-top: 24px;">
+    {% include session.html session=next_tooling %}
+  </div>
+  {%- endif %}
+</section>
+
+<section class="block" id="tools" aria-labelledby="tools-h">
+  <div class="block__head">
+    <h2 id="tools-h">Tools on the list</h2>
+    <p>From the proposal. Want to present one of these? <a href="#propose">Say so</a>.</p>
+  </div>
+  <div>
+    {%- for t in site.data.tools %}
+    <article class="tool" id="tool-{{ t.id }}">
       <div>
-        <ul class="chips">
-          <li>URDF and USD robot models</li>
-          <li>Isaac Sim and Isaac Lab workflows</li>
-          <li>Extracting kinematic and dynamic information</li>
-          <li>Building graphs and tokens from robot models</li>
-          <li>Robot asset modification</li>
-          <li>Morphology and dynamics randomization</li>
-          <li>Force, torque, contact and tactile sensing</li>
-          <li>Hardware data collection</li>
-          <li>Policy training across embodiments</li>
-          <li>Sim-to-real workflows</li>
-          <li>Visualization and debugging tools</li>
-          <li>Useful repositories and packages</li>
+        <h3 class="tool__name">{{ t.name }}</h3>
+        <p class="tool__blurb">{{ t.blurb }}</p>
+        {%- if t.links.size > 0 %}
+        <ul class="tool__links">
+          {%- for l in t.links %}
+          <li><a class="chip-link chip-link--ext" href="{{ l.url }}">{{ l.label }}</a></li>
+          {%- endfor %}
         </ul>
-      </div>
-    </div>
-
-    <div class="two-col">
-      <div class="two-col__label"><h2>Sessions</h2></div>
-      <div class="session-list">
-        {%- for s in tooling %}
-        {% include session-card.html session=s %}
-        {%- endfor %}
-        {%- if tooling.size == 0 %}
-        <p class="empty">No tooling sessions scheduled yet.</p>
         {%- endif %}
       </div>
-    </div>
+      <span class="tag tool__status{% if t.status == 'First session' %} tag--next{% endif %}">{{ t.status }}</span>
+    </article>
+    {%- endfor %}
+  </div>
+</section>
 
-    <div class="two-col" id="resources">
-      <div class="two-col__label"><h2>Resources</h2></div>
-      <div>
-        {%- for g in site.data.resources %}
-        <div class="resource-group">
-          <h3>{{ g.group }}</h3>
-          <div class="grid grid--2">
-            {%- for r in g.items %}
-            <a class="card card--link resource" href="{{ r.url }}">
-              <strong>{{ r.name }}</strong>
-              <span>{{ r.note }}</span>
-            </a>
-            {%- endfor %}
-          </div>
-        </div>
+<section class="block" id="topics" aria-labelledby="topics-h">
+  <div class="block__head">
+    <h2 id="topics-h">Topic ideas</h2>
+    <p>Anything that makes embodiment research easier to do is fair game.</p>
+  </div>
+  <ul class="joint-list joint-list--2">
+    <li>URDF and USD robot models</li>
+    <li>Isaac Sim and Isaac Lab workflows</li>
+    <li>Extracting kinematic and dynamic information from robot models</li>
+    <li>Building graphs or tokens from robot structure</li>
+    <li>Robot asset modification</li>
+    <li>Morphology and dynamics randomization</li>
+    <li>Force, torque, contact and tactile sensing</li>
+    <li>Mobile manipulation training pipelines</li>
+    <li>Skill-learning pipelines</li>
+    <li>Hardware data collection</li>
+    <li>Sim-to-real workflows</li>
+    <li>Cross-embodiment evaluation</li>
+    <li>Visualization and debugging tools</li>
+    <li>Useful open-source repositories</li>
+  </ul>
+</section>
+
+<section class="block" id="toolbox" aria-labelledby="toolbox-h">
+  <div class="block__head">
+    <h2 id="toolbox-h">Toolbox</h2>
+    <p>Repositories that come up often. Add to <code>_data/resources.yml</code>.</p>
+  </div>
+  <div class="resource-groups">
+    {%- for g in site.data.resources %}
+    <div class="resource-group">
+      <h3>{{ g.group }}</h3>
+      <ul class="resource-list">
+        {%- for r in g.items %}
+        <li><a href="{{ r.url }}">{{ r.name }}</a><span>{{ r.note }}</span></li>
         {%- endfor %}
-      </div>
+      </ul>
     </div>
+    {%- endfor %}
+  </div>
+</section>
 
-    <div class="callout" style="margin-top: 56px;">
-      <div>
-        <h3>Have a tool worth showing?</h3>
-        <p>Propose a tooling session. A 20-minute demo is plenty, and several short demos can share a session.</p>
-      </div>
-      <div class="callout__actions">
-        <a class="btn" href="{{ site.links.github_repo }}/issues/new?template=tooling-session.yml">Propose a session</a>
-      </div>
-    </div>
+<section class="block" id="propose" aria-labelledby="propose-h">
+  <div class="block__head">
+    <h2 id="propose-h">Propose a session</h2>
+    <p>A 20-minute demo of something you actually use is plenty, and several demos can share an hour.</p>
+  </div>
+  <div class="actions">
+    <a class="btn btn--primary" href="{{ site.links.github_repo }}/issues/new?template=tooling-session.yml">Propose a Tooling Hour</a>
+    <a class="link-arrow" href="{{ '/participate/' | relative_url }}#tooling">What to prepare</a>
   </div>
 </section>

@@ -1,14 +1,12 @@
-- title: about
+# Top navigation. `cta: true` renders the item as the maize button.
+- title: About
   url: /about/
-- title: schedule
-  url: /schedule/
-- title: reading list
-  url: /reading-list/
-- title: tooling
+- title: Sessions
+  url: /sessions/
+- title: Papers
+  url: /papers/
+- title: Tooling Hour
   url: /tooling/
-- title: archive
-  url: /archive/
-- title: participate
+- title: Get involved
   url: /participate/
-- title: join
-  url: /join/
+  cta: true

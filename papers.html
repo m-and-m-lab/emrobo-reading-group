@@ -1,0 +1,131 @@
+---
+layout: page
+title: Papers
+eyebrow: Reading list
+permalink: /papers/
+lede: The papers we plan to discuss first, each with starter notes through the B·T·L·E lens, plus a longer list of related work. The list grows as people join; suggest what's missing and vote on what we read next.
+toc:
+  - id: start
+    label: Where we start
+  - id: architecture
+    label: Body structure in the model
+  - id: whole-body
+    label: Whole-body manipulation
+  - id: planning
+    label: Robot and scene kinematics
+  - id: skills
+    label: Skills across bodies
+  - id: further
+    label: Further reading
+  - id: suggest
+    label: Suggest and vote
+---
+{%- assign paper_count = 0 -%}
+{%- for t in site.data.reading_list -%}{%- assign paper_count = paper_count | plus: t.papers.size -%}{%- endfor -%}
+
+<section class="block" id="start" aria-labelledby="start-h">
+  <div class="block__head">
+    <h2 id="start-h">Where we start</h2>
+    <p>{{ site.data.papers.size }} papers from the proposal and the organizers, in four threads. Each session usually takes one main paper, sometimes paired with a close relative.</p>
+  </div>
+  {%- for g in site.data.paper_groups %}
+  {%- assign group_papers = site.data.papers | where: "group", g.id %}
+  <div class="paper-group" id="{{ g.id }}">
+    <div class="paper-group__head">
+      <h3>{{ g.title }}</h3>
+      <p>{{ g.blurb }}</p>
+    </div>
+    {%- for p in group_papers %}
+    {% include paper-card.html paper=p %}
+    {%- endfor %}
+    {%- if g.related %}
+    <div class="block__sub">
+      <h4 class="eyebrow" style="margin-bottom: 8px;">{{ g.related_title }}</h4>
+      <ol class="rows">
+        {%- for r in g.related %}
+        <li class="row">
+          <span class="row__year">{{ r.year }}</span>
+          <div>
+            <a class="row__title" href="{{ r.url }}">{{ r.title }}</a>
+            <p class="row__meta">{{ r.authors }} · {{ r.venue }}. {{ r.note }}</p>
+          </div>
+          <div class="row__tags"><span class="tag tag--recent">related</span></div>
+        </li>
+        {%- endfor %}
+      </ol>
+    </div>
+    {%- endif %}
+  </div>
+  {%- endfor %}
+</section>
+
+<section class="block" id="further" aria-labelledby="further-h">
+  <div class="block__head">
+    <h2 id="further-h">Further reading</h2>
+    <p>{{ paper_count }} related papers by topic, oldest first, so you can follow how each idea developed. Good sources for future sessions.</p>
+  </div>
+  <div class="toolbar" data-filter-group="#reading">
+    <label class="visually-hidden" for="reading-search">Search further reading</label>
+    <input class="search" id="reading-search" type="search" placeholder="Search by title, author or venue" autocomplete="off">
+    <div class="filters" role="group" aria-label="Filter papers">
+      <button type="button" data-filter="all" aria-pressed="true">All</button>
+      <button type="button" data-filter="foundational" aria-pressed="false">Foundational</button>
+      <button type="button" data-filter="recent" aria-pressed="false">Recent</button>
+    </div>
+  </div>
+  <div id="reading">
+    {%- for t in site.data.reading_list %}
+    <section class="topic" id="topic-{{ t.id }}" data-filter-section>
+      <header class="topic__head">
+        <h3>{{ t.topic }}</h3>
+        <p>{{ t.description }}</p>
+      </header>
+      <ol class="rows">
+        {%- assign papers = t.papers | sort: "year" %}
+        {%- for p in papers %}
+        <li class="row" data-kind="{{ p.kind }}">
+          <span class="row__year">{{ p.year }}</span>
+          <div>
+            <a class="row__title" href="{{ p.url }}">{{ p.title }}</a>
+            <p class="row__meta">{{ p.authors }} · {{ p.venue }}</p>
+          </div>
+          <div class="row__tags">
+            <span class="tag tag--{{ p.kind }}">{{ p.kind }}</span>
+            {%- if p.session %}
+            <a class="tag tag--link" href="{{ '/sessions/' | relative_url }}#{{ p.session }}">on the schedule</a>
+            {%- endif %}
+          </div>
+        </li>
+        {%- endfor %}
+      </ol>
+    </section>
+    {%- endfor %}
+    <p class="empty js-no-results" hidden>No papers match that search.</p>
+  </div>
+</section>
+
+<section class="block" id="suggest" aria-labelledby="suggest-h">
+  <div class="block__head">
+    <h2 id="suggest-h">Suggest and vote</h2>
+    <p>Suggestions are GitHub issues, and votes are 👍 reactions on them. When there are many, we pick the most-voted papers that fit the group.</p>
+  </div>
+  <div class="options">
+    <div class="option">
+      <h3>Suggest a paper</h3>
+      <p>Especially work where the robot's representation is central to the method. The form asks which part of the B·T·L·E lens it speaks to.</p>
+      <div class="actions"><a class="btn btn--primary btn--small" href="{{ site.links.github_repo }}/issues/new?template=paper-suggestion.yml">Suggest on GitHub</a></div>
+    </div>
+    <div class="option">
+      <h3>Vote on suggestions</h3>
+      <p>Open the list sorted by votes and add a 👍 to the papers you'd like to read.</p>
+      <div class="actions"><a class="btn btn--small" href="{{ site.links.github_repo }}/issues?q=is%3Aissue%20state%3Aopen%20label%3Apaper-suggestion%20sort%3Areactions-%2B1-desc">See suggestions by votes</a></div>
+    </div>
+    {%- if site.links.suggest_paper_form != "" %}
+    <div class="option">
+      <h3>No GitHub account?</h3>
+      <p>Use the form instead; the organizers copy suggestions over.</p>
+      <div class="actions"><a class="btn btn--small" href="{{ site.links.suggest_paper_form }}">Open the form</a></div>
+    </div>
+    {%- endif %}
+  </div>
+</section>

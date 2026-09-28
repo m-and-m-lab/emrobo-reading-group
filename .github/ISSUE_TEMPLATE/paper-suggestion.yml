@@ -6,7 +6,7 @@ body:
   - type: markdown
     attributes:
       value: |
-        Thanks for suggesting a paper! We prioritize work where the robot's embodiment representation is a central technical component rather than a minor implementation detail.
+        Thanks for suggesting a paper! We prioritize work where the robot's embodiment representation is a central technical component rather than a minor implementation detail. Others vote on suggestions with 👍 reactions.
   - type: input
     id: title
     attributes:
@@ -30,6 +30,10 @@ body:
     attributes:
       label: Closest topic
       options:
+        - Body structure in the model (graphs, morphology tokens, structural embeddings)
+        - Robot and scene kinematics for planning
+        - Whole-body and cross-embodiment manipulation
+        - Skills that transfer across bodies
         - Morphology-aware and graph-based policies
         - Hardware-conditioned and dynamics-aware adaptation
         - Cross-embodiment pretraining and robot tokens
@@ -51,7 +55,7 @@ body:
     id: why
     attributes:
       label: Why this paper?
-      description: What embodiment representation does it use, and what would the group get out of discussing it?
+      description: What embodiment representation does it use? Which part of the B·T·L·E lens does it speak to (Body representation, Task/skill interface, Learning/planning mechanism, Transfer/evaluation)?
     validations:
       required: true
   - type: textarea

@@ -1,6 +1,10 @@
 # Current organizers. When someone steps down, move them to `past` with their
 # years so the group's history survives handoffs.
 current:
+  - name: Aparajito Saha
+    role: Organizer
+    affiliation: University of Michigan
+    url: ""
   - name: Zhen Hao Gan
     role: Organizer
     affiliation: University of Michigan

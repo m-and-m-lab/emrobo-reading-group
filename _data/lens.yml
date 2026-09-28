@@ -1,0 +1,18 @@
+# The B·T·L·E lens from the proposal. Used on the home page, the about page
+# and in the lens notes on each paper.
+- key: B
+  name: Body representation
+  question: How is the robot specified?
+  detail: URDF or USD, kinematic graph, geometry, inertial parameters, sensors, actuators, contacts, or a learned representation.
+- key: T
+  name: Task and skill interface
+  question: What is observed, and what do actions or skills mean?
+  detail: The observation and action spaces, the skills on offer, and the constraints that matter for execution.
+- key: L
+  name: Learning or planning mechanism
+  question: What makes use of the body representation?
+  detail: The architecture or algorithm that uses the representation instead of simply memorizing one robot.
+- key: E
+  name: Transfer and evaluation
+  question: Does it actually generalize or adapt?
+  detail: New robots, different morphology or reach, changed mass or friction, altered sensing, failures, or different controller interfaces.

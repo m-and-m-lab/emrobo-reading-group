@@ -1,0 +1,101 @@
+# Tools we'd like to cover in the monthly Tooling Hour (from the proposal).
+# status: shown as a tag. Links were checked on 2026-09-28.
+- id: isaac-lab-spot
+  name: Isaac Lab policy training for Spot mobile manipulation
+  status: First session
+  blurb: >-
+    The Spot USD asset and an Isaac Sim / Isaac Lab training pipeline. Isaac Lab ships an
+    official Spot locomotion task; for Spot with its arm, the closest public Isaac Lab code
+    is ReLIC's, one of the papers on our list.
+  links:
+    - label: Isaac Lab
+      url: https://github.com/isaac-sim/IsaacLab
+    - label: Docs
+      url: https://isaac-sim.github.io/IsaacLab/main/index.html
+    - label: Spot locomotion walkthrough
+      url: https://developer.nvidia.com/blog/closing-the-sim-to-real-gap-training-spot-quadruped-locomotion-with-nvidia-isaac-lab/
+    - label: spot-rl-example
+      url: https://github.com/boston-dynamics/spot-rl-example
+    - label: ReLIC code
+      url: https://github.com/rai-opensource/relic
+
+- id: openpi
+  name: openpi and the π0.6 models
+  status: Proposed
+  blurb: >-
+    Physical Intelligence's open-source VLA code and weights (π0, π0-FAST, π0.5), plus the
+    π0.6 and π*0.6 models from the RECAP paper. As of September 2026, openpi has no π0.6
+    weights; the session would cover what is open and what the paper describes.
+  links:
+    - label: openpi
+      url: https://github.com/Physical-Intelligence/openpi
+    - label: π*0.6 paper
+      url: https://arxiv.org/abs/2511.14759
+    - label: π*0.6 blog
+      url: https://www.pi.website/blog/pistar06
+
+- id: foragebench
+  name: ForageBench and PhyGS
+  status: From our lab
+  blurb: >-
+    PhyGS generates photorealistic, physically interactive, building-scale indoor scenes on
+    Isaac Sim and Isaac Lab. ForageBench builds on it: a benchmark for interactive object
+    search with a Spot and its arm. Both come from the organizers' lab at Michigan.
+  links:
+    - label: ForageBench
+      url: https://m-and-m-lab.github.io/ForageBench/
+    - label: ForageBench code
+      url: https://github.com/m-and-m-lab/ForageBench
+    - label: PhyGS
+      url: https://m-and-m-lab.github.io/PhyGS/
+    - label: PhyGS code (beta)
+      url: https://github.com/m-and-m-lab/PhyGS
+
+- id: scenesmith
+  name: SceneSmith
+  status: Proposed
+  blurb: >-
+    Agentic generation of simulation-ready indoor scenes from text, with articulated objects
+    and estimated physical properties. Exports to Drake, MuJoCo and USD (MIT and Toyota
+    Research Institute, ICML 2026).
+  links:
+    - label: Project
+      url: https://scenesmith.github.io/
+    - label: arXiv
+      url: https://arxiv.org/abs/2602.09153
+    - label: Code
+      url: https://github.com/nepfaff/scenesmith
+
+- id: embodiment-extraction
+  name: URDF and USD embodiment extraction and visualization
+  status: Proposed
+  blurb: >-
+    Getting kinematic and dynamic structure out of robot descriptions, converting between
+    URDF, MJCF and USD, and looking at it interactively.
+  links:
+    - label: yourdfpy
+      url: https://github.com/clemense/yourdfpy
+    - label: robot_descriptions.py
+      url: https://github.com/robot-descriptions/robot_descriptions.py
+    - label: viser URDF viewer
+      url: https://viser.studio/main/examples/demos/urdf_visualizer/
+    - label: Isaac Sim URDF importer
+      url: https://docs.isaacsim.omniverse.nvidia.com/latest/importer_exporter/ext_isaacsim_asset_importer_urdf.html
+    - label: urdf-usd-converter
+      url: https://github.com/newton-physics/urdf-usd-converter
+
+- id: evaluation
+  name: Cross-embodiment and skill-learning evaluation
+  status: Proposed
+  blurb: >-
+    Benchmarks that vary the body as well as the task, and simulated evaluations that
+    track real-robot performance.
+  links:
+    - label: AnyBody
+      url: https://princeton-vl.github.io/anybody/
+    - label: RoboCasa
+      url: https://robocasa.ai
+    - label: SimplerEnv
+      url: https://simpler-env.github.io/
+    - label: LIBERO
+      url: https://github.com/Lifelong-Robot-Learning/LIBERO

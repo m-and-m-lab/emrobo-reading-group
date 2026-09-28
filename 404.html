@@ -1,16 +1,13 @@
 ---
-layout: default
+layout: page
 title: Page not found
 eyebrow: "404"
 permalink: /404.html
-lede: This page seems to have left the workspace.
+lede: This link points past the end of the chain. The pages below are the usual places to look.
 ---
-<section class="section">
-  <div class="container">
-    <div class="callout__actions">
-      <a class="btn btn--accent" href="{{ '/' | relative_url }}">Back to home</a>
-      <a class="btn" href="{{ '/schedule/' | relative_url }}">Schedule</a>
-      <a class="btn" href="{{ '/reading-list/' | relative_url }}">Reading list</a>
-    </div>
-  </div>
-</section>
+<div class="actions">
+  <a class="btn btn--primary" href="{{ '/' | relative_url }}">Home</a>
+  <a class="btn" href="{{ '/sessions/' | relative_url }}">Sessions</a>
+  <a class="btn" href="{{ '/papers/' | relative_url }}">Papers</a>
+  <a class="btn" href="{{ '/participate/' | relative_url }}">Get involved</a>
+</div>

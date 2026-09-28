@@ -1,5 +1,6 @@
 # ---------------------------------------------------------------------------
-# Candidate and covered papers, grouped by topic.
+# Further reading, grouped by topic. The starting list for discussion lives in
+# _data/papers.yml; papers there are not repeated here.
 # kind:    foundational | recent
 # session: optional, the session id this paper is covered in (YYYY-MM-DD-type)
 # Every arXiv link below was checked against its abstract page.
@@ -23,7 +24,6 @@
       year: 2020
       url: https://arxiv.org/abs/2007.04976
       kind: foundational
-      session: 2026-10-01-paper
     - title: "My Body is a Cage: the Role of Morphology in Graph-Based Incompatible Control"
       authors: Kurin et al.
       venue: ICLR 2021
@@ -36,19 +36,6 @@
       year: 2022
       url: https://arxiv.org/abs/2203.11931
       kind: foundational
-      session: 2026-10-08-paper
-    - title: "Body Transformer: Leveraging Robot Embodiment for Policy Learning"
-      authors: Sferrazza et al.
-      venue: arXiv 2024
-      year: 2024
-      url: https://arxiv.org/abs/2408.06316
-      kind: recent
-    - title: "GET-Zero: Graph Embodiment Transformer for Zero-shot Embodiment Generalization"
-      authors: Patel and Song
-      venue: arXiv 2024
-      year: 2024
-      url: https://arxiv.org/abs/2407.15002
-      kind: recent
 
 - id: adaptation
   topic: Hardware-conditioned and dynamics-aware adaptation
@@ -129,7 +116,6 @@
       year: 2024
       url: https://arxiv.org/abs/2409.20537
       kind: recent
-      session: 2026-10-22-paper
     - title: "π0: A Vision-Language-Action Flow Model for General Robot Control"
       authors: Black et al.
       venue: arXiv 2024

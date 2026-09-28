@@ -1,63 +1,86 @@
 # Embodiment Reading Group
 
-Website for the Embodiment Reading Group, a weekly hybrid research reading group at the University of Michigan on embodiment representations and embodied skill learning.
+Website for the Embodiment Reading Group, a research reading group at the University of Michigan on how representations of a robot's body and physical constraints unlock capabilities for planning, control and transferable skills.
 
 **Live site:** https://m-and-m-lab.github.io/emrobo-reading-group/
 
-The site is a plain [Jekyll](https://jekyllrb.com) site built by GitHub Pages. There is nothing to install to update it; edit files on GitHub and the site rebuilds in a minute or two.
+The site is a plain [Jekyll](https://jekyllrb.com) site built by GitHub Pages. There is nothing to install to update it; edit files on GitHub and the site rebuilds in a minute or two. Almost everything you'll change lives in `_data/` and `_config.yml`.
+
+## Pages
+
+| Page | URL | Built from |
+| --- | --- | --- |
+| Home | `/` | `index.html`, `_includes/figure-body.html` (Fig. 1) |
+| About (the proposal) | `/about/` | `about.html`, `_data/lens.yml` |
+| Sessions (schedule + log) | `/sessions/` | `sessions.html`, `_data/sessions.yml` |
+| Papers | `/papers/` | `papers.html`, `_data/papers.yml`, `_data/paper_groups.yml`, `_data/reading_list.yml` |
+| Tooling Hour | `/tooling/` | `tooling.html`, `_data/tools.yml`, `_data/resources.yml` |
+| Get involved | `/participate/` | `participate.html` |
+
+The old URLs `/schedule/`, `/archive/`, `/reading-list/` and `/join/` redirect to their new homes.
 
 ## Common tasks
 
-### Add a session
+### Add or confirm a session
 
 Add an entry to [`_data/sessions.yml`](_data/sessions.yml):
 
 ```yaml
-- date: 2026-11-05
+- date: 2026-11-13
   semester: Fall 2026
   type: paper              # paper | invited | tooling | special
-  theme: Tactile representations
+  theme: Skills across bodies
   title: "Paper title"
   authors: Last et al.
-  venue: CoRL 2024
+  venue: CoRL 2025
   paper_url: https://arxiv.org/abs/xxxx.xxxxx
   presenter: Your Name
+  extra_readings:          # optional, shown as "Paired with"
+    - title: "Related paper"
+      url: https://arxiv.org/abs/yyyy.yyyyy
 ```
 
-The session appears on the home page, the schedule, and the subscribable calendar automatically. Remove `tentative: true` once a date is confirmed.
+It appears on the home page, the sessions page and the subscribable calendar automatically. Remove `tentative: true` once a date is confirmed.
 
 ### After a session
 
-Add the links to the same entry:
+Add the details to the same entry. Past sessions move into the session log (Date | Title | Abstract | Presenter | Notes | Recording / resources) by themselves:
 
 ```yaml
+  abstract: One or two sentences on what was covered.
   slides: https://...
   video: https://www.youtube.com/watch?v=...
   notes: https://...
 ```
 
-Recordings with a `video` link also show up under "Recent recordings" on the home page.
-
-### Start a new semester
-
-Change `current_semester` in [`_config.yml`](_config.yml). Sessions from earlier semesters move to the archive page.
+Sessions with a `video` also show under "Recent recordings" on the home page.
 
 ### Fill in logistics
 
-Everything about time, room, and links lives in [`_config.yml`](_config.yml) under `meeting:` and `links:`. Empty links render as "soon" on the site. Keep `zoom_join` empty unless the meeting has a passcode; share the link via the mailing list and calendar instead.
+Day, time, room, length and links live in [`_config.yml`](_config.yml) under `meeting:` and `links:`. Set `start_time` (e.g. `"16:00"`) to turn on times and "+ Calendar" buttons; set `day_note` to `""` once the day is confirmed. Empty links render as "soon". Keep `zoom_join` empty unless the meeting has a passcode, and share the link through the mailing list and calendar instead.
 
-### Add to the reading list
+### Add a paper to the starting list
 
-Add papers to [`_data/reading_list.yml`](_data/reading_list.yml) under a topic. Set `session:` to a session id (`YYYY-MM-DD-type`, e.g. `2026-10-01-paper`) to link a paper to the session that covers it.
+Add an entry to [`_data/papers.yml`](_data/papers.yml) with a `group` from [`_data/paper_groups.yml`](_data/paper_groups.yml). Each entry has a one-line `why`, `links`, and starter B·T·L·E `lens` notes. Every paper needs a `glyph`; see [`_tools/artwork/README.md`](_tools/artwork/README.md) to draw one. Broader related work goes in [`_data/reading_list.yml`](_data/reading_list.yml) under a topic.
 
-### Organizers, tools
+### Tools and resources
 
-- [`_data/organizers.yml`](_data/organizers.yml): current and past organizers.
-- [`_data/resources.yml`](_data/resources.yml): tools listed on the tooling page.
+- [`_data/tools.yml`](_data/tools.yml): tools we'd like to cover in the Tooling Hour.
+- [`_data/resources.yml`](_data/resources.yml): the toolbox list on the Tooling page.
+
+### Organizers
+
+[`_data/organizers.yml`](_data/organizers.yml): current and past organizers.
 
 ## Contributions from members
 
-Paper suggestions, tooling session proposals, and speaker nominations come in through GitHub issue forms in [`.github/ISSUE_TEMPLATE`](.github/ISSUE_TEMPLATE).
+Paper suggestions, Tooling Hour proposals and speaker nominations come in through GitHub issue forms in [`.github/ISSUE_TEMPLATE`](.github/ISSUE_TEMPLATE). Members vote on paper suggestions with 👍 reactions; the Papers page links to the suggestions sorted by votes.
+
+## Design notes
+
+- Colors are tokens at the top of [`assets/css/main.css`](assets/css/main.css), with a dark mode. Navy ink is the robot's body, blue is its representation, and maize marks where the body meets the world (contacts, the next session, the main call to action).
+- Type is Archivo (its width axis sets hierarchy) and IBM Plex Mono for annotations, loaded from Google Fonts.
+- Fig. 1, the paper glyphs, the favicon and the social preview image are generated by the scripts in [`_tools/artwork/`](_tools/artwork/).
 
 ## Local preview (optional)
 

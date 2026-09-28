@@ -1,0 +1,87 @@
+---
+layout: page
+title: Sessions
+eyebrow: Fall 2026 · Fridays, tentative
+permalink: /sessions/
+lede: Each session covers one main paper or a small set of closely related papers, with a focused presentation and real time to discuss. A hands-on Tooling Hour runs once a month.
+toc:
+  - id: format
+    label: How a session runs
+  - id: upcoming
+    label: Upcoming
+  - id: log
+    label: Session log
+  - id: calendar
+    label: Calendar
+---
+{%- assign today = site.time | date: "%Y-%m-%d" -%}
+{%- assign sorted = site.data.sessions | sort: "date" -%}
+{%- assign upcoming = "" | split: "" -%}
+{%- assign past = "" | split: "" -%}
+{%- for s in sorted -%}
+  {%- assign d = s.date | date: "%Y-%m-%d" -%}
+  {%- if d >= today -%}{%- assign upcoming = upcoming | push: s -%}{%- else -%}{%- assign past = past | push: s -%}{%- endif -%}
+{%- endfor -%}
+{%- assign past = past | reverse -%}
+{%- assign past_groups = past | group_by: "semester" -%}
+
+<section class="block" id="format" aria-labelledby="format-h">
+  <div class="block__head">
+    <h2 id="format-h">How a session runs</h2>
+    <p>Presenters follow a shared template, so every paper is read through the same lens and the talk leaves room for discussion.</p>
+  </div>
+  <div class="format-bar" role="img" aria-label="A session is a focused presentation followed by 15 to 20 minutes of discussion, 60 to 90 minutes in total">
+    <div class="format-bar__seg format-bar__seg--talk"><b>Presentation</b><span>Focused, following the template</span></div>
+    <div class="format-bar__seg format-bar__seg--disc"><b>Discussion</b><span>15–20 min</span></div>
+  </div>
+  <p class="muted" style="margin: 0 0 24px;">60–90 minutes in total. <a href="{{ '/participate/' | relative_url }}#present">See the presenter template</a>.</p>
+  {% include meeting-facts.html %}
+</section>
+
+<section class="block" id="upcoming" aria-labelledby="upcoming-h">
+  <div class="block__head">
+    <h2 id="upcoming-h">Upcoming</h2>
+    <p>Dates marked tentative may still move while the first labs settle on a day and time.</p>
+  </div>
+  {%- if upcoming.size > 0 %}
+  <div class="toolbar">
+    <p class="muted" style="margin: 0;">{{ upcoming.size }} session{% if upcoming.size != 1 %}s{% endif %} scheduled</p>
+    <div class="filters" role="group" aria-label="Filter sessions by type" data-filter-group="#upcoming-list">
+      <button type="button" data-filter="all" aria-pressed="true">All</button>
+      <button type="button" data-filter="paper" aria-pressed="false">Papers</button>
+      <button type="button" data-filter="tooling" aria-pressed="false">Tooling Hour</button>
+    </div>
+  </div>
+  {%- endif %}
+  <div class="session-list" id="upcoming-list" data-upcoming-only data-limit="99">
+    {%- for s in upcoming %}
+    {% include session.html session=s %}
+    {%- endfor %}
+    <p class="empty js-empty js-no-results"{% if upcoming.size > 0 %} hidden{% endif %}>Nothing scheduled yet. Subscribe to the calendar to hear about new sessions first.</p>
+  </div>
+</section>
+
+<section class="block" id="log" aria-labelledby="log-h">
+  <div class="block__head">
+    <h2 id="log-h">Session log</h2>
+    <p>Every paper and tool we've covered, with notes, slides and recordings once they're shared.</p>
+  </div>
+  {%- if past_groups.size > 0 %}
+  {%- for g in past_groups %}
+  <div class="log-group" id="log-{{ g.name | slugify }}">
+    <h3>{{ g.name }}</h3>
+    {% include session-log.html sessions=g.items %}
+  </div>
+  {%- endfor %}
+  {%- else %}
+  {% include session-log.html sessions=past %}
+  {%- endif %}
+</section>
+
+<section class="block" id="calendar" aria-labelledby="calendar-h">
+  <div class="block__head">
+    <h2 id="calendar-h">Calendar</h2>
+    <p>Subscribe once and every session, including changes and additions, shows up in your calendar. Google Calendar can take several hours to pick up changes.</p>
+  </div>
+  {% include calendar-buttons.html %}
+</section>

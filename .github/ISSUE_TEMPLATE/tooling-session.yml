@@ -1,4 +1,4 @@
-name: Propose a tooling session
+name: Propose a Tooling Hour
 description: Share a tool, workflow, hardware setup, or implementation lesson in a monthly tooling session.
 title: "[Tooling] "
 labels: ["tooling-session"]
@@ -6,7 +6,7 @@ body:
   - type: markdown
     attributes:
       value: |
-        Tooling sessions are practical and informal. A short demo of something you actually use is perfect, and several demos can share one session.
+        The Tooling Hour is monthly, practical and informal. Share an open-source tool, codebase, simulator, hardware setup or workflow that others can actually use, with the tricks, limitations and setup issues you ran into. A short demo is perfect, and several demos can share one hour.
   - type: input
     id: topic
     attributes:

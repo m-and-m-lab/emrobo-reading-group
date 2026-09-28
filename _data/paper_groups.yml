@@ -1,0 +1,37 @@
+# Threads that group the starting papers on /papers/. Order here is page order.
+# `id` must match the `group` field in papers.yml and the toc ids in papers.html.
+- id: architecture
+  title: Body structure in the model
+  blurb: Policies and world models that take the robot's morphology and connectivity as structure, and build it into how the network attends or which experts it uses.
+
+- id: whole-body
+  title: Whole-body and cross-embodiment manipulation
+  blurb: A legged manipulator that reassigns its limbs on the fly, and a shared tool that turns many different bodies into one interface.
+
+- id: planning
+  title: Robot and scene kinematics for planning
+  blurb: Explicit formalisms that join the base, the arm and articulated objects into one kinematic structure and show what splitting navigation from manipulation can miss, plus a learned policy that handles articulated objects without an explicit model.
+
+- id: skills
+  title: Skills that transfer across bodies
+  blurb: Skill representations meant to survive a change of body, from human video to robot arms and from motion capture to humanoids and quadrupeds.
+  related_title: More UniSkill-style work on skill representations
+  related:
+    - title: "Human2LocoMan: Learning Versatile Quadrupedal Manipulation with Human Pretraining"
+      authors: Niu et al.
+      venue: RSS 2025
+      year: 2025
+      url: https://arxiv.org/abs/2506.16475
+      note: Mobile manipulation. Human and quadruped data share one aligned action space.
+    - title: Latent Action Diffusion for Cross-Embodiment Manipulation
+      authors: Bauer et al.
+      venue: ICRA 2026
+      year: 2026
+      url: https://arxiv.org/abs/2506.14608
+      note: Dexterous manipulation. One latent action space spans robot hands, a human hand and a gripper.
+    - title: "UniVLA: Learning to Act Anywhere with Task-centric Latent Actions"
+      authors: Bu et al.
+      venue: RSS 2025
+      year: 2025
+      url: https://arxiv.org/abs/2505.06111
+      note: Latent actions learned from human and robot video, decoded per robot.
