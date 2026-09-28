@@ -1,9 +1,8 @@
 ---
 layout: page
 title: Tooling Hour
-eyebrow: Monthly · 1–2 hours · hands-on
 permalink: /tooling/
-lede: Once a month we set papers aside. A presenter shares an open-source tool, codebase, simulator, hardware setup or workflow that others can actually use, along with the tricks, limitations and setup issues they ran into.
+lede: Once a month we set papers aside. Someone walks the group through a tool others can actually use, including the tricks, limitations and setup issues that rarely make it into a paper.
 toc:
   - id: format
     label: How it works
@@ -26,60 +25,46 @@ toc:
   {%- if d >= today and next_tooling == "" -%}{%- assign next_tooling = s -%}{%- endif -%}
 {%- endfor -%}
 
-<section class="block" id="format" aria-labelledby="format-h">
-  <div class="block__head"><h2 id="format-h">How it works</h2></div>
-  <ul class="joint-list">
-    <li><strong>Something people can use.</strong> An open-source tool, codebase, simulator, hardware setup or workflow, shown working.</li>
-    <li><strong>The practical lessons.</strong> Tricks, limitations and setup issues: the parts that rarely make it into a paper or a README.</li>
-    <li><strong>Practical and informal.</strong> It shouldn't become another presentation session. A terminal and a simulator window are welcome, and several short demos can share one hour.</li>
-    <li><strong>Once a month, 1–2 hours.</strong> Same room and Zoom link as the reading group; recorded only with the presenter's consent.</li>
-  </ul>
+<section class="section" id="format" aria-labelledby="format-h">
+  <h2 id="format-h">How it works</h2>
+  <div class="measure">
+    <p>The presenter shares an open-source tool, codebase, simulator, hardware setup or workflow, shown working, and the practical lessons that came with it. It's meant to stay practical and informal rather than become another presentation: a terminal and a simulator window are welcome, and several short demos can share one hour.</p>
+    <p>Once a month, 1–2 hours, in the same room and on the same Zoom link as the reading group.</p>
+  </div>
 </section>
 
-<section class="block" id="first" aria-labelledby="first-h">
-  <div class="block__head">
-    <h2 id="first-h">First session: Spot, from USD asset to policy</h2>
+<section class="section" id="first" aria-labelledby="first-h">
+  <h2 id="first-h">First session: Spot, from USD asset to policy</h2>
+  <div class="measure">
     <p>A walkthrough of the Spot USD asset and an Isaac Sim / Isaac Lab training pipeline for mobile manipulation: where the robot's structure, physical properties and control interface live, and how they reach the policy.</p>
+    <p class="muted">USD asset → articulation (joints, limits, actuators) → task (observations, actions, rewards) → RL in parallel environments → policy on hardware.</p>
+    {%- if next_tooling != "" %}
+    <p><strong>{{ next_tooling.date | date: "%A, %B %-d" }}</strong>{% if next_tooling.tentative %} (tentative){% endif %}. Presenter: {{ next_tooling.presenter | default: "TBD" }}.</p>
+    {%- endif %}
   </div>
-  {% include pipeline.html %}
-  {%- if next_tooling != "" %}
-  <div class="session-list" style="margin-top: 24px;">
-    {% include session.html session=next_tooling %}
-  </div>
-  {%- endif %}
 </section>
 
-<section class="block" id="tools" aria-labelledby="tools-h">
-  <div class="block__head">
-    <h2 id="tools-h">Tools on the list</h2>
-    <p>From the proposal. Want to present one of these? <a href="#propose">Say so</a>.</p>
-  </div>
+<section class="section" id="tools" aria-labelledby="tools-h">
+  <h2 id="tools-h">Tools on the list</h2>
+  <p class="section-intro">From the proposal. Want to present one of these? <a href="#propose">Say so</a>.</p>
   <div>
     {%- for t in site.data.tools %}
-    <article class="tool" id="tool-{{ t.id }}">
-      <div>
-        <h3 class="tool__name">{{ t.name }}</h3>
-        <p class="tool__blurb">{{ t.blurb }}</p>
-        {%- if t.links.size > 0 %}
-        <ul class="tool__links">
-          {%- for l in t.links %}
-          <li><a class="chip-link chip-link--ext" href="{{ l.url }}">{{ l.label }}</a></li>
-          {%- endfor %}
-        </ul>
-        {%- endif %}
-      </div>
-      <span class="tag tool__status{% if t.status == 'First session' %} tag--next{% endif %}">{{ t.status }}</span>
-    </article>
+    <div class="tool" id="tool-{{ t.id }}">
+      <h3>{{ t.name }}{% if t.status %}<small>{{ t.status }}</small>{% endif %}</h3>
+      <p>{{ t.blurb }}</p>
+      {%- if t.links.size > 0 %}
+      <ul class="inline-list small">
+        {%- for l in t.links %}<li><a href="{{ l.url }}">{{ l.label }}</a></li>{% endfor %}
+      </ul>
+      {%- endif %}
+    </div>
     {%- endfor %}
   </div>
 </section>
 
-<section class="block" id="topics" aria-labelledby="topics-h">
-  <div class="block__head">
-    <h2 id="topics-h">Topic ideas</h2>
-    <p>Anything that makes embodiment research easier to do is fair game.</p>
-  </div>
-  <ul class="joint-list joint-list--2">
+<section class="section" id="topics" aria-labelledby="topics-h">
+  <h2 id="topics-h">Topic ideas</h2>
+  <ul class="two-col">
     <li>URDF and USD robot models</li>
     <li>Isaac Sim and Isaac Lab workflows</li>
     <li>Extracting kinematic and dynamic information from robot models</li>
@@ -97,18 +82,16 @@ toc:
   </ul>
 </section>
 
-<section class="block" id="toolbox" aria-labelledby="toolbox-h">
-  <div class="block__head">
-    <h2 id="toolbox-h">Toolbox</h2>
-    <p>Repositories that come up often. Add to <code>_data/resources.yml</code>.</p>
-  </div>
-  <div class="resource-groups">
+<section class="section" id="toolbox" aria-labelledby="toolbox-h">
+  <h2 id="toolbox-h">Toolbox</h2>
+  <p class="section-intro">Repositories that come up often.</p>
+  <div class="groups">
     {%- for g in site.data.resources %}
-    <div class="resource-group">
+    <div>
       <h3>{{ g.group }}</h3>
-      <ul class="resource-list">
+      <ul>
         {%- for r in g.items %}
-        <li><a href="{{ r.url }}">{{ r.name }}</a><span>{{ r.note }}</span></li>
+        <li><a href="{{ r.url }}">{{ r.name }}</a> <span>{{ r.note }}</span></li>
         {%- endfor %}
       </ul>
     </div>
@@ -116,13 +99,11 @@ toc:
   </div>
 </section>
 
-<section class="block" id="propose" aria-labelledby="propose-h">
-  <div class="block__head">
-    <h2 id="propose-h">Propose a session</h2>
-    <p>A 20-minute demo of something you actually use is plenty, and several demos can share an hour.</p>
-  </div>
-  <div class="actions">
+<section class="section" id="propose" aria-labelledby="propose-h">
+  <h2 id="propose-h">Propose a session</h2>
+  <p class="section-intro">A 20-minute demo of something you actually use is plenty.</p>
+  <div class="btn-row">
     <a class="btn btn--primary" href="{{ site.links.github_repo }}/issues/new?template=tooling-session.yml">Propose a Tooling Hour</a>
-    <a class="link-arrow" href="{{ '/participate/' | relative_url }}#tooling">What to prepare</a>
+    <span class="small muted">or email {% for p in site.data.organizers.current %}<a href="mailto:{{ p.email }}">{{ p.email }}</a>{% unless forloop.last %} or {% endunless %}{% endfor %}</span>
   </div>
 </section>

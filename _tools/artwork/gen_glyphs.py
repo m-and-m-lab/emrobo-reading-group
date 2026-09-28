@@ -424,7 +424,7 @@ def svg(gid, standalone=False):
     if standalone:
         return (f'<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 160 100" width="480" height="300" font-family="DejaVu Sans Mono">'
                 f'<rect width="160" height="100" fill="#FFFFFF"/>\n  {body}\n</svg>')
-    return f'<svg class="glyph" viewBox="0 0 160 100" aria-hidden="true" focusable="false">\n  {body}\n</svg>\n'
+    return f'<svg class="glyph" viewBox="0 0 160 100" width="160" height="100" aria-hidden="true" focusable="false">\n  {body}\n</svg>\n'
 
 
 if __name__ == "__main__":

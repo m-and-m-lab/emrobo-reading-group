@@ -1,16 +1,17 @@
 ---
 layout: page
-title: Sessions
-eyebrow: Fall 2026 · Fridays, tentative
+title: Schedule
 permalink: /sessions/
-lede: Each session covers one main paper or a small set of closely related papers, with a focused presentation and real time to discuss. A hands-on Tooling Hour runs once a month.
+lede: Fall 2026. Fridays (tentative) in the FRB meeting room and on Zoom, 60–90 minutes. Dates marked tentative may still move.
 toc:
-  - id: format
-    label: How a session runs
   - id: upcoming
     label: Upcoming
-  - id: log
-    label: Session log
+  - id: past
+    label: Past sessions
+  - id: format
+    label: How sessions work
+  - id: presenting
+    label: Presenting
   - id: calendar
     label: Calendar
 ---
@@ -23,65 +24,76 @@ toc:
   {%- if d >= today -%}{%- assign upcoming = upcoming | push: s -%}{%- else -%}{%- assign past = past | push: s -%}{%- endif -%}
 {%- endfor -%}
 {%- assign past = past | reverse -%}
-{%- assign past_groups = past | group_by: "semester" -%}
 
-<section class="block" id="format" aria-labelledby="format-h">
-  <div class="block__head">
-    <h2 id="format-h">How a session runs</h2>
-    <p>Presenters follow a shared template, so every paper is read through the same lens and the talk leaves room for discussion.</p>
-  </div>
-  <div class="format-bar" role="img" aria-label="A session is a focused presentation followed by 15 to 20 minutes of discussion, 60 to 90 minutes in total">
-    <div class="format-bar__seg format-bar__seg--talk"><b>Presentation</b><span>Focused, following the template</span></div>
-    <div class="format-bar__seg format-bar__seg--disc"><b>Discussion</b><span>15–20 min</span></div>
-  </div>
-  <p class="muted" style="margin: 0 0 24px;">60–90 minutes in total. <a href="{{ '/participate/' | relative_url }}#present">See the presenter template</a>.</p>
-  {% include meeting-facts.html %}
+<section class="section" id="upcoming" aria-labelledby="upcoming-h">
+  <h2 id="upcoming-h">Upcoming</h2>
+  {% include upcoming-table.html sessions=upcoming limit=50 details=true %}
 </section>
 
-<section class="block" id="upcoming" aria-labelledby="upcoming-h">
-  <div class="block__head">
-    <h2 id="upcoming-h">Upcoming</h2>
-    <p>Dates marked tentative may still move while the first labs settle on a day and time.</p>
-  </div>
-  {%- if upcoming.size > 0 %}
-  <div class="toolbar">
-    <p class="muted" style="margin: 0;">{{ upcoming.size }} session{% if upcoming.size != 1 %}s{% endif %} scheduled</p>
-    <div class="filters" role="group" aria-label="Filter sessions by type" data-filter-group="#upcoming-list">
-      <button type="button" data-filter="all" aria-pressed="true">All</button>
-      <button type="button" data-filter="paper" aria-pressed="false">Papers</button>
-      <button type="button" data-filter="tooling" aria-pressed="false">Tooling Hour</button>
-    </div>
-  </div>
-  {%- endif %}
-  <div class="session-list" id="upcoming-list" data-upcoming-only data-limit="99">
-    {%- for s in upcoming %}
-    {% include session.html session=s %}
-    {%- endfor %}
-    <p class="empty js-empty js-no-results"{% if upcoming.size > 0 %} hidden{% endif %}>Nothing scheduled yet. Subscribe to the calendar to hear about new sessions first.</p>
-  </div>
-</section>
-
-<section class="block" id="log" aria-labelledby="log-h">
-  <div class="block__head">
-    <h2 id="log-h">Session log</h2>
-    <p>Every paper and tool we've covered, with notes, slides and recordings once they're shared.</p>
-  </div>
-  {%- if past_groups.size > 0 %}
-  {%- for g in past_groups %}
-  <div class="log-group" id="log-{{ g.name | slugify }}">
-    <h3>{{ g.name }}</h3>
-    {% include session-log.html sessions=g.items %}
-  </div>
-  {%- endfor %}
-  {%- else %}
+<section class="section" id="past" aria-labelledby="past-h">
+  <h2 id="past-h">Past sessions</h2>
+  <p class="section-intro">Every paper and tool we've covered, with notes, slides and recordings once they're shared.</p>
   {% include session-log.html sessions=past %}
-  {%- endif %}
 </section>
 
-<section class="block" id="calendar" aria-labelledby="calendar-h">
-  <div class="block__head">
-    <h2 id="calendar-h">Calendar</h2>
-    <p>Subscribe once and every session, including changes and additions, shows up in your calendar. Google Calendar can take several hours to pick up changes.</p>
+<section class="section" id="format" aria-labelledby="format-h">
+  <h2 id="format-h">How sessions work</h2>
+  <div class="measure">
+    <p>Each session focuses on <strong>one main paper or a small set of closely related papers</strong>. The presenter follows a <a href="#presenting">shared template</a> and keeps the talk focused, so there are <strong>15–20 minutes for discussion</strong>. Sessions run 60–90 minutes, weekly or biweekly.</p>
+    <p>Once a month, the <a href="{{ '/tooling/' | relative_url }}">Tooling Hour</a> replaces the paper: a hands-on walkthrough of a tool, codebase, simulator or hardware setup.</p>
+    <p>Everyone can join in person or on Zoom. With the consent of presenters and participants, selected sessions may be recorded and posted to the group's YouTube channel.</p>
   </div>
+</section>
+
+<section class="section" id="presenting" aria-labelledby="presenting-h">
+  <h2 id="presenting-h">Presenting</h2>
+  <p class="section-intro">Cover these points, in roughly this order, and leave the last 15–20 minutes for discussion.</p>
+  <ol class="measure">
+    <li>What is the problem setting, and what are the assumptions?</li>
+    <li>What is the core idea, in one sentence?</li>
+    <li>What representation of embodiment or skill is used?</li>
+    <li>How is that representation integrated into the method?</li>
+    <li>What is new compared with prior work?</li>
+    <li>How should we understand the method from our own perspective?</li>
+    <li>What downstream capability does the representation enable?</li>
+    <li>What is the evaluation setup: metrics, environments and embodiments?</li>
+    <li>Two strengths and two weaknesses.</li>
+    <li>Reproducibility: code, data, simulator and hardware requirements.</li>
+    <li>One extension relevant to your lab's work or your own interests.</li>
+  </ol>
+  <div class="copy-row">
+    <button class="btn" type="button" data-copy="#template-md">Copy as a Markdown outline</button>
+    <span class="copy-status" data-copy-status aria-live="polite"></span>
+  </div>
+  <pre id="template-md" class="outline" hidden><code># [Paper title]
+Presenter: [name] · Embodiment Reading Group · [date]
+
+## Problem setting and assumptions
+## Core idea, in one sentence
+## Representation of embodiment or skill
+## How it is integrated into the method
+## What is new compared with prior work
+## Our perspective on the method
+## Downstream capability it enables
+## Evaluation: metrics, environments, embodiments
+## Two strengths, two weaknesses
+## Reproducibility: code, data, simulator, hardware
+## One extension for our work
+## Discussion prompts (15–20 min)</code></pre>
+
+  <div class="subsection measure">
+    <h3>Before and after</h3>
+    <ul>
+      <li><strong>Two weeks before:</strong> pick a paper from the <a href="{{ '/papers/' | relative_url }}">reading list</a> and confirm the date with an organizer.</li>
+      <li><strong>One week before:</strong> send the paper link and any paired reading, so it can go out in Slack.</li>
+      <li><strong>On the day:</strong> bring two or three open questions to start the discussion.</li>
+      <li><strong>Afterwards:</strong> share your slides, and say whether you're happy for the recording to be posted.</li>
+    </ul>
+  </div>
+</section>
+
+<section class="section" id="calendar" aria-labelledby="calendar-h">
+  <h2 id="calendar-h">Calendar</h2>
+  <p class="section-intro">Subscribe once and new or changed sessions appear in your calendar automatically. Google Calendar can take a few hours to pick up changes.</p>
   {% include calendar-buttons.html %}
 </section>

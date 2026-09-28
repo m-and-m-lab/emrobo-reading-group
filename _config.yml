@@ -31,7 +31,7 @@ meeting:
   tooling_duration: 120     # minutes, monthly Tooling Hour
   tz_label: "ET"
   location: "FRB meeting room"
-  location_note: "Room TBD · Ford Motor Company Robotics Building"
+  location_note: "room TBD"   # shown after the location, e.g. "FRB meeting room (room TBD)"
   location_url: "https://www.google.com/maps/search/?api=1&query=Ford+Motor+Company+Robotics+Building+Ann+Arbor"
   snacks: "Maybe"
 
@@ -42,8 +42,8 @@ links:
   zoom_join: ""
   zoom_registration: ""
   mailing_list: ""          # e.g. a Google Group join page
-  slack: ""                 # UMich Slack channel link (shown as UMich-only)
-  slack_channel: "#embodiment-reading-group"
+  slack: ""                 # optional link to the channel
+  slack_channel: "#emrobo-reading-group"   # private channel on the University of Michigan Slack
   youtube: ""
   linkedin: ""
   presenter_signup: ""      # e.g. a Google Sheet

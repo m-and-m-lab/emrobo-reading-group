@@ -94,7 +94,7 @@ def build(standalone):
         A('<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 720 440" width="1440" height="880" font-family="DejaVu Sans Mono">')
         A('<rect width="720" height="440" fill="#F2F4F7"/>')
     else:
-        A(f'<svg class="fig1" viewBox="0 0 720 440" role="img" aria-labelledby="fig1-title fig1-desc" data-q0="{f(Q0)}">')
+        A(f'<svg class="fig1" viewBox="0 0 720 440" width="720" height="440" role="img" aria-labelledby="fig1-title fig1-desc" data-q0="{f(Q0)}">')
         A('<title id="fig1-title">A legged mobile manipulator opening a drawer, annotated with what a model could know about its body</title>')
         A('<desc id="fig1-desc">Overlays show the kinematic graph, mass and actuation limits, foot contacts and the support polygon, the camera field of view and what the gripper occludes, the arm\'s reach and manipulability, and a virtual kinematic chain that joins the world, the base, the arm and the drawer joint.</desc>')
 

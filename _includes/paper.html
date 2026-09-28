@@ -1,0 +1,24 @@
+{%- assign p = include.paper -%}
+{%- assign primary = p.links | first -%}
+<article class="paper" id="{{ p.id }}">
+  <div class="paper__glyph" aria-hidden="true">{% include glyphs/{{ p.glyph }}.html %}</div>
+  <div>
+    <h3><a href="{{ primary.url }}">{{ p.title }}</a></h3>
+    <p class="paper__meta">{{ p.first_author }}{% if p.affiliation %} · {{ p.affiliation }}{% endif %} · {{ p.venue }}</p>
+    <p class="paper__why">{{ p.why }}</p>
+    <ul class="inline-list paper__links">
+      {%- for l in p.links %}<li><a href="{{ l.url }}">{{ l.label }}</a></li>{% endfor %}
+    </ul>
+    {%- if p.lens %}
+    <details class="notes">
+      <summary>Notes through the B·T·L·E lens</summary>
+      <dl>
+        {%- for l in site.data.lens %}
+        <dt title="{{ l.name }}">{{ l.key }}</dt><dd>{{ p.lens[l.key] }}</dd>
+        {%- endfor %}
+      </dl>
+      <p>Starter notes from the abstract and paper; the presenter refines them. <a href="{{ '/about/' | relative_url }}#lens">What B, T, L and E mean</a>.</p>
+    </details>
+    {%- endif %}
+  </div>
+</article>

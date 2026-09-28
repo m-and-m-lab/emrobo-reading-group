@@ -1,0 +1,8 @@
+<dl class="rows">
+  {%- for p in site.data.organizers.current %}
+  <div>
+    <dt>{% if p.url != "" %}<a href="{{ p.url }}">{{ p.name }}</a>{% else %}{{ p.name }}{% endif %}</dt>
+    <dd>Organizer · <a href="mailto:{{ p.email }}">{{ p.email }}</a></dd>
+  </div>
+  {%- endfor %}
+</dl>

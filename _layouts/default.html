@@ -7,8 +7,8 @@
   {%- assign desc = page.description | default: page.lede | default: site.description | strip_newlines | strip %}
   <title>{{ full_title }}</title>
   <meta name="description" content="{{ desc | escape }}">
-  <meta name="theme-color" content="#F2F4F7" media="(prefers-color-scheme: light)">
-  <meta name="theme-color" content="#08111D" media="(prefers-color-scheme: dark)">
+  <meta name="theme-color" content="#F6F7F9" media="(prefers-color-scheme: light)">
+  <meta name="theme-color" content="#0A131F" media="(prefers-color-scheme: dark)">
   <meta property="og:site_name" content="{{ site.title }}">
   <meta property="og:title" content="{{ full_title | escape }}">
   <meta property="og:description" content="{{ desc | escape }}">
@@ -25,7 +25,7 @@
   <link rel="alternate" type="text/calendar" title="{{ site.title }} calendar" href="{{ '/calendar.ics' | relative_url }}">
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-  <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Archivo:wdth,wght@100..125,300..800&family=IBM+Plex+Mono:wght@400;500;600&display=swap">
+  <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Archivo:wdth,wght@100..110,400..720&family=IBM+Plex+Mono:wght@400;500&display=swap">
   <link rel="stylesheet" href="{{ '/assets/css/main.css' | relative_url }}">
 </head>
 <body>

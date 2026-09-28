@@ -1,171 +1,93 @@
 ---
 layout: page
-title: About the group
-eyebrow: The proposal
+title: About
 permalink: /about/
-lede: We explore the notion of embodiment in robot learning, with a specific focus on how different representations of a robot's physical body and constraints unlock capabilities for task performance, planning and control.
+lede: We explore the notion of embodiment in robot learning, with a focus on how different representations of a robot's physical body and constraints unlock capabilities for task performance, planning and control.
 toc:
   - id: idea
     label: The idea
   - id: embodiment
     label: What we mean by embodiment
-  - id: questions
-    label: What we're asking
   - id: why
     label: Why this area
   - id: lens
-    label: The B·T·L·E lens
+    label: How we read papers
   - id: success
     label: What we look for
-  - id: who
-    label: Who it's for
   - id: organizers
     label: Organizers
 ---
-{%- assign bot = site.data.papers | where: "id", "body-transformer" | first -%}
-{%- assign getzero = site.data.papers | where: "id", "get-zero" | first -%}
-{%- assign vkc = site.data.papers | where: "id", "vkc" | first -%}
-{%- assign smmp = site.data.papers | where: "id", "smmp" | first -%}
-{%- assign uniskill = site.data.papers | where: "id", "uniskill" | first -%}
 
-<section class="block" id="idea" aria-labelledby="idea-h">
-  <div class="block__head"><h2 id="idea-h">The idea</h2></div>
-  <div class="prose">
-    <p class="lead">We want to understand how representations of the robot's body appear, or fail to appear, in current robot learning work on physical action and interaction.</p>
-    <p>In particular: <strong>what gets represented</strong>, <strong>how that representation is used or adapted</strong>, and <strong>what capabilities emerge</strong> when embodiment is modeled as first-class structure rather than absorbed implicitly through data, heuristics or modular handoffs.</p>
-    <p>The community is moving from robot-specific policies toward cross-embodiment learning. We'd like to push that conversation beyond transfer itself, toward how the choice of embodiment representation affects downstream reasoning, planning, control and interaction.</p>
+<section class="section" id="idea" aria-labelledby="idea-h">
+  <h2 id="idea-h">The idea</h2>
+  <div class="measure">
+    <p>We want to understand how representations of the robot's body appear, or fail to appear, in current robot learning work on physical action and interaction: <strong>what gets represented</strong>, <strong>how that representation is used or adapted</strong>, and <strong>what capabilities emerge</strong> when embodiment is modeled as first-class structure rather than absorbed implicitly through data, heuristics or modular handoffs.</p>
+    <p>Recent works such as <a href="{{ '/papers/' | relative_url }}#body-transformer">Body Transformer</a> and <a href="{{ '/papers/' | relative_url }}#get-zero">GET-Zero</a> encode robot morphology and connectivity directly in the architecture. In parallel, planning work such as the <a href="{{ '/papers/' | relative_url }}#vkc">Virtual Kinematic Chain</a> and <a href="{{ '/papers/' | relative_url }}#smmp">sequential mobile manipulation planning</a> unifies base, arm and scene kinematics, and shows where splitting mobile manipulation into separate locomotion and manipulation modules can lose feasibility or robustness.</p>
+    <p>The community is moving from robot-specific policies toward cross-embodiment learning. We'd like to push that conversation beyond transfer itself, toward how the choice of embodiment representation affects downstream reasoning, planning, control and interaction. A related direction is <strong>embodied skill learning and skill representation</strong>, particularly for mobile and dexterous manipulation: how skills can be represented, transferred or adapted across different bodies, instead of staying tied to one platform or one low-level action space.</p>
   </div>
 </section>
 
-<section class="block" id="embodiment" aria-labelledby="embodiment-h">
-  <div class="block__head">
-    <h2 id="embodiment-h">What we mean by embodiment</h2>
-    <p>Broadly, the physical properties and constraints that shape how a robot can act and interact with the world.</p>
-  </div>
-  <dl class="spec">
-    <div class="spec__row">
-      <dt>In general</dt>
-      <dd>
-        <ul class="term-list">
-          <li>Morphology</li><li>Kinematics</li><li>Dynamics</li><li>Contacts</li><li>Sensing</li><li>Actuation limits</li><li>Controller interfaces</li><li>Latency</li><li>Stability</li><li>Other hardware-dependent constraints</li>
-        </ul>
-      </dd>
-    </div>
-    <div class="spec__row">
-      <dt>In mobile manipulation</dt>
-      <dd>
-        <ul class="term-list">
-          <li>Base–arm kinematics and nonholonomy</li><li>Reachability and manipulability</li><li>Sensor placement and occlusion</li><li>Contact modes</li><li>Whole-body stability</li>
-        </ul>
-      </dd>
-    </div>
-    <div class="spec__row">
-      <dt>Off nominal</dt>
-      <dd>
-        <ul class="term-list">
-          <li>Actuator degradation</li><li>Payload changes</li><li>Sensor noise</li><li>Damage</li><li>Changing contact conditions</li>
-        </ul>
-      </dd>
-    </div>
+<section class="section" id="embodiment" aria-labelledby="embodiment-h">
+  <h2 id="embodiment-h">What we mean by embodiment</h2>
+  <p class="section-intro">Broadly, the physical properties and constraints that shape how a robot can act and interact with the world.</p>
+  <dl class="rows">
+    <div><dt>In general</dt><dd>Morphology, kinematics, dynamics, contacts, sensing, actuation limits, controller interfaces, latency, stability, and other hardware-dependent constraints.</dd></div>
+    <div><dt>In mobile manipulation</dt><dd>Base–arm kinematics and nonholonomy, reachability and manipulability, sensor placement and occlusion, contact modes, and whole-body stability.</dd></div>
+    <div><dt>Off nominal</dt><dd>Actuator degradation, payload changes, sensor noise, damage, and changing contact conditions. Adapting to these depends on some meaningful representation of what the robot can currently do.</dd></div>
   </dl>
-  <p class="muted" style="margin-top: 14px;">Fig. 1 on the <a href="{{ '/' | relative_url }}">home page</a> draws most of these on a single robot.</p>
 </section>
 
-<section class="block" id="questions" aria-labelledby="questions-h">
-  <div class="block__head"><h2 id="questions-h">What we're asking</h2></div>
-  <div class="prose">
-    <p>Recent works such as <a href="{{ '/papers/' | relative_url }}#{{ bot.id }}">Body Transformer</a> and <a href="{{ '/papers/' | relative_url }}#{{ getzero.id }}">GET-Zero</a> show how architectural choices can encode robot morphology and connectivity directly, for better learning and control. In parallel, planning work such as the <a href="{{ '/papers/' | relative_url }}#{{ vkc.id }}">Virtual Kinematic Chain (VKC)</a> and <a href="{{ '/papers/' | relative_url }}#{{ smmp.id }}">sequential mobile manipulation planning (SMMP)</a> gives explicit representations that unify base, arm and scene or object kinematics. Those formulations show where splitting mobile manipulation into separate locomotion and manipulation modules can lose feasibility or robustness.</p>
-    <p>This matters most in <strong>mobile manipulation</strong>, where locomotion, reaching, sensing, grasping, contact and stability are tightly coupled. It matters again when the robot <strong>deviates from its nominal condition</strong>. Adaptation to actuator degradation, payload changes, sensor noise, damage or changing contact depends on having some meaningful representation of what the robot can currently do.</p>
-    <p>A related direction is <strong>embodied skill learning and skill representation</strong>, particularly for mobile and dexterous manipulation. As robot learning moves toward reusable, transferable skills, the way a skill is represented becomes tied to the body executing it. We're interested in how skills can be represented, transferred or adapted across different bodies and physical constraints, instead of staying coupled to one platform or one low-level action space.</p>
+<section class="section" id="why" aria-labelledby="why-h">
+  <h2 id="why-h">Why this area</h2>
+  <div class="measure">
+    <h3>1. Understanding embodiment is a first step toward aligning different robot models</h3>
+    <p>Many methods succeed on a specific platform, sensor layout or controller interface, but transfer poorly because embodiment is not explicitly represented, even when the task looks similar. Embodiment-structured methods such as Body Transformer and GET-Zero target this directly by exposing robot structure to the learning system. A better understanding of these representations may clarify what information should be shared across platforms, what must stay robot-specific, and what can be adapted online.</p>
+
+    <h3>2. Task reasoning depends on the robot doing the task</h3>
+    <p>A task that is straightforward for one robot may need a different base placement, viewpoint, grasp, contact strategy or motion sequence for another, because of differences in reachability, sensing, stability or actuation. VKC- and SMMP-style formulations show how explicitly representing these coupled constraints improves feasibility and exposes actions that are missed when navigation and manipulation are treated separately. We want to know whether learning-based systems can get similar benefits from better embodiment representations.</p>
+
+    <h3>3. Embodiment matters even more when the robot has to adapt</h3>
+    <p>Real robots don't stay identical to their nominal model: actuators degrade, payloads change, sensors get noisy, contacts vary and hardware can partially fail. Should an embodiment model represent only the nominal structure, or also the robot's changing effective capabilities through learned or inferred representations? This connects to the internal–external framing in our previous embodiment work: a robot needs some representation of its own physical capabilities to reason about physical interaction with the world.</p>
+
+    <h3>4. Skill learning adds another level of representation</h3>
+    <p>A skill represented directly in joint space may be highly robot-specific. A very abstract task representation may transfer more easily, but may lose the physical constraints needed for feasible execution. We're interested in shared or transferable skill representations, including <a href="{{ '/papers/' | relative_url }}#uniskill">UniSkill</a>-style approaches. Body representation describes what the robot can physically do; skill representation describes reusable structure in how tasks are performed.</p>
+
+    <h3>5. What makes a useful embodiment representation is still unclear</h3>
+    <p>The field uses kinematic graphs, morphology tokens, geometry, inertial parameters, latent embeddings, sensorimotor history, force and contact information, robot IDs, task-space abstractions, and combinations of these. It isn't obvious which suits which problem, or what is lost when moving from explicit physical models to learned abstractions. Comparing them across areas of robotics is the point of the group.</p>
   </div>
 </section>
 
-<section class="block" id="why" aria-labelledby="why-h">
-  <div class="block__head">
-    <h2 id="why-h">Why this area</h2>
-    <p>Five reasons from the proposal. Sessions tend to come back to one or more of them.</p>
-  </div>
-  <ol class="reasons">
-    <li class="reason" id="why-align">
-      <div>
-        <h3>Understanding embodiment is a first step toward aligning different robot models</h3>
-        <p>Many methods succeed on a specific robot platform, sensor layout or controller interface, but transfer poorly because embodiment is not explicitly represented, even when the task itself looks similar.</p>
-        <p>Embodiment-structured methods such as Body Transformer and GET-Zero target this problem directly by exposing robot structure to the learning system. For mobile manipulation this is particularly relevant, because whole-body behavior depends on the interaction between base motion, manipulation, sensing and contact.</p>
-        <p>A better understanding of embodiment representations may help clarify what information needs to be shared across robot platforms, what needs to remain robot-specific, and what can be adapted online.</p>
-      </div>
-    </li>
-    <li class="reason" id="why-task">
-      <div>
-        <h3>Task reasoning depends on the capabilities of the robot executing the task</h3>
-        <p>Different embodiments may need different strategies for the same task. A task that is straightforward for one robot may need a different base placement, viewpoint, grasp, contact strategy or motion sequence for another, because of differences in reachability, sensing, stability or actuation.</p>
-        <p>In mobile manipulation, success often depends on coordinated base positioning, viewpoint selection and manipulation under clutter, occlusion, limited reachability or embodiment failures. VKC- and SMMP-style formulations show how explicitly representing these coupled constraints can improve feasibility and expose actions that may be missed when navigation and manipulation are treated separately.</p>
-        <p>We want to understand whether, and how, learning-based systems can get similar benefits from better embodiment representations.</p>
-      </div>
-    </li>
-    <li class="reason" id="why-adapt">
-      <div>
-        <h3>Embodiment matters even more when the robot has to adapt</h3>
-        <p>Real robots do not stay identical to their nominal model. Actuators degrade, payloads change, sensors become noisy, physical contacts vary and hardware can partially fail. These changes directly affect what the robot can do.</p>
-        <p>That creates a representation problem: should an embodiment model represent only the nominal robot structure, or also capture the robot's changing effective capabilities through learned or inferred representations?</p>
-        <p>The motivation is closely related to the internal–external framing in our previous embodiment work: a robot needs some representation of its own physical capabilities to reason effectively about physical interaction with the external world.</p>
-      </div>
-    </li>
-    <li class="reason" id="why-skills">
-      <div>
-        <h3>Skill learning introduces another level of representation</h3>
-        <p>For reusable robot skills, there is also the question of what should transfer across embodiments. A skill represented directly in joint space may be highly robot-specific. A very abstract task representation may transfer more easily, but may lose the physical constraints required for feasible execution.</p>
-        <p>We're interested in shared or transferable skill representations, including <a href="{{ '/papers/' | relative_url }}#{{ uniskill.id }}">UniSkill</a>-style approaches, and how they interact with embodiment for mobile and dexterous manipulation. Body representation describes what the robot can physically do; skill representation describes reusable structure in how tasks are performed.</p>
-      </div>
-    </li>
-    <li class="reason" id="why-open">
-      <div>
-        <h3>What makes an embodiment representation useful is still unclear</h3>
-        <p>The field uses many representations: kinematic graphs, morphology tokens, geometry, inertial parameters, latent embeddings, sensorimotor history, force and contact information, robot IDs, task-space abstractions, and combinations of these.</p>
-        <p>It is not obvious which representation suits which problem, or what is lost when moving from explicit physical models to learned abstractions. The reading group gives us a way to compare these approaches across different areas of robotics and build a better understanding of which representation choices actually matter.</p>
-      </div>
-    </li>
-  </ol>
+<section class="section" id="lens" aria-labelledby="lens-h">
+  <h2 id="lens-h">How we read papers</h2>
+  <p class="section-intro">Four components we use to compare papers. It's a lens, not a rigid taxonomy. The thread through every session: the robot's representation, how it is used or adapted, what it enables downstream, and where it stops transferring.</p>
+  <dl class="rows">
+    {%- for l in site.data.lens %}
+    <div>
+      <dt>{{ l.key }} · {{ l.name }}</dt>
+      <dd><p><strong>{{ l.question }}</strong></p><p>{{ l.detail }}</p></dd>
+    </div>
+    {%- endfor %}
+  </dl>
 </section>
 
-<section class="block" id="lens" aria-labelledby="lens-h">
-  <div class="block__head">
-    <h2 id="lens-h">The B·T·L·E lens</h2>
-    <p>We roughly think about the literature through four components. It's a useful lens for comparing papers, not a rigid taxonomy, and presenters use it to structure their talks.</p>
-  </div>
-  {% include lens.html %}
-</section>
-
-<section class="block" id="success" aria-labelledby="success-h">
-  <div class="block__head">
-    <h2 id="success-h">What we look for</h2>
-    <p>Desirable properties we'd like to understand through the literature. We don't expect any method to satisfy all of them; part of the point is to see which capabilities current representations support well and where the gaps remain.</p>
-  </div>
-  <ul class="joint-list joint-list--2">
+<section class="section" id="success" aria-labelledby="success-h">
+  <h2 id="success-h">What we look for</h2>
+  <p class="section-intro">We don't expect any method to have all of these. Part of the point is to see which capabilities current representations support well and where the gaps are.</p>
+  <ul class="two-col">
     <li>Generalization across embodiments with minimal robot-specific tuning</li>
     <li>Adaptation to changes in the robot's physical capabilities</li>
     <li>Support for contact-rich manipulation and locomotion</li>
     <li>Support for long-horizon and whole-body tasks</li>
     <li>Transferable or reusable skill representations</li>
     <li>Clear sim-to-real transfer</li>
-    <li>Interpretable links between the body representation and the resulting behavior</li>
+    <li>Interpretable links between the body representation and behavior</li>
     <li>Evaluations that separate robot, sensor, morphology and dynamics changes</li>
-    <li>Downstream improvements that can be attributed to the representation itself</li>
+    <li>Downstream improvements attributable to the representation itself</li>
   </ul>
 </section>
 
-<section class="block" id="who" aria-labelledby="who-h">
-  <div class="block__head"><h2 id="who-h">Who it's for</h2></div>
-  <div class="prose">
-    <p>Robotics PhD and MS students and research staff interested in mobile manipulation, learning, planning, whole-body control, embodied perception, dexterous manipulation, sensing and benchmarking.</p>
-    <p>For now we're starting with a <strong>smaller test run of three or four labs</strong> actively working in related areas, and will expand once the structure of the group is settled. Sessions are hybrid, in FRB and on Zoom, and selected sessions may be recorded with consent to build a public archive.</p>
-  </div>
-  <div class="actions" style="margin-top: 20px;">
-    <a class="btn btn--primary" href="{{ '/participate/' | relative_url }}">Get involved</a>
-    <a class="link-arrow" href="{{ '/sessions/' | relative_url }}#format">How a session runs</a>
-  </div>
-</section>
-
-<section class="block" id="organizers" aria-labelledby="organizers-h">
-  <div class="block__head"><h2 id="organizers-h">Organizers</h2></div>
-  {% include people.html %}
+<section class="section" id="organizers" aria-labelledby="organizers-h">
+  <h2 id="organizers-h">Organizers</h2>
+  {% include organizers.html %}
+  <p class="section-foot">Slack: <code>{{ site.links.slack_channel }}</code> on the University of Michigan Slack (private; email us to be added).</p>
 </section>

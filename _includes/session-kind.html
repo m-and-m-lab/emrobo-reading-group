@@ -1,0 +1,6 @@
+{%- case include.type -%}
+  {%- when "tooling" -%}Tooling Hour
+  {%- when "invited" -%}Invited talk
+  {%- when "special" -%}Special session
+  {%- else -%}Paper
+{%- endcase -%}
