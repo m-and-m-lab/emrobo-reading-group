@@ -3,11 +3,17 @@
 current:
   - name: Zhen Hao Gan
     email: ganzh@umich.edu
-    note: Robotics, University of Michigan. Co-author of ForageBench and PhyGS.
+    role: Robotics PhD student
+    lab: Mapping and Motion Lab
+    lab_url: https://sites.google.com/umich.edu/mandmlab/
+    affiliation: University of Michigan
     url: ""
   - name: Aparajito Saha
     email: rajsaha@umich.edu
-    note: Robotics, University of Michigan. Co-author of ForageBench and PhyGS.
+    role: Robotics PhD student
+    lab: Mapping and Motion Lab
+    lab_url: https://sites.google.com/umich.edu/mandmlab/
+    affiliation: University of Michigan
     url: ""
 
 past: []
