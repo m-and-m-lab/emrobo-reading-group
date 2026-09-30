@@ -28,7 +28,7 @@ body:
       options:
         - About 20 minutes
         - About 45 minutes
-        - A full session (1–2 hours)
+        - The full hour
   - type: input
     id: presenter
     attributes:

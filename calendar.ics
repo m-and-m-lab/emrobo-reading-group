@@ -29,6 +29,13 @@ RRULE:FREQ=YEARLY;BYMONTH=11;BYDAY=1SU
 END:STANDARD
 END:VTIMEZONE
 {% assign cal_sessions = site.data.sessions | sort: "date" -%}
+{%- comment -%} Build time in UTC, so every rebuild marks events as updated. site.time is local (site.timezone). {%- endcomment -%}
+{%- assign cal_z = site.time | date: "%z" -%}
+{%- assign cal_off = cal_z | slice: 1, 2 | plus: 0 | times: 60 | plus: 0 -%}
+{%- assign cal_off = cal_z | slice: 3, 2 | plus: cal_off | times: 60 -%}
+{%- assign cal_epoch = site.time | date: "%s" | plus: 0 -%}
+{%- if cal_z contains "-" -%}{%- assign cal_utc = cal_epoch | plus: cal_off -%}{%- else -%}{%- assign cal_utc = cal_epoch | minus: cal_off -%}{%- endif -%}
+{%- assign cal_stamp = cal_utc | date: "%Y%m%dT%H%M%SZ" -%}
 {%- assign cal_host = site.url | remove: "https://" | remove: "http://" -%}
 {%- for s in cal_sessions -%}
 {%- include session-times.html session=s -%}
@@ -36,7 +43,8 @@ END:VTIMEZONE
 {%- capture cal_desc -%}{% if s.presenter %}{% if st_type == "invited" %}Speaker{% else %}Presenter{% endif %}: {{ s.presenter }}\n{% endif %}{% if s.paper_url %}Paper: {{ s.paper_url }}\n{% endif %}{% if site.links.zoom_url != "" %}Zoom: {{ site.links.zoom_url }}{% if site.links.zoom_id != "" %} (meeting ID {{ site.links.zoom_id }}){% endif %}\n{% endif %}Details: {{ '/sessions/' | absolute_url }}#{{ st_id }}{%- endcapture %}
 BEGIN:VEVENT
 UID:{{ st_id }}@{{ cal_host }}
-DTSTAMP:{{ st_date }}T000000Z
+DTSTAMP:{{ cal_stamp }}
+LAST-MODIFIED:{{ cal_stamp }}
 {% if st_tbd %}DTSTART;VALUE=DATE:{{ st_date }}{% else %}DTSTART;TZID={{ site.timezone }}:{{ st_date }}T{{ st_start }}00
 DTEND;TZID={{ site.timezone }}:{{ st_date }}T{{ st_end }}00{% endif %}
 SUMMARY:{{ cal_title | replace: ",", "\," | replace: ";", "\;" }}
