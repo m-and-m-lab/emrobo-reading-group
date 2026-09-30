@@ -1,8 +1,15 @@
+{%- assign advisor = site.data.organizers.advisor -%}
 <dl class="rows">
   {%- for p in site.data.organizers.current %}
   <div>
     <dt>{% if p.url != "" %}<a href="{{ p.url }}">{{ p.name }}</a>{% else %}{{ p.name }}{% endif %}</dt>
-    <dd>{% if p.role %}{{ p.role }}, {% endif %}{% if p.lab %}{% if p.lab_url %}<a href="{{ p.lab_url }}">{{ p.lab }}</a>{% else %}{{ p.lab }}{% endif %}, {% endif %}{% if p.affiliation %}{{ p.affiliation }}. {% endif %}<a href="mailto:{{ p.email }}">{{ p.email }}</a></dd>
+    <dd>{% include person-line.html p=p %} <a href="mailto:{{ p.email }}">{{ p.email }}</a></dd>
   </div>
   {%- endfor %}
+  {%- if advisor %}
+  <div>
+    <dt>{% if advisor.url %}<a href="{{ advisor.url }}">{{ advisor.name }}</a>{% else %}{{ advisor.name }}{% endif %}</dt>
+    <dd>{% include person-line.html p=advisor %}</dd>
+  </div>
+  {%- endif %}
 </dl>

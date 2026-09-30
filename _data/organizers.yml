@@ -16,6 +16,15 @@ current:
     affiliation: University of Michigan
     url: ""
 
+# Faculty advisor, listed on the About page right after the organizers.
+advisor:
+  name: Bernadette Bucher
+  url: https://bucherb.github.io/
+  role: Faculty advisor
+  lab: Mapping and Motion Lab
+  lab_url: https://sites.google.com/umich.edu/mandmlab/
+  affiliation: University of Michigan
+
 past: []
 #  - name: Jane Doe
 #    years: "2026–2027"

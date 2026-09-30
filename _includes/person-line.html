@@ -1,0 +1,5 @@
+{%- comment -%}"Role, Lab (linked), Affiliation." for an entry in _data/organizers.yml.{%- endcomment -%}
+{%- assign pl = include.p -%}
+{%- if pl.role %}{{ pl.role }}, {% endif -%}
+{%- if pl.lab %}{% if pl.lab_url %}<a href="{{ pl.lab_url }}">{{ pl.lab }}</a>{% else %}{{ pl.lab }}{% endif %}, {% endif -%}
+{%- if pl.affiliation %}{{ pl.affiliation }}.{% endif -%}
