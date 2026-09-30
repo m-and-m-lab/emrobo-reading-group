@@ -15,10 +15,11 @@
 # Notes | Recording / resources); add `abstract`, `slides`, `video` and `notes`.
 #
 # The entries below are a tentative plan built from the proposal's reading
-# list (Fridays, starting October 2026). Edit or replace freely.
+# list: reading sessions every other Tuesday from October 6, 2026, plus a
+# monthly Tooling Hour on an off-week Tuesday. Edit or replace freely.
 # ---------------------------------------------------------------------------
 
-- date: 2026-10-09
+- date: 2026-10-06
   semester: Fall 2026
   type: special
   tentative: true
@@ -28,7 +29,7 @@
     Scope and format, the B·T·L·E lens we'll use to compare papers, a tour of
     the starting reading list, and presenter sign-ups for the first sessions.
 
-- date: 2026-10-16
+- date: 2026-10-20
   semester: Fall 2026
   type: paper
   tentative: true
@@ -43,7 +44,7 @@
     - title: "GET-Zero: Graph Embodiment Transformer for Zero-shot Embodiment Generalization"
       url: https://arxiv.org/abs/2407.15002
 
-- date: 2026-10-23
+- date: 2026-11-03
   semester: Fall 2026
   type: paper
   tentative: true
@@ -57,7 +58,7 @@
     - title: Integration of Robot and Scene Kinematics for Sequential Mobile Manipulation Planning
       url: https://arxiv.org/abs/2508.18627
 
-- date: 2026-10-30
+- date: 2026-10-13
   semester: Fall 2026
   type: tooling
   tentative: true
@@ -69,7 +70,7 @@
     physical properties and control interface live, and what breaks on the way
     to a policy.
 
-- date: 2026-11-06
+- date: 2026-11-17
   semester: Fall 2026
   type: paper
   tentative: true

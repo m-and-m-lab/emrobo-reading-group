@@ -33,7 +33,7 @@ END:VTIMEZONE
 {%- for s in cal_sessions -%}
 {%- include session-times.html session=s -%}
 {%- capture cal_title -%}{% if st_type == "tooling" %}[Tooling] {% elsif st_type == "invited" %}[Invited talk] {% endif %}{{ s.title }}{%- endcapture -%}
-{%- capture cal_desc -%}{% if s.presenter %}{% if st_type == "invited" %}Speaker{% else %}Presenter{% endif %}: {{ s.presenter }}\n{% endif %}{% if s.paper_url %}Paper: {{ s.paper_url }}\n{% endif %}Details: {{ '/sessions/' | absolute_url }}#{{ st_id }}{%- endcapture %}
+{%- capture cal_desc -%}{% if s.presenter %}{% if st_type == "invited" %}Speaker{% else %}Presenter{% endif %}: {{ s.presenter }}\n{% endif %}{% if s.paper_url %}Paper: {{ s.paper_url }}\n{% endif %}{% if site.links.zoom_url != "" %}Zoom: {{ site.links.zoom_url }}{% if site.links.zoom_id != "" %} (meeting ID {{ site.links.zoom_id }}){% endif %}\n{% endif %}Details: {{ '/sessions/' | absolute_url }}#{{ st_id }}{%- endcapture %}
 BEGIN:VEVENT
 UID:{{ st_id }}@{{ cal_host }}
 DTSTAMP:{{ st_date }}T000000Z
@@ -41,7 +41,8 @@ DTSTAMP:{{ st_date }}T000000Z
 DTEND;TZID={{ site.timezone }}:{{ st_date }}T{{ st_end }}00{% endif %}
 SUMMARY:{{ cal_title | replace: ",", "\," | replace: ";", "\;" }}
 DESCRIPTION:{{ cal_desc | replace: ",", "\," | replace: ";", "\;" }}
-LOCATION:{{ st_location | append: " + Zoom" | replace: ",", "\," | replace: ";", "\;" }}
+{%- capture cal_loc -%}{{ st_location }}{% if st_location == site.meeting.location and site.meeting.address %}, {{ site.meeting.address }}{% endif %}{%- endcapture %}
+LOCATION:{{ cal_loc | replace: ",", "\," | replace: ";", "\;" }}
 URL:{{ '/sessions/' | absolute_url }}#{{ st_id }}
 {% if s.tentative %}STATUS:TENTATIVE
 {% endif %}END:VEVENT

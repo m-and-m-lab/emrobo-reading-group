@@ -56,7 +56,7 @@ Sessions with a `video` also show under "Recent recordings" on the home page.
 
 ### Fill in logistics
 
-Day, time, room, length and links live in [`_config.yml`](_config.yml) under `meeting:` and `links:`. Set `start_time` (e.g. `"16:00"`) to show times. The one-line `status` (e.g. "Fall 2026 pilot · schedule being finalized") appears on the home page; set it to `""` once things are settled. Empty links render as "soon". Keep `zoom_join` empty unless the meeting has a passcode, and share the link through the mailing list and calendar instead.
+Time, room, map link and the Zoom details live in [`_config.yml`](_config.yml) under `meeting:` and `links:`. `start_time` and `duration` set every session's time (a session can override them with `time`/`duration` in `_data/sessions.yml`); `when` is the plain-English line shown on the home page, so keep it in sync. The one-line `status` (e.g. "Fall 2026 pilot · schedule being finalized") appears on the home page; set it to `""` once things are settled. Empty links render as "soon".
 
 ### Add a paper to the starting list
 

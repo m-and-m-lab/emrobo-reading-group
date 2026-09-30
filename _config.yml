@@ -24,24 +24,21 @@ current_semester: "Fall 2026"
 status: "Fall 2026 pilot · schedule being finalized"
 
 meeting:
-  day: "Fridays"
-  start_time: ""            # 24h local time, e.g. "16:00". Leave empty while TBD.
-  length: "60–90 min"
-  cadence: "Weekly or biweekly"
-  duration: 90              # minutes, used for calendar entries
-  tooling_duration: 120     # minutes, monthly Tooling Hour
+  when: "Every other Tuesday, 4:00–5:00 PM ET"   # shown in prose on the home page
+  start_time: "16:00"       # 24h local time. Leave empty ("") while TBD.
+  duration: 60              # minutes, used for session times and calendar entries
+  tooling_duration: 60      # minutes, Tooling Hour
   tz_label: "ET"
-  location: "FRB meeting room"
-  location_note: "room TBD"   # shown after the location, e.g. "FRB meeting room (room TBD)"
-  location_url: "https://www.google.com/maps/search/?api=1&query=Ford+Motor+Company+Robotics+Building+Ann+Arbor"
+  location: "FRB 3320"
+  address: "Ford Motor Company Robotics Building, 2505 Hayward St, Ann Arbor, MI 48109"   # used in calendar entries so apps can map it
+  location_url: "https://www.google.com/maps/search/?api=1&query=Ford+Motor+Company+Robotics+Building%2C+2505+Hayward+St%2C+Ann+Arbor%2C+MI+48109"
   snacks: "Maybe"
 
 links:
-  # Online meeting. Public Zoom links get scraped and "zoombombed", so the
-  # recommended setup is: leave `zoom_join` empty and share the link through the
-  # mailing list / calendar invite, or set `zoom_registration` to a signup form.
-  zoom_join: ""
-  zoom_registration: ""
+  # Online meeting (same Zoom link every session).
+  zoom_url: "https://umich.zoom.us/j/92340245066"
+  zoom_id: "923 4024 5066"
+  zoom_phone: "+1 646 876 9923"
   mailing_list: ""          # e.g. a Google Group join page
   slack: ""                 # optional link to the channel
   slack_channel: "#emrobo-reading-group"   # private channel on the University of Michigan Slack

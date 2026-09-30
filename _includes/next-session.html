@@ -9,7 +9,7 @@
     <p class="next__label">Next session</p>
     <h2 class="next__title">{% if s.paper_url %}<a href="{{ s.paper_url }}">{{ s.title }}</a>{% else %}{{ s.title }}{% endif %}</h2>
     <p class="next__when"><time datetime="{{ st_day }}">{{ s.date | date: "%A, %B %-d" }}</time> · {% if st_tbd %}time TBD{% else %}{{ st_label }}{% endif %}</p>
-    <p class="next__where">{{ st_location }} + Zoom</p>
+    <p class="next__where">{% if st_location == site.meeting.location and site.meeting.location_url != "" %}<a href="{{ site.meeting.location_url }}">{{ st_location }}</a>{% else %}{{ st_location }}{% endif %}{% if site.links.zoom_url != "" %} + <a href="{{ site.links.zoom_url }}">Zoom</a>{% endif %}</p>
     <p class="next__who">{% include session-kind.html type=s.type %} · {% if s.type == "invited" %}Speaker{% else %}Presenter{% endif %}: {{ s.presenter | default: "TBD" }}</p>
   </article>
   {%- endfor %}
