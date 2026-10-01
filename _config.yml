@@ -1,10 +1,10 @@
 # ---------------------------------------------------------------------------
-# Embodiment & Skills Learning Reading Group — site settings
+# Embodiment & Skill Learning Reading Group — site settings
 # Most day-to-day edits happen in _data/sessions.yml, not here.
 # Changes to this file need a fresh `jekyll serve` locally (GitHub rebuilds on push).
 # ---------------------------------------------------------------------------
 
-title: "Embodiment & Skills Learning Reading Group"
+title: "Embodiment & Skill Learning Reading Group"
 description: >-
   A research reading group at the University of Michigan on how representations
   of a robot's body and physical constraints (morphology, kinematics, dynamics,

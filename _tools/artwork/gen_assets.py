@@ -50,7 +50,7 @@ def og_image():
              + MARK.format(links="#0C1B2E", bg="#F2F4F7", joint="#1A5FD6").replace('fill="#FFCB05"', 'fill="#FFCB05" stroke="#0C1B2E" stroke-width="1.4"')
              + "</g>")
     o.append('<text x="64" y="180" font-family="Noto Sans Mono" font-size="17" fill="#5B6A7D">READING GROUP · UNIVERSITY OF MICHIGAN</text>')
-    for i, line in enumerate(("Embodiment &amp;", "Skills Learning", "Reading Group")):
+    for i, line in enumerate(("Embodiment &amp;", "Skill Learning", "Reading Group")):
         o.append(f'<text x="60" y="{250 + i * 60}" font-family="Lato" font-weight="900" font-size="58" fill="#0C1B2E">{line}</text>')
     o.append('<text x="64" y="440" font-family="Lato" font-weight="400" font-style="normal" font-size="25" fill="#33445A">How robots represent their own bodies,</text>')
     o.append('<text x="64" y="472" font-family="Lato" font-weight="400" font-style="normal" font-size="25" fill="#33445A">and what that unlocks for planning,</text>')

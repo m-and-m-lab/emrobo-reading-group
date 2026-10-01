@@ -10,7 +10,7 @@ layout: default
 {%- endfor -%}
 {%- assign m = site.meeting -%}
 {%- assign emails = site.data.organizers.current | map: "email" | join: "," -%}
-{%- capture invite -%}mailto:{{ emails }}?subject=Slack%20invite%3A%20{{ site.links.slack_channel | replace: "#", "%23" }}&amp;body=Hi%2C%20I%27d%20like%20to%20join%20the%20Embodiment%20%26%20Skills%20Learning%20Reading%20Group.%0A%0AName%3A%20%0ALab%20or%20program%3A%20{%- endcapture -%}
+{%- capture invite -%}mailto:{{ emails }}?subject=Slack%20invite%3A%20{{ site.links.slack_channel | replace: "#", "%23" }}&amp;body=Hi%2C%20I%27d%20like%20to%20join%20the%20Embodiment%20%26%20Skill%20Learning%20Reading%20Group.%0A%0AName%3A%20%0ALab%20or%20program%3A%20{%- endcapture -%}
 
 <div class="wrap page-end">
 

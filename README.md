@@ -1,6 +1,6 @@
-# Embodiment & Skills Learning Reading Group
+# Embodiment & Skill Learning Reading Group
 
-Website for the Embodiment & Skills Learning Reading Group, a research reading group at the University of Michigan on how representations of a robot's body and physical constraints unlock capabilities for planning, control and transferable skills.
+Website for the Embodiment & Skill Learning Reading Group, a research reading group at the University of Michigan on how representations of a robot's body and physical constraints unlock capabilities for planning, control and transferable skills.
 
 **Live site:** https://m-and-m-lab.github.io/emrobo-reading-group/
 
