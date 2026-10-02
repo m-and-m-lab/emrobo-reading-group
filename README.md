@@ -69,7 +69,7 @@ Add an entry to [`_data/papers.yml`](_data/papers.yml) with a `group` from [`_da
 
 ### Organizers
 
-[`_data/organizers.yml`](_data/organizers.yml): current and past organizers, with the email addresses shown on the site. The Slack channel name is `slack_channel` in `_config.yml`.
+[`_data/organizers.yml`](_data/organizers.yml): current and past organizers. Their email addresses are used only by the home page's "Request a Slack invite" button and are not shown on the site. The Slack channel name is `slack_channel` in `_config.yml`.
 
 ## Contributions from members
 

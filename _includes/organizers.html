@@ -3,7 +3,7 @@
   {%- for p in site.data.organizers.current %}
   <div>
     <dt>{% if p.url != "" %}<a href="{{ p.url }}">{{ p.name }}</a>{% else %}{{ p.name }}{% endif %}</dt>
-    <dd>{% include person-line.html p=p %} <a href="mailto:{{ p.email }}">{{ p.email }}</a></dd>
+    <dd>{% include person-line.html p=p %}</dd>
   </div>
   {%- endfor %}
   {%- if advisor %}

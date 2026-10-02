@@ -1,5 +1,6 @@
 # Current organizers. When someone steps down, move them to `past` with their
 # years so the group's history survives handoffs.
+# `email` is used only for the "Request a Slack invite" mailto button; it is not displayed.
 current:
   - name: Zhen Hao Gan
     email: ganzh@umich.edu

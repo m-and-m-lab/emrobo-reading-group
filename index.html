@@ -23,7 +23,7 @@ layout: default
         <a class="btn btn--primary" href="{{ invite }}">Request a Slack invite</a>
         <a class="btn" href="{{ '/sessions/' | relative_url }}">Full schedule</a>
       </div>
-      <p class="invite-note">Opens an email to the organizers. Or write to {% for p in site.data.organizers.current %}<a href="mailto:{{ p.email }}">{{ p.email }}</a>{% unless forloop.last %} or {% endunless %}{% endfor %}.</p>
+      <p class="invite-note">Opens an email to the organizers with the request filled in.</p>
     </div>
     <div class="hero__next">
       {%- if site.status != "" %}
@@ -97,7 +97,7 @@ layout: default
       </div>
       <div>
         <dt>Organizers</dt>
-        <dd><ul class="inline-list">{% for p in site.data.organizers.current %}<li>{% if p.url != "" %}<a href="{{ p.url }}">{{ p.name }}</a>{% else %}{{ p.name }}{% endif %}, <a href="mailto:{{ p.email }}">{{ p.email }}</a></li>{% endfor %}</ul></dd>
+        <dd><ul class="inline-list">{% for p in site.data.organizers.current %}<li>{% if p.url != "" %}<a href="{{ p.url }}">{{ p.name }}</a>{% else %}{{ p.name }}{% endif %}</li>{% endfor %}</ul></dd>
       </div>
       <div>
         <dt>Calendar</dt>

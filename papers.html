@@ -84,5 +84,5 @@ toc:
     <a class="btn btn--primary" href="{{ site.links.github_repo }}/issues/new?template=paper-suggestion.yml">Suggest a paper</a>
     <a class="btn" href="{{ site.links.github_repo }}/issues?q=is%3Aissue%20state%3Aopen%20label%3Apaper-suggestion%20sort%3Areactions-%2B1-desc">Vote on suggestions</a>
   </div>
-  <p class="section-foot small muted">No GitHub account? Email {% for p in site.data.organizers.current %}<a href="mailto:{{ p.email }}">{{ p.email }}</a>{% unless forloop.last %} or {% endunless %}{% endfor %}.</p>
+  <p class="section-foot small muted">No GitHub account? Post it in <code>{{ site.links.slack_channel }}</code> on Slack.</p>
 </section>
