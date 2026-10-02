@@ -97,12 +97,18 @@ layout: default
       </div>
       <div>
         <dt>Organizers</dt>
-        <dd><ul class="inline-list">{% for p in site.data.organizers.current %}<li>{{ p.name }}, <a href="mailto:{{ p.email }}">{{ p.email }}</a></li>{% endfor %}</ul></dd>
+        <dd><ul class="inline-list">{% for p in site.data.organizers.current %}<li>{% if p.url != "" %}<a href="{{ p.url }}">{{ p.name }}</a>{% else %}{{ p.name }}{% endif %}, <a href="mailto:{{ p.email }}">{{ p.email }}</a></li>{% endfor %}</ul></dd>
       </div>
       <div>
         <dt>Calendar</dt>
         <dd>{% include calendar-buttons.html %}</dd>
       </div>
+      {%- if site.links.youtube != "" %}
+      <div>
+        <dt>Recordings</dt>
+        <dd>Selected sessions, with the presenter's consent, go on our <a href="{{ site.links.youtube }}">YouTube playlist</a>.</dd>
+      </div>
+      {%- endif %}
       <div>
         <dt>Take part</dt>
         <dd><ul class="inline-list"><li><a href="{{ '/sessions/' | relative_url }}#presenting">Present a paper</a></li><li><a href="{{ '/papers/' | relative_url }}#suggest">Suggest a paper</a></li><li><a href="{{ '/tooling/' | relative_url }}#propose">Run a Tooling Hour</a></li></ul></dd>
