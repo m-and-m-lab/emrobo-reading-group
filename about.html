@@ -65,8 +65,8 @@ toc:
 
 <section class="section" id="lens" aria-labelledby="lens-h">
   <h2 id="lens-h">How we read papers</h2>
-  <p class="section-intro">Four questions every presenter answers. It's a lens, not a rigid taxonomy. The thread through every session: the robot's representation, how it is used or adapted, what it enables downstream, and where it stops transferring.</p>
-  {% include btle.html %}
+  <p class="section-intro">Four questions every presenter answers, <strong>TaBLE</strong> for short: Task, Body, Learning, Evaluation. It's a lens, not a rigid taxonomy. The thread through every session: the robot's representation, how it is used or adapted, what it enables downstream, and where it stops transferring.</p>
+  {% include lens-strip.html %}
   <dl class="rows lens-detail">
     {%- for l in site.data.lens %}
     <div><dt>{{ l.key }} · {{ l.name }}</dt><dd>{{ l.detail }}</dd></div>

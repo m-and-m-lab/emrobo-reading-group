@@ -60,7 +60,7 @@ Time, room, map link and the Zoom details live in [`_config.yml`](_config.yml) u
 
 ### Add a paper to the starting list
 
-Add an entry to [`_data/papers.yml`](_data/papers.yml) with a `group` from [`_data/paper_groups.yml`](_data/paper_groups.yml). Each entry has a one-line `why`, `links`, and starter B·T·L·E `lens` notes. Each paper shows its own teaser figure: save it to `assets/img/papers/<id>.jpg` (720 px wide is plenty, e.g. `convert fig.png -resize '720x>' -quality 82 <id>.jpg`) and set `image`, `image_size`, `image_credit` and `image_source`. Broader related work goes in [`_data/reading_list.yml`](_data/reading_list.yml) under a topic.
+Add an entry to [`_data/papers.yml`](_data/papers.yml) with a `group` from [`_data/paper_groups.yml`](_data/paper_groups.yml). Each entry has a one-line `why`, `links`, and starter TaBLE `lens` notes (keys `Ta`, `B`, `L`, `E`, matching [`_data/lens.yml`](_data/lens.yml)). Each paper shows its own teaser figure: save it to `assets/img/papers/<id>.jpg` (720 px wide is plenty, e.g. `convert fig.png -resize '720x>' -quality 82 <id>.jpg`) and set `image`, `image_size`, `image_credit` and `image_source`. Broader related work goes in [`_data/reading_list.yml`](_data/reading_list.yml) under a topic.
 
 ### Tools and resources
 

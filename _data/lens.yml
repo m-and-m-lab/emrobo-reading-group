@@ -1,18 +1,19 @@
-# The B·T·L·E lens from the proposal. Used on the home page, the about page
-# and in the lens notes on each paper.
+# The TaBLE lens: Task, Body, Learning, Evaluation. Four questions every
+# presenter answers. Used on the home page, the about page and in the notes on
+# each paper (the `lens` keys in papers.yml match `key` here).
+- key: Ta
+  name: Task and skill interface
+  question: What is the task, and what do observations, actions and skills look like?
+  detail: The task setting, the observation and action spaces, the skills on offer, and the constraints that matter for execution.
 - key: B
   name: Body representation
   question: What body representation does it use?
   detail: URDF or USD, kinematic graph, geometry, inertial parameters, sensors, actuators, contacts, or a learned representation.
-- key: T
-  name: Task and skill interface
-  question: What do observations, actions and skills look like?
-  detail: The observation and action spaces, the skills on offer, and the constraints that matter for execution.
 - key: L
   name: Learning or planning mechanism
   question: How does the method use that representation?
   detail: The architecture or algorithm that uses the representation instead of simply memorizing one robot.
 - key: E
-  name: Transfer and evaluation
+  name: Evaluation and transfer
   question: What actually transfers or improves?
   detail: New robots, different morphology or reach, changed mass or friction, altered sensing, failures, or different controller interfaces.

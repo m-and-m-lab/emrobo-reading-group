@@ -55,7 +55,7 @@ body:
     id: why
     attributes:
       label: Why this paper?
-      description: What embodiment representation does it use? Which part of the B·T·L·E lens does it speak to (Body representation, Task/skill interface, Learning/planning mechanism, Transfer/evaluation)?
+      description: What embodiment representation does it use? Which part of the TaBLE lens does it speak to (Task and skill interface, Body representation, Learning or planning mechanism, Evaluation and transfer)?
     validations:
       required: true
   - type: textarea

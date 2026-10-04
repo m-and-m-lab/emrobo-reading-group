@@ -240,27 +240,27 @@ code { font-family: var(--font-mono); font-size: 0.88em; background: var(--surfa
 @media (max-width: 860px) { .steps { grid-template-columns: repeat(2, minmax(0, 1fr)); } }
 @media (max-width: 480px) { .steps { grid-template-columns: minmax(0, 1fr); } }
 
-/* B·T·L·E strip */
-.btle {
+/* TaBLE lens strip */
+.lens-strip {
   display: grid; grid-template-columns: repeat(4, minmax(0, 1fr)); gap: 12px;
   margin: 0; padding: 0; list-style: none;
 }
-.btle li {
+.lens-strip li {
   display: flex; gap: 12px; align-items: flex-start; margin: 0;
   padding: 14px; background: var(--surface); border: 1px solid var(--line); border-radius: 8px;
 }
-.btle strong { display: block; font-size: 0.98rem; color: var(--ink); line-height: 1.3; }
-.btle span:not(.key) { display: block; margin-top: 4px; font-size: 0.92rem; line-height: 1.45; color: var(--ink-2); }
+.lens-strip strong { display: block; font-size: 0.98rem; color: var(--ink); line-height: 1.3; }
+.lens-strip span:not(.key) { display: block; margin-top: 4px; font-size: 0.92rem; line-height: 1.45; color: var(--ink-2); }
 .key {
   display: inline-grid; place-items: center; flex: none;
-  width: 28px; height: 28px; border-radius: 6px;
+  min-width: 28px; height: 28px; padding: 0 4px; border-radius: 6px;
   font-family: var(--font-mono); font-size: 0.9rem; font-weight: 600;
   background: var(--blue); color: var(--surface);
 }
-.notes .key { width: 22px; height: 22px; font-size: 0.78rem; border-radius: 4px; }
+.notes .key { min-width: 22px; height: 22px; padding: 0 3px; font-size: 0.78rem; border-radius: 4px; }
 .lens-detail { margin-top: 24px; }
-@media (max-width: 900px) { .btle { grid-template-columns: repeat(2, minmax(0, 1fr)); } }
-@media (max-width: 480px) { .btle { grid-template-columns: minmax(0, 1fr); } }
+@media (max-width: 900px) { .lens-strip { grid-template-columns: repeat(2, minmax(0, 1fr)); } }
+@media (max-width: 480px) { .lens-strip { grid-template-columns: minmax(0, 1fr); } }
 
 /* About: motivation blocks */
 .points { display: grid; grid-template-columns: repeat(auto-fit, minmax(min(100%, 300px), 1fr)); gap: 28px 40px; }

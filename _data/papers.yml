@@ -6,7 +6,7 @@
 # image:  the paper's own teaser figure, saved in assets/img/papers/ (max 720px wide),
 #         with image_credit / image_source pointing to where it came from
 # why:    one line on why it's on the list, in the proposal's terms
-# lens:   starter B·T·L·E notes from the abstract and paper; presenters refine them
+# lens:   starter TaBLE notes (Ta, B, L, E) from the abstract and paper; presenters refine them
 # ---------------------------------------------------------------------------
 
 - id: body-transformer
@@ -31,8 +31,8 @@
     - label: Code
       url: https://github.com/carlosferrazza/BodyTransformer
   lens:
+    Ta: Local observations are tokenized per node; each actuator's action is read out from its node.
     B: The body as a graph of sensor and actuator nodes; attention is masked by graph adjacency.
-    T: Local observations are tokenized per node; each actuator's action is read out from its node.
     L: A masked-attention transformer (BoT-Hard and BoT-Mix variants) used as an imitation or RL policy.
     E: MoCapAct humanoid, Adroit hand, Isaac Gym humanoid and A1 tasks, plus a real Unitree A1.
 
@@ -58,8 +58,8 @@
     - label: Code
       url: https://github.com/real-stanford/get_zero
   lens:
+    Ta: Per-joint proprioception in; joint-position targets out, for in-hand object rotation.
     B: An embodiment graph from the URDF (joints as nodes, links as edges), with per-joint tokens carrying hardware properties.
-    T: Per-joint proprioception in; joint-position targets out, for in-hand object rotation.
     L: Behavior-cloning distillation of per-embodiment RL experts, a graph attention bias and a self-modeling loss.
     E: LEAP Hand variants with removed joints or longer links, zero-shot, in simulation and on hardware.
 
@@ -82,8 +82,8 @@
     - label: Code
       url: https://github.com/511205787/WestWorld
   lens:
+    Ta: State and action trajectories; the model predicts how a robot's trajectory evolves.
     B: A structural embedding of the robot's physical structure, aligned with its trajectory representation.
-    T: State and action trajectories; the model predicts how a robot's trajectory evolves.
     L: A system-aware mixture of experts that routes inputs through a learnable per-system embedding.
     E: Pretrained on 89 environments across morphologies, sim and real; zero- and few-shot tests; a real Unitree Go1.
 
@@ -109,8 +109,8 @@
     - label: Code
       url: https://github.com/rai-opensource/relic
   lens:
+    Ta: Tasks arrive as target trajectories, clicked contact points or language instructions.
     B: A per-limb role mask assigns Spot's legs and arm to manipulation or locomotion.
-    T: Tasks arrive as target trajectories, clicked contact points or language instructions.
     L: Model-based control for the manipulating limbs, blended with an RL gait policy trained in simulation.
     E: A real Spot with arm across 12 tasks, averaging 78.9% success.
 
@@ -136,8 +136,8 @@
     - label: Code
       url: https://github.com/UT-HCRL/LEGATO
   lens:
+    Ta: Egocentric stereo images from the gripper in; gripper pose changes and a grasp command out.
     B: A shared tool frame on a handheld gripper; each robot reaches it through whole-body IK retargeting.
-    T: Egocentric stereo images from the gripper in; gripper pose changes and a grasp command out.
     L: Visuomotor imitation with a motion-invariant loss, plus QP-based IK that respects joint limits.
     E: Panda, Spot, GR-1 and a wheeled mobile manipulator in simulation; a real Panda on a tabletop.
 
@@ -163,8 +163,8 @@
     - label: Code
       url: https://github.com/TooSchoolForCool/IROS21-VKC-Task-PDDL
   lens:
+    Ta: Abstract PDDL actions on the chain, with no predicates for intermediate base poses.
     B: The base, the arm and the grasped object merged into one virtual kinematic chain.
-    T: Abstract PDDL actions on the chain, with no predicates for intermediate base poses.
     L: PDDL task planning combined with optimization-based motion planning.
     E: Simulated object rearrangement and tool-use fetching tasks.
 
@@ -190,8 +190,8 @@
     - label: Code
       url: https://github.com/zyjiao4728/AKR-Planning
   lens:
+    Ta: Symbolic actions that change A-Space; goals are joint robot-and-scene configurations.
     B: Environment structures modeled kinematically and fused with the robot's kinematics into an augmented space (A-Space).
-    T: Symbolic actions that change A-Space; goals are joint robot-and-scene configurations.
     L: A three-level planner for task, motion and plan refinement.
     E: A Husky with UR5e in simulation; a real Ridgeback with two UR5e arms on tasks of up to 14 steps.
 
@@ -217,8 +217,8 @@
     - label: Code
       url: https://github.com/yufeiwang63/ArticuBot
   lens:
+    Ta: Point clouds in; end-effector sub-goals and delta transforms out.
     B: The end effector, as goal gripper points in the scene's point cloud; actions live in end-effector space.
-    T: Point clouds in; end-effector sub-goals and delta transforms out.
     L: A weighted displacement model predicts sub-goals; a goal-conditioned 3D diffusion policy reaches them.
     E: 42.3k simulated demos on 322 objects; zero-shot on a tabletop Franka in two labs and an X-Arm on a mobile base.
 
@@ -242,8 +242,8 @@
     - label: Journal
       url: https://doi.org/10.1126/scirobotics.aec7695
   lens:
+    Ta: Track the retargeted motion; the policy outputs residual joint targets for PD control.
     B: Per-robot kinematic retargeting of the reference motion, with refined actuator and armature models.
-    T: Track the retargeted motion; the policy outputs residual joint targets for PD control.
     L: RL motion imitation with adaptive sampling and an assistive-wrench curriculum, trained only in simulation.
     E: Zero-shot on Atlas, Unitree G1 and Spot hardware, including a continuous backflip.
 
@@ -269,7 +269,7 @@
     - label: Code
       url: https://github.com/KimHanjung/UniSkill
   lens:
+    Ta: A skill embedding from a human video prompt conditions the robot policy.
     B: No explicit body model; embodiment-agnostic skills are inferred from how video frames change.
-    T: A skill embedding from a human video prompt conditions the robot policy.
     L: Inverse and forward skill-dynamics models learn the skills; a skill-conditioned diffusion policy acts.
     E: LIBERO in simulation; a real Franka and a bimanual mobile robot.
