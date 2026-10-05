@@ -15,8 +15,15 @@
 # Notes | Recording / resources); add `abstract`, `slides`, `video` and `notes`.
 #
 # The entries below are a tentative plan built from the proposal's reading
-# list: reading sessions every other Tuesday from October 6, 2026, plus a
-# monthly Tooling Hour on an off-week Tuesday. Edit or replace freely.
+# list: reading sessions every other Tuesday, plus a monthly Tooling Hour on an
+# off-week Tuesday. Edit or replace freely.
+#
+# Fall 2026 dates to avoid (UMich Ann Arbor academic calendar,
+# https://ro.umich.edu/sites/default/files/calendar/pdfs/Cal_2026-2027.pdf):
+#   Fall Study Break     Oct 19-20 (Mon-Tue)   -> no session Oct 20
+#   Thanksgiving recess  Nov 25-27 (Wed-Fri)   -> Tue Nov 24 is still a class day
+#   Classes end Dec 11; exams Dec 14-21; winter break until classes begin
+#   Wed Jan 13, 2027     -> last session Dec 8, none Dec 15 - Jan 12
 # ---------------------------------------------------------------------------
 
 - date: 2026-10-06
@@ -29,7 +36,19 @@
     Scope and format, the TaBLE lens (Task, Body, Learning, Evaluation) we'll use to compare papers, a tour of
     the starting reading list, and presenter sign-ups for the first sessions.
 
-- date: 2026-10-20
+- date: 2026-10-13
+  semester: Fall 2026
+  type: tooling
+  tentative: true
+  title: From the Spot USD asset to a mobile manipulation policy in Isaac Lab
+  presenter: TBD
+  description: >-
+    A hands-on walkthrough of the Spot USD asset and an Isaac Sim / Isaac Lab
+    training pipeline for mobile manipulation: where the robot's structure,
+    physical properties and control interface live, and what breaks on the way
+    to a policy.
+
+- date: 2026-10-27
   semester: Fall 2026
   type: paper
   tentative: true
@@ -46,6 +65,16 @@
 
 - date: 2026-11-03
   semester: Fall 2026
+  type: tooling
+  tentative: true
+  title: "Topic open: propose a tool"
+  presenter: TBD
+  description: >-
+    Topic not chosen yet. Pick one from the Tooling Hour list or propose your
+    own: a tool, codebase, simulator or hardware setup you actually use.
+
+- date: 2026-11-10
+  semester: Fall 2026
   type: paper
   tentative: true
   theme: Robot and scene kinematics
@@ -58,19 +87,7 @@
     - title: Integration of Robot and Scene Kinematics for Sequential Mobile Manipulation Planning
       url: https://arxiv.org/abs/2508.18627
 
-- date: 2026-10-13
-  semester: Fall 2026
-  type: tooling
-  tentative: true
-  title: From the Spot USD asset to a mobile manipulation policy in Isaac Lab
-  presenter: TBD
-  description: >-
-    A hands-on walkthrough of the Spot USD asset and an Isaac Sim / Isaac Lab
-    training pipeline for mobile manipulation: where the robot's structure,
-    physical properties and control interface live, and what breaks on the way
-    to a policy.
-
-- date: 2026-11-17
+- date: 2026-11-24
   semester: Fall 2026
   type: paper
   tentative: true
@@ -84,3 +101,27 @@
   extra_readings:
     - title: "LEGATO: Cross-Embodiment Imitation Using a Grasping Tool"
       url: https://arxiv.org/abs/2411.03682
+
+- date: 2026-12-01
+  semester: Fall 2026
+  type: tooling
+  tentative: true
+  title: "Topic open: propose a tool"
+  presenter: TBD
+  description: >-
+    Topic not chosen yet. Pick one from the Tooling Hour list or propose your
+    own: a tool, codebase, simulator or hardware setup you actually use.
+
+- date: 2026-12-08
+  semester: Fall 2026
+  type: paper
+  tentative: true
+  theme: Skills that transfer across bodies
+  title: "ZEST: Zero-shot Embodied Skill Transfer for Athletic Robot Control"
+  authors: Sleiman et al.
+  venue: Science Robotics 2026
+  paper_url: https://arxiv.org/abs/2602.00401
+  presenter: TBD
+  extra_readings:
+    - title: "UniSkill: Imitating Human Videos via Cross-Embodiment Skill Representations"
+      url: https://arxiv.org/abs/2505.08787
