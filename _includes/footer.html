@@ -3,6 +3,7 @@
     <p>{{ site.title | escape }} · University of Michigan</p>
     <p>
       Slack <a href="{{ '/#join' | relative_url }}">{{ site.links.slack_channel }}</a>
+      {%- if site.links.slides_folder != "" %} · <a href="{{ site.links.slides_folder }}">Slides</a>{% endif %}
       {%- if site.links.youtube != "" %} · <a href="{{ site.links.youtube }}">YouTube</a>{% endif %}
       · <a href="{{ site.links.github_repo }}">Site source</a>
     </p>

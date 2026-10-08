@@ -43,6 +43,7 @@ links:
   slack: ""                 # optional link to the channel
   slack_channel: "#emrobo-reading-group"   # private channel on the University of Michigan Slack
   youtube: "https://www.youtube.com/playlist?list=PLPwDhcf-CLBA"   # session recordings playlist
+  slides_folder: "https://drive.google.com/drive/folders/16gnLnA3EXeT-tuBnUtJS30ydUnufb8eZ?usp=sharing"   # shared Google Drive folder for slides
   linkedin: ""
   presenter_signup: ""      # e.g. a Google Sheet
   suggest_paper_form: ""    # optional; GitHub issue templates are used otherwise

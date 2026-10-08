@@ -41,7 +41,7 @@ toc:
   <div class="measure">
     <p>Each session focuses on <strong>one main paper or a small set of closely related papers</strong>. The presenter follows a <a href="#presenting">shared template</a> and keeps the talk focused, so there are <strong>15–20 minutes for discussion</strong>. Sessions run an hour, every other Tuesday.</p>
     <p>Once a month there's an extra session on the off week, the <a href="{{ '/tooling/' | relative_url }}">Tooling Hour</a>: a hands-on walkthrough of a tool, codebase, simulator or hardware setup.</p>
-    <p>Everyone can join in person or on Zoom. With the consent of presenters and participants, selected sessions may be recorded and posted to the group's {% if site.links.youtube != "" %}<a href="{{ site.links.youtube }}">YouTube playlist</a>{% else %}YouTube channel{% endif %}.</p>
+    <p>Everyone can join in person or on Zoom. With the consent of presenters and participants, selected sessions may be recorded and posted to the group's {% if site.links.youtube != "" %}<a href="{{ site.links.youtube }}">YouTube playlist</a>{% else %}YouTube channel{% endif %}.{% if site.links.slides_folder != "" %} Slides from every session go in the <a href="{{ site.links.slides_folder }}">shared slides folder</a>.{% endif %}</p>
   </div>
 </section>
 
@@ -87,7 +87,7 @@ Presenter: [name] · Embodiment & Skill Learning Reading Group · [date]
       <li><strong>Two weeks before:</strong> pick a paper from the <a href="{{ '/papers/' | relative_url }}">reading list</a> and confirm the date with an organizer.</li>
       <li><strong>One week before:</strong> send the paper link and any paired reading, so it can go out in Slack.</li>
       <li><strong>On the day:</strong> bring two or three open questions to start the discussion.</li>
-      <li><strong>Afterwards:</strong> share your slides, and say whether you're happy for the recording to be posted.</li>
+      <li><strong>Afterwards:</strong> {% if site.links.slides_folder != "" %}add your slides to the <a href="{{ site.links.slides_folder }}">shared folder</a>{% else %}share your slides{% endif %}, and say whether you're happy for the recording to be posted.</li>
     </ul>
   </div>
 </section>

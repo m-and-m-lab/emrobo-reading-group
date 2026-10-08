@@ -103,10 +103,10 @@ layout: default
         <dt>Calendar</dt>
         <dd>{% include calendar-buttons.html %}</dd>
       </div>
-      {%- if site.links.youtube != "" %}
+      {%- if site.links.youtube != "" or site.links.slides_folder != "" %}
       <div>
-        <dt>Recordings</dt>
-        <dd>Selected sessions, with the presenter's consent, go on our <a href="{{ site.links.youtube }}">YouTube playlist</a>.</dd>
+        <dt>Slides and recordings</dt>
+        <dd>{% if site.links.slides_folder != "" %}Presenters' slides are in the <a href="{{ site.links.slides_folder }}">shared slides folder</a>.{% endif %}{% if site.links.youtube != "" %} Selected sessions, with the presenter's consent, go on our <a href="{{ site.links.youtube }}">YouTube playlist</a>.{% endif %}</dd>
       </div>
       {%- endif %}
       <div>
